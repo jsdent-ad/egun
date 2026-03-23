@@ -2,6 +2,14 @@ export interface BusinessHours {
   day: string
   hours: string
   isClosed?: boolean
+  note?: string
+}
+
+export interface ScheduleTab {
+  id: string
+  label: string
+  hours: BusinessHours[]
+  notice?: string[]
 }
 
 export interface SocialLinks {
@@ -22,6 +30,7 @@ export interface ClinicInfo {
   longitude: number
   socialLinks: SocialLinks
   businessHours: BusinessHours[]
+  scheduleTabs: ScheduleTab[]
 }
 
 export const clinicInfo: ClinicInfo = {
@@ -40,12 +49,67 @@ export const clinicInfo: ClinicInfo = {
     naverPlace: 'https://m.place.naver.com/restaurant/12872860',
   },
   businessHours: [
-    { day: '월', hours: '09:30-18:30' },
-    { day: '화', hours: '09:30-20:30' },
-    { day: '수', hours: '09:30-18:30' },
-    { day: '목', hours: '09:30-18:30' },
-    { day: '금', hours: '09:30-20:30' },
-    { day: '토', hours: '09:30-13:30' },
+    { day: '월', hours: '09:30 - 18:30' },
+    { day: '화', hours: '09:30 - 20:30', note: '야간진료' },
+    { day: '수', hours: '09:30 - 18:30' },
+    { day: '목', hours: '09:30 - 18:30' },
+    { day: '금', hours: '09:30 - 20:30', note: '야간진료' },
+    { day: '토', hours: '09:30 - 13:30' },
     { day: '일', hours: '휴진', isClosed: true },
+  ],
+  scheduleTabs: [
+    {
+      id: 'main',
+      label: '본관 (일반)',
+      hours: [
+        { day: '월요일', hours: '09:30 - 18:30' },
+        { day: '화요일', hours: '09:30 - 20:30', note: '야간진료' },
+        { day: '수요일', hours: '09:30 - 18:30' },
+        { day: '목요일', hours: '09:30 - 18:30' },
+        { day: '금요일', hours: '09:30 - 20:30', note: '야간진료' },
+        { day: '토요일', hours: '09:30 - 13:30' },
+        { day: '일요일 · 공휴일', hours: '휴진', isClosed: true },
+      ],
+      notice: [
+        '점심시간 13:00 - 14:00 (토요일 없음)',
+        '화 · 금 야간진료는 예약 후 방문 권장',
+      ],
+    },
+    {
+      id: 'annex-pediatric',
+      label: '별관 (소아치과)',
+      hours: [
+        { day: '월요일', hours: '09:30 - 18:00' },
+        { day: '화요일', hours: '09:30 - 18:00' },
+        { day: '수요일', hours: '09:30 - 18:00' },
+        { day: '목요일', hours: '09:30 - 18:00' },
+        { day: '금요일', hours: '09:30 - 18:00' },
+        { day: '토요일', hours: '09:30 - 13:00' },
+        { day: '일요일 · 공휴일', hours: '휴진', isClosed: true },
+      ],
+      notice: [
+        '점심시간 13:00 - 14:00 (토요일 없음)',
+        '소아 전문의 담당 진료',
+        '사전 예약 강력 권장',
+      ],
+    },
+    {
+      id: 'annex-ortho',
+      label: '별관 (교정과)',
+      hours: [
+        { day: '월요일', hours: '10:00 - 18:00' },
+        { day: '화요일', hours: '10:00 - 18:00' },
+        { day: '수요일', hours: '휴진', isClosed: true },
+        { day: '목요일', hours: '10:00 - 18:00' },
+        { day: '금요일', hours: '10:00 - 18:00' },
+        { day: '토요일', hours: '10:00 - 13:00' },
+        { day: '일요일 · 공휴일', hours: '휴진', isClosed: true },
+      ],
+      notice: [
+        '점심시간 13:00 - 14:00',
+        '수요일 교정과 휴진',
+        '교정 전문의 담당 진료 · 반드시 예약 후 방문',
+      ],
+    },
   ],
 }

@@ -1,0 +1,20 @@
+// @TASK Board - 심미보철 페이지
+import type { Metadata } from 'next'
+import TreatmentPage from '@/components/board/TreatmentPage'
+import { cosmeticTreatments } from '@/data/treatments'
+
+export const metadata: Metadata = {
+  title: '심미보철 | 서울이건치과',
+  description:
+    '라미네이트, 올세라믹 크라운, 잇몸미백 등 자연스러운 아름다움을 되찾는 심미보철 치료를 안내합니다.',
+}
+
+export default function CosmeticPage() {
+  return (
+    <TreatmentPage
+      title="심미보철"
+      subtitle="자연스러운 아름다움을 되찾습니다"
+      treatments={cosmeticTreatments}
+    />
+  )
+}

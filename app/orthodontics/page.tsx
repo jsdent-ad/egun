@@ -1,0 +1,20 @@
+// @TASK Board - 교정치료 페이지
+import type { Metadata } from 'next'
+import TreatmentPage from '@/components/board/TreatmentPage'
+import { orthodonticsTreatments } from '@/data/treatments'
+
+export const metadata: Metadata = {
+  title: '서울이건 교정치료 | 서울이건치과',
+  description:
+    '인비절라인 투명교정, 세라믹 교정, 성인 교정 등 가지런한 치아를 위한 교정치료를 안내합니다.',
+}
+
+export default function OrthodonticsPage() {
+  return (
+    <TreatmentPage
+      title="서울이건 교정치료"
+      subtitle="가지런한 치아, 건강한 교합"
+      treatments={orthodonticsTreatments}
+    />
+  )
+}
