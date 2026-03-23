@@ -33,22 +33,45 @@ export default function QuickConsultBar() {
   const [form, setForm] = useState<FormState>({ name: '', contact: '', agreed: false })
   const [errors, setErrors] = useState<FormErrors>({})
   const [submitting, setSubmitting] = useState(false)
+  const [toast, setToast] = useState<{ type: 'success' | 'error'; message: string } | null>(null)
 
-  const handleSubmit = (e: FormEvent) => {
+  const showToast = (type: 'success' | 'error', message: string) => {
+    setToast({ type, message })
+    setTimeout(() => setToast(null), 3000)
+  }
+
+  const handleSubmit = async (e: FormEvent) => {
     e.preventDefault()
     const newErrors = validate(form)
     setErrors(newErrors)
     if (Object.keys(newErrors).length > 0) return
 
     setSubmitting(true)
-    // TODO: API 연동 시 교체
-    console.log('상담 신청:', { name: form.name, contact: form.contact })
-    setTimeout(() => {
-      alert('상담 신청이 완료되었습니다.\n빠른 시일 내에 연락드리겠습니다.')
+    try {
+      const res = await fetch('/api/consultations', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({
+          name: form.name.trim(),
+          phone: form.contact.trim(),
+          privacy_agreed: form.agreed,
+        }),
+      })
+
+      if (!res.ok) {
+        const data = await res.json()
+        showToast('error', data.error || '신청에 실패했습니다.')
+        return
+      }
+
+      showToast('success', '상담 신청이 완료되었습니다. 빠른 시일 내에 연락드리겠습니다.')
       setForm({ name: '', contact: '', agreed: false })
       setErrors({})
+    } catch {
+      showToast('error', '네트워크 오류가 발생했습니다. 잠시 후 다시 시도해주세요.')
+    } finally {
       setSubmitting(false)
-    }, 400)
+    }
   }
 
   return (
@@ -57,6 +80,19 @@ export default function QuickConsultBar() {
       role="complementary"
       aria-label="빠른 상담 신청"
     >
+      {/* 토스트 메시지 */}
+      {toast && (
+        <div
+          className={`absolute -top-12 left-1/2 -translate-x-1/2 px-4 py-2 rounded-lg text-sm font-medium shadow-lg transition-all animate-[fadeIn_0.2s_ease-out] ${
+            toast.type === 'success'
+              ? 'bg-green-600 text-white'
+              : 'bg-red-600 text-white'
+          }`}
+          role="status"
+        >
+          {toast.message}
+        </div>
+      )}
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
 
         {/* 데스크톱: 풀 폼 */}
