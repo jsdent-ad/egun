@@ -1,23 +1,13 @@
 'use client'
 
-import { useState, useEffect, type FormEvent } from 'react'
+import { useState, type FormEvent } from 'react'
 import { useRouter } from 'next/navigation'
-import { createClient } from '@/lib/supabase/client'
 
 export default function AdminLoginPage() {
   const router = useRouter()
-  const [email, setEmail] = useState('')
   const [password, setPassword] = useState('')
   const [error, setError] = useState('')
   const [loading, setLoading] = useState(false)
-
-  // 이미 로그인된 상태면 /admin으로 리다이렉트
-  useEffect(() => {
-    const supabase = createClient()
-    supabase.auth.getUser().then(({ data: { user } }) => {
-      if (user) router.replace('/admin')
-    })
-  }, [router])
 
   const handleLogin = async (e: FormEvent) => {
     e.preventDefault()
@@ -25,14 +15,16 @@ export default function AdminLoginPage() {
     setLoading(true)
 
     try {
-      const supabase = createClient()
-      const { error: authError } = await supabase.auth.signInWithPassword({
-        email,
-        password,
+      const res = await fetch('/api/admin/auth', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ password }),
       })
 
-      if (authError) {
-        setError('이메일 또는 비밀번호가 올바르지 않습니다.')
+      const data = await res.json()
+
+      if (!res.ok) {
+        setError(data.error || '로그인에 실패했습니다.')
         return
       }
 
@@ -55,22 +47,6 @@ export default function AdminLoginPage() {
           </div>
 
           <form onSubmit={handleLogin} className="space-y-4">
-            <div>
-              <label htmlFor="email" className="block text-sm font-medium text-gray-700 mb-1">
-                이메일
-              </label>
-              <input
-                id="email"
-                type="email"
-                value={email}
-                onChange={(e) => setEmail(e.target.value)}
-                required
-                autoComplete="email"
-                className="w-full h-11 px-4 rounded-lg border border-gray-300 text-gray-900 text-sm focus:outline-none focus:ring-2 focus:ring-[#6B7B3A] focus:border-[#6B7B3A] transition"
-                placeholder="admin@example.com"
-              />
-            </div>
-
             <div>
               <label htmlFor="password" className="block text-sm font-medium text-gray-700 mb-1">
                 비밀번호

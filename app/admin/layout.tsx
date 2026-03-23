@@ -1,4 +1,5 @@
-import { createClient } from '@/lib/supabase/server'
+import { redirect } from 'next/navigation'
+import { isAdminAuthenticated } from '@/lib/admin-auth'
 import AdminSidebar from './AdminSidebar'
 
 export default async function AdminLayout({
@@ -6,13 +7,10 @@ export default async function AdminLayout({
 }: {
   children: React.ReactNode
 }) {
-  const supabase = await createClient()
-  const {
-    data: { user },
-  } = await supabase.auth.getUser()
+  const isAuthenticated = await isAdminAuthenticated()
 
   // 비인증 상태: 사이드바 없이 children만 렌더링 (login 페이지용)
-  if (!user) {
+  if (!isAuthenticated) {
     return <>{children}</>
   }
 

@@ -1,8 +1,6 @@
 'use client'
 
 import { useState, useEffect, useCallback } from 'react'
-import { useRouter } from 'next/navigation'
-import { createClient } from '@/lib/supabase/client'
 import { Trash2 } from 'lucide-react'
 
 interface Consultation {
@@ -34,21 +32,12 @@ const STATUS_BADGE: Record<string, string> = {
 }
 
 export default function ConsultationsPage() {
-  const router = useRouter()
   const [items, setItems] = useState<Consultation[]>([])
   const [loading, setLoading] = useState(true)
   const [filter, setFilter] = useState('all')
   const [editingMemo, setEditingMemo] = useState<string | null>(null)
   const [memoValue, setMemoValue] = useState('')
   const [deleteId, setDeleteId] = useState<string | null>(null)
-
-  // 인증 확인
-  useEffect(() => {
-    const supabase = createClient()
-    supabase.auth.getUser().then(({ data: { user } }) => {
-      if (!user) router.replace('/admin/login')
-    })
-  }, [router])
 
   const fetchData = useCallback(async () => {
     setLoading(true)

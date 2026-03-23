@@ -1,7 +1,6 @@
 'use client'
 
 import { useState, useEffect, useCallback } from 'react'
-import { useRouter } from 'next/navigation'
 import { createClient } from '@/lib/supabase/client'
 import { Plus, Pencil, Trash2, X } from 'lucide-react'
 
@@ -30,7 +29,6 @@ const emptyForm: FormData = {
 }
 
 export default function NoticesPage() {
-  const router = useRouter()
   const [items, setItems] = useState<Notice[]>([])
   const [loading, setLoading] = useState(true)
   const [modalOpen, setModalOpen] = useState(false)
@@ -38,13 +36,6 @@ export default function NoticesPage() {
   const [form, setForm] = useState<FormData>(emptyForm)
   const [saving, setSaving] = useState(false)
   const [deleteId, setDeleteId] = useState<string | null>(null)
-
-  useEffect(() => {
-    const supabase = createClient()
-    supabase.auth.getUser().then(({ data: { user } }) => {
-      if (!user) router.replace('/admin/login')
-    })
-  }, [router])
 
   const fetchData = useCallback(async () => {
     setLoading(true)

@@ -1,16 +1,8 @@
-import { redirect } from 'next/navigation'
 import { createClient } from '@/lib/supabase/server'
 import AdminDashboardCards from './AdminDashboardCards'
 
 export default async function AdminDashboardPage() {
   const supabase = await createClient()
-  const {
-    data: { user },
-  } = await supabase.auth.getUser()
-
-  if (!user) {
-    redirect('/admin/login')
-  }
 
   // 미확인 상담 건수 조회
   const { count } = await supabase

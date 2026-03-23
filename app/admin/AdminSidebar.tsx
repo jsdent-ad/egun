@@ -3,7 +3,6 @@
 import { useState } from 'react'
 import Link from 'next/link'
 import { usePathname, useRouter } from 'next/navigation'
-import { createClient } from '@/lib/supabase/client'
 import {
   LayoutDashboard,
   MessageSquare,
@@ -27,8 +26,7 @@ export default function AdminSidebar() {
   const [mobileOpen, setMobileOpen] = useState(false)
 
   const handleLogout = async () => {
-    const supabase = createClient()
-    await supabase.auth.signOut()
+    await fetch('/api/admin/auth', { method: 'DELETE' })
     router.push('/admin/login')
     router.refresh()
   }

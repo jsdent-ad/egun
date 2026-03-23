@@ -1,5 +1,6 @@
 import { NextRequest, NextResponse } from 'next/server'
 import { createClient } from '@/lib/supabase/server'
+import { isAdminAuthenticated } from '@/lib/admin-auth'
 
 // GET: 증례 목록 (공개, ?board_category 필터)
 export async function GET(request: NextRequest) {
@@ -36,15 +37,11 @@ export async function GET(request: NextRequest) {
 // POST: 증례 추가 (인증 필요)
 export async function POST(request: NextRequest) {
   try {
-    const supabase = await createClient()
-
-    const {
-      data: { user },
-    } = await supabase.auth.getUser()
-    if (!user) {
+    if (!(await isAdminAuthenticated())) {
       return NextResponse.json({ error: '인증이 필요합니다.' }, { status: 401 })
     }
 
+    const supabase = await createClient()
     const body = await request.json()
     const { title, description, board_category, treatment_type, before_image_url, after_image_url, blog_urls } = body
 
