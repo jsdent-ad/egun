@@ -40,3 +40,6 @@ next-env.d.ts
 # claude memory
 .claude/memory/last-session.json
 .claude/settings.local.json
+
+# 100MB 초과 대용량 파일 (GitHub 제한)
+media/videos/3-3 치과영상.mp4
