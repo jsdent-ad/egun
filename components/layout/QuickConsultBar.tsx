@@ -1,0 +1,200 @@
+'use client'
+
+import { useState, type FormEvent } from 'react'
+import { Phone } from 'lucide-react'
+
+interface FormState {
+  name: string
+  contact: string
+  agreed: boolean
+}
+
+interface FormErrors {
+  name?: string
+  contact?: string
+  agreed?: string
+}
+
+function validate(form: FormState): FormErrors {
+  const errors: FormErrors = {}
+  if (form.name.trim().length < 2) {
+    errors.name = '이름은 2자 이상 입력해주세요.'
+  }
+  if (!form.contact.trim()) {
+    errors.contact = '연락처를 입력해주세요.'
+  }
+  if (!form.agreed) {
+    errors.agreed = '개인정보 수집에 동의해주세요.'
+  }
+  return errors
+}
+
+export default function QuickConsultBar() {
+  const [form, setForm] = useState<FormState>({ name: '', contact: '', agreed: false })
+  const [errors, setErrors] = useState<FormErrors>({})
+  const [submitting, setSubmitting] = useState(false)
+
+  const handleSubmit = (e: FormEvent) => {
+    e.preventDefault()
+    const newErrors = validate(form)
+    setErrors(newErrors)
+    if (Object.keys(newErrors).length > 0) return
+
+    setSubmitting(true)
+    // TODO: API 연동 시 교체
+    console.log('상담 신청:', { name: form.name, contact: form.contact })
+    setTimeout(() => {
+      alert('상담 신청이 완료되었습니다.\n빠른 시일 내에 연락드리겠습니다.')
+      setForm({ name: '', contact: '', agreed: false })
+      setErrors({})
+      setSubmitting(false)
+    }, 400)
+  }
+
+  return (
+    <div
+      className="fixed bottom-0 left-0 right-0 z-50 bg-gray-900/95 backdrop-blur-md border-t border-white/10"
+      role="complementary"
+      aria-label="빠른 상담 신청"
+    >
+      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+
+        {/* 데스크톱: 풀 폼 */}
+        <form
+          onSubmit={handleSubmit}
+          noValidate
+          className="hidden sm:flex items-center gap-3 py-3"
+        >
+          {/* 이름 */}
+          <div className="flex flex-col gap-0.5 flex-shrink-0">
+            <input
+              type="text"
+              value={form.name}
+              onChange={(e) => setForm((p) => ({ ...p, name: e.target.value }))}
+              placeholder="이름"
+              aria-label="이름"
+              aria-invalid={!!errors.name}
+              aria-describedby={errors.name ? 'err-name' : undefined}
+              className={`h-9 w-28 px-3 rounded bg-white/10 text-white text-sm placeholder-white/40 border outline-none focus:ring-2 focus:ring-[#6B7B3A] transition ${
+                errors.name ? 'border-red-400' : 'border-white/20 focus:border-[#6B7B3A]'
+              }`}
+            />
+            {errors.name && (
+              <span id="err-name" role="alert" className="text-red-400 text-[10px] leading-none">
+                {errors.name}
+              </span>
+            )}
+          </div>
+
+          {/* 연락처 */}
+          <div className="flex flex-col gap-0.5 flex-shrink-0">
+            <input
+              type="tel"
+              value={form.contact}
+              onChange={(e) => setForm((p) => ({ ...p, contact: e.target.value }))}
+              placeholder="연락처 (숫자만)"
+              aria-label="연락처"
+              aria-invalid={!!errors.contact}
+              aria-describedby={errors.contact ? 'err-contact' : undefined}
+              className={`h-9 w-36 px-3 rounded bg-white/10 text-white text-sm placeholder-white/40 border outline-none focus:ring-2 focus:ring-[#6B7B3A] transition ${
+                errors.contact ? 'border-red-400' : 'border-white/20 focus:border-[#6B7B3A]'
+              }`}
+            />
+            {errors.contact && (
+              <span id="err-contact" role="alert" className="text-red-400 text-[10px] leading-none">
+                {errors.contact}
+              </span>
+            )}
+          </div>
+
+          {/* 개인정보 동의 */}
+          <div className="flex flex-col gap-0.5 flex-shrink-0">
+            <label className="flex items-center gap-2 cursor-pointer group">
+              <input
+                type="checkbox"
+                checked={form.agreed}
+                onChange={(e) => setForm((p) => ({ ...p, agreed: e.target.checked }))}
+                aria-invalid={!!errors.agreed}
+                aria-describedby={errors.agreed ? 'err-agreed' : undefined}
+                className="w-4 h-4 accent-[#6B7B3A] cursor-pointer"
+              />
+              <span className="text-xs text-white/60 group-hover:text-white/80 transition-colors whitespace-nowrap">
+                개인정보 수집 동의
+              </span>
+            </label>
+            {errors.agreed && (
+              <span id="err-agreed" role="alert" className="text-red-400 text-[10px] leading-none">
+                {errors.agreed}
+              </span>
+            )}
+          </div>
+
+          {/* 상담예약 버튼 */}
+          <button
+            type="submit"
+            disabled={submitting}
+            className="h-9 px-5 rounded bg-[#6B7B3A] text-white text-sm font-semibold whitespace-nowrap hover:bg-[#4A5A2A] disabled:opacity-60 disabled:cursor-not-allowed transition-colors flex-shrink-0 focus:outline-none focus:ring-2 focus:ring-[#6B7B3A] focus:ring-offset-2 focus:ring-offset-gray-900"
+          >
+            {submitting ? '신청 중...' : '상담예약'}
+          </button>
+
+          {/* 구분선 */}
+          <div className="h-7 w-px bg-white/20 mx-1 flex-shrink-0" aria-hidden="true" />
+
+          {/* 빠른상담 (전화) */}
+          <a
+            href="tel:031-896-5512"
+            className="h-9 px-4 rounded bg-white/10 text-white text-sm font-medium whitespace-nowrap hover:bg-[#8B7D3C] flex items-center gap-2 transition-colors flex-shrink-0 focus:outline-none focus:ring-2 focus:ring-white/50"
+            aria-label="전화로 빠른 상담하기 031-896-5512"
+          >
+            <Phone size={14} aria-hidden="true" />
+            빠른상담
+          </a>
+
+          {/* 우측 안내 텍스트 */}
+          <p className="ml-auto text-xs text-white/30 hidden xl:block whitespace-nowrap">
+            평일 09:30 ~ 18:30 &nbsp;|&nbsp; 화·금 09:30 ~ 20:30 &nbsp;|&nbsp; 토 09:30 ~ 13:30
+          </p>
+        </form>
+
+        {/* 모바일: 간소화 레이아웃 */}
+        <form
+          onSubmit={handleSubmit}
+          noValidate
+          className="flex sm:hidden items-center gap-2 py-2"
+        >
+          <input
+            type="text"
+            value={form.name}
+            onChange={(e) => setForm((p) => ({ ...p, name: e.target.value }))}
+            placeholder="이름"
+            aria-label="이름"
+            className="h-10 flex-1 min-w-0 px-3 rounded bg-white/10 text-white text-sm placeholder-white/40 border border-white/20 outline-none focus:border-[#6B7B3A] transition"
+          />
+          <input
+            type="tel"
+            value={form.contact}
+            onChange={(e) => setForm((p) => ({ ...p, contact: e.target.value }))}
+            placeholder="연락처"
+            aria-label="연락처"
+            className="h-10 flex-1 min-w-0 px-3 rounded bg-white/10 text-white text-sm placeholder-white/40 border border-white/20 outline-none focus:border-[#6B7B3A] transition"
+          />
+          <button
+            type="submit"
+            disabled={submitting}
+            className="h-10 px-3 rounded bg-[#6B7B3A] text-white text-sm font-semibold whitespace-nowrap hover:bg-[#4A5A2A] disabled:opacity-60 transition-colors flex-shrink-0"
+          >
+            예약
+          </button>
+          <a
+            href="tel:031-896-5512"
+            className="h-10 w-10 rounded bg-white/10 text-white flex items-center justify-center hover:bg-[#8B7D3C] transition-colors flex-shrink-0"
+            aria-label="전화 상담"
+          >
+            <Phone size={16} aria-hidden="true" />
+          </a>
+        </form>
+      </div>
+    </div>
+  )
+}

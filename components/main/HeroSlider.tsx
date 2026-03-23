@@ -1,0 +1,217 @@
+'use client'
+
+import { useEffect, useRef, useState } from 'react'
+import { ChevronDown } from 'lucide-react'
+
+const SLIDES = [
+  {
+    id: 0,
+    headline: '서울대 출신 원장 2인',
+    sub: '책임진료 서울이건치과',
+    bg: 'from-stone-900 via-stone-800 to-stone-700',
+    accent: '#6B7B3A',
+  },
+  {
+    id: 1,
+    headline: '자연치아를 지키는',
+    sub: '최소삭제 보존치료',
+    bg: 'from-neutral-900 via-zinc-800 to-zinc-700',
+    accent: '#8B7D3C',
+  },
+  {
+    id: 2,
+    headline: '디지털 정밀 진단',
+    sub: '네비게이션 임플란트',
+    bg: 'from-slate-900 via-slate-800 to-gray-700',
+    accent: '#6B7B3A',
+  },
+]
+
+const INTERVAL = 5000
+const RADIUS = 18
+const CIRCUMFERENCE = 2 * Math.PI * RADIUS
+
+export default function HeroSlider() {
+  const [current, setCurrent] = useState(0)
+  const [progress, setProgress] = useState(0)
+  const startTimeRef = useRef<number>(Date.now())
+  const rafRef = useRef<number | null>(null)
+  const isPausedRef = useRef(false)
+
+  const goTo = (index: number) => {
+    setCurrent(index)
+    setProgress(0)
+    startTimeRef.current = Date.now()
+  }
+
+  useEffect(() => {
+    const tick = () => {
+      if (!isPausedRef.current) {
+        const elapsed = Date.now() - startTimeRef.current
+        const p = Math.min(elapsed / INTERVAL, 1)
+        setProgress(p)
+
+        if (p >= 1) {
+          setCurrent((prev) => {
+            const next = (prev + 1) % SLIDES.length
+            return next
+          })
+          setProgress(0)
+          startTimeRef.current = Date.now()
+        }
+      }
+      rafRef.current = requestAnimationFrame(tick)
+    }
+
+    rafRef.current = requestAnimationFrame(tick)
+    return () => {
+      if (rafRef.current !== null) cancelAnimationFrame(rafRef.current)
+    }
+  }, [])
+
+  const slide = SLIDES[current]
+
+  return (
+    <section
+      className="relative h-screen w-full overflow-hidden"
+      onMouseEnter={() => { isPausedRef.current = true }}
+      onMouseLeave={() => { isPausedRef.current = false }}
+    >
+      {/* Slide backgrounds */}
+      {SLIDES.map((s, i) => (
+        <div
+          key={s.id}
+          className={`absolute inset-0 bg-gradient-to-br ${s.bg} transition-opacity duration-1000`}
+          style={{ opacity: i === current ? 1 : 0 }}
+        />
+      ))}
+
+      {/* Noise texture overlay */}
+      <div
+        className="absolute inset-0 opacity-10"
+        style={{
+          backgroundImage:
+            'url("data:image/svg+xml,%3Csvg viewBox=\'0 0 200 200\' xmlns=\'http://www.w3.org/2000/svg\'%3E%3Cfilter id=\'n\'%3E%3CfeTurbulence type=\'fractalNoise\' baseFrequency=\'0.9\' numOctaves=\'4\' stitchTiles=\'stitch\'/%3E%3C/filter%3E%3Crect width=\'100%25\' height=\'100%25\' filter=\'url(%23n)\'/%3E%3C/svg%3E")',
+        }}
+      />
+
+      {/* Text overlay */}
+      <div className="absolute inset-0 flex items-center justify-center px-6 md:justify-start md:pl-20 lg:pl-32">
+        <div className="text-white text-center md:text-left">
+          <p
+            className="text-xs md:text-sm tracking-[0.3em] uppercase mb-3 opacity-70"
+            style={{ color: slide.accent }}
+          >
+            Seoul Egun Dental Clinic
+          </p>
+          <h1
+            key={`headline-${current}`}
+            className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-bold leading-tight mb-2 animate-fade-in"
+          >
+            {slide.headline}
+          </h1>
+          <h2
+            key={`sub-${current}`}
+            className="text-2xl sm:text-3xl md:text-4xl lg:text-5xl font-light leading-tight animate-fade-in"
+            style={{ animationDelay: '0.15s' }}
+          >
+            {slide.sub}
+          </h2>
+          <div className="mt-8 flex flex-col sm:flex-row gap-3 justify-center md:justify-start">
+            <a
+              href="tel:031-896-5512"
+              className="inline-flex items-center justify-center px-7 py-3 text-sm font-semibold text-white border border-white/40 rounded-full hover:bg-white hover:text-stone-900 transition-all duration-300"
+            >
+              031-896-5512
+            </a>
+            <a
+              href="http://pf.kakao.com/_xmDDNxb"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="inline-flex items-center justify-center px-7 py-3 text-sm font-semibold rounded-full transition-all duration-300"
+              style={{ backgroundColor: slide.accent, color: '#fff' }}
+            >
+              카카오 상담 신청
+            </a>
+          </div>
+        </div>
+      </div>
+
+      {/* Left-side indicators (vertical) */}
+      <div className="absolute left-6 md:left-10 top-1/2 -translate-y-1/2 flex flex-col items-center gap-4 z-10">
+        {SLIDES.map((s, i) => (
+          <button
+            key={s.id}
+            onClick={() => goTo(i)}
+            aria-label={`슬라이드 ${i + 1}로 이동`}
+            className="relative flex items-center justify-center w-10 h-10"
+          >
+            {i === current ? (
+              <>
+                {/* Progress ring */}
+                <svg
+                  width="40"
+                  height="40"
+                  viewBox="0 0 40 40"
+                  className="-rotate-90"
+                >
+                  {/* Track */}
+                  <circle
+                    cx="20"
+                    cy="20"
+                    r={RADIUS}
+                    fill="none"
+                    stroke="rgba(255,255,255,0.2)"
+                    strokeWidth="1.5"
+                  />
+                  {/* Progress */}
+                  <circle
+                    cx="20"
+                    cy="20"
+                    r={RADIUS}
+                    fill="none"
+                    stroke="white"
+                    strokeWidth="1.5"
+                    strokeLinecap="round"
+                    strokeDasharray={CIRCUMFERENCE}
+                    strokeDashoffset={CIRCUMFERENCE * (1 - progress)}
+                    style={{ transition: 'stroke-dashoffset 0.1s linear' }}
+                  />
+                </svg>
+                {/* Center dot */}
+                <span className="absolute w-2 h-2 rounded-full bg-white" />
+              </>
+            ) : (
+              <span className="w-1.5 h-1.5 rounded-full bg-white/40 hover:bg-white/70 transition-colors" />
+            )}
+          </button>
+        ))}
+      </div>
+
+      {/* Slide counter */}
+      <div className="absolute bottom-20 right-6 md:right-10 text-white/50 text-xs tracking-widest font-mono">
+        {String(current + 1).padStart(2, '0')} / {String(SLIDES.length).padStart(2, '0')}
+      </div>
+
+      {/* Scroll Down */}
+      <div className="absolute bottom-6 left-1/2 -translate-x-1/2 flex flex-col items-center gap-1 text-white/60 text-xs tracking-widest">
+        <span>SCROLL DOWN</span>
+        <ChevronDown
+          size={16}
+          className="animate-bounce"
+          aria-hidden="true"
+        />
+      </div>
+
+      <style>{`
+        @keyframes fade-in {
+          from { opacity: 0; transform: translateY(16px); }
+          to   { opacity: 1; transform: translateY(0); }
+        }
+        .animate-fade-in {
+          animation: fade-in 0.7s ease both;
+        }
+      `}</style>
+    </section>
+  )
+}
