@@ -1,6 +1,6 @@
 'use client'
 
-import { useState } from 'react'
+import { useEffect, useRef, useState } from 'react'
 import { useCountUp } from '@/hooks/useCountUp'
 
 const STATS = [
@@ -38,12 +38,25 @@ function StatItem({
 }
 
 export default function SedationSection() {
-  const [playing, setPlaying] = useState(false)
+  const [visible, setVisible] = useState(false)
+  const sectionRef = useRef<HTMLElement>(null)
+
+  useEffect(() => {
+    const el = sectionRef.current
+    if (!el) return
+
+    const observer = new IntersectionObserver(
+      ([entry]) => setVisible(entry.isIntersecting),
+      { threshold: 0.5 }
+    )
+    observer.observe(el)
+    return () => observer.disconnect()
+  }, [])
 
   return (
-    <section className="h-screen w-full relative overflow-hidden bg-black">
-      {/* 유튜브 영상 배경 (풀스크린) */}
-      {playing ? (
+    <section ref={sectionRef} className="h-screen w-full relative overflow-hidden bg-black">
+      {/* 유튜브 영상 배경 - 보이면 자동재생, 안 보이면 정지 */}
+      {visible ? (
         <iframe
           src="https://www.youtube.com/embed/SOI5QjYwCMM?autoplay=1&mute=1&loop=1&playlist=SOI5QjYwCMM&controls=0&showinfo=0&modestbranding=1"
           className="absolute inset-0 w-full h-full"
@@ -66,7 +79,6 @@ export default function SedationSection() {
 
       {/* 콘텐츠 오버레이 */}
       <div className="relative z-10 h-full flex flex-col items-center justify-center px-4">
-        {/* 제목 */}
         <div className="text-center mb-8">
           <p className="text-xs tracking-[0.35em] uppercase text-white/50 mb-3">
             Sedation Dentistry
@@ -79,21 +91,7 @@ export default function SedationSection() {
           </p>
         </div>
 
-        {/* 재생 버튼 (영상 미재생 시만) */}
-        {!playing && (
-          <button
-            className="mb-12 w-20 h-20 md:w-24 md:h-24 rounded-full flex items-center justify-center border-2 border-white/40 hover:border-white hover:scale-110 transition-all duration-300"
-            style={{ backgroundColor: 'rgba(107,123,58,0.7)' }}
-            onClick={() => setPlaying(true)}
-            aria-label="영상 재생"
-          >
-            <svg className="w-8 h-8 md:w-10 md:h-10 text-white ml-1" fill="currentColor" viewBox="0 0 24 24">
-              <path d="M8 5v14l11-7z" />
-            </svg>
-          </button>
-        )}
-
-        {playing && <div className="mb-12" />}
+        <div className="mb-12" />
 
         {/* 카운팅 숫자 (영상 위 오버랩) */}
         <div className="flex flex-wrap justify-center gap-10 md:gap-20 lg:gap-28">
