@@ -41,7 +41,6 @@ export default function TreatmentPage({
             {/* id를 heading에도 심어 두면 ARIA 연결이 자연스러워지지만,
                 TreatmentSection 내부 h2가 이 역할을 겸하므로 별도 숨김 heading 불필요 */}
             <TreatmentSection treatment={treatment} index={index} />
-            <BenefitList benefits={treatment.benefits} />
             <CaseGallery
               boardCategory={treatment.boardCategory}
               treatmentType={treatment.treatmentType}

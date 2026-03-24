@@ -1,4 +1,3 @@
-// @TASK Board - 치료 설명 블록 (지그재그 레이아웃)
 import type { TreatmentContent } from '@/types/treatment'
 
 interface TreatmentSectionProps {
@@ -8,41 +7,59 @@ interface TreatmentSectionProps {
 
 export default function TreatmentSection({
   treatment,
-  index,
 }: TreatmentSectionProps) {
-  // 홀수 index(0, 2, 4…) = 이미지 왼쪽 / 짝수 index(1, 3, 5…) = 이미지 오른쪽
-  const imageLeft = index % 2 === 0
-
   return (
-    <div className="grid grid-cols-1 md:grid-cols-2 gap-8 lg:gap-12 items-center">
-      {/* 이미지 placeholder */}
-      <div
-        className={`${imageLeft ? 'md:order-1' : 'md:order-2'} order-1`}
-      >
-        <div
-          className="bg-gray-100 rounded-2xl aspect-[4/3] flex items-center justify-center"
-          aria-hidden="true"
-        >
-          <span className="text-gray-400 text-sm">이미지 준비 중</span>
-        </div>
-      </div>
+    <div className="space-y-12">
+      {/* 상단: 로고 + 제목 + 설명 + 이미지 */}
+      <div className="grid grid-cols-1 md:grid-cols-2 gap-8 lg:gap-12 items-start">
+        {/* 텍스트 영역 */}
+        <div className="space-y-4">
+          {/* 로고 */}
+          <img
+            src="/images/logo/egun-logo%20(1).png"
+            alt="서울이건치과"
+            className="h-8 mb-2"
+          />
 
-      {/* 텍스트 영역 */}
-      <div
-        className={`${imageLeft ? 'md:order-2' : 'md:order-1'} order-2 space-y-4`}
-      >
-        <div>
-          <p className="text-[#6B7B3A] text-sm font-medium tracking-wide uppercase mb-1">
-            {treatment.boardCategory}
-          </p>
+          {/* 제목 */}
           <h2 className="text-2xl sm:text-3xl font-bold text-gray-900 leading-tight">
             {treatment.title}
           </h2>
-          <p className="text-gray-500 text-base mt-1">{treatment.subtitle}</p>
+
+          {/* 부제목 */}
+          <p className="text-lg text-[#6B7B3A] font-medium">
+            {treatment.subtitle}
+          </p>
+
+          {/* 설명 */}
+          <p className="text-gray-600 leading-relaxed text-base whitespace-pre-line">
+            {treatment.description}
+          </p>
         </div>
-        <p className="text-gray-600 leading-relaxed text-base">
-          {treatment.description}
-        </p>
+
+        {/* 이미지 영역 */}
+        <div className="order-first md:order-last">
+          <div
+            className="bg-gray-100 rounded-2xl aspect-[4/3] flex items-center justify-center overflow-hidden"
+            aria-hidden="true"
+          >
+            <span className="text-gray-400 text-sm">치료 이미지 준비 중</span>
+          </div>
+        </div>
+      </div>
+
+      {/* 중단: 해시태그 카드 그리드 */}
+      <div className="grid grid-cols-1 sm:grid-cols-2 gap-6">
+        {treatment.benefits.map((benefit, i) => (
+          <div key={i} className="space-y-2">
+            <h3 className="text-[#6B7B3A] font-bold text-base">
+              #{benefit.split('.')[0].replace(/^[✓\s]+/, '').slice(0, 15)}
+            </h3>
+            <p className="text-gray-600 text-sm leading-relaxed">
+              {benefit.replace(/^[✓\s]+/, '')}
+            </p>
+          </div>
+        ))}
       </div>
     </div>
   )
