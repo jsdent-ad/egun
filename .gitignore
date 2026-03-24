@@ -43,3 +43,5 @@ next-env.d.ts
 
 # 100MB 초과 대용량 파일 (GitHub 제한)
 media/videos/3-3 치과영상.mp4
+
+.vercel
