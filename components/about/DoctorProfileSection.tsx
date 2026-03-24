@@ -19,14 +19,11 @@ function DoctorCard({
       >
         {/* 프로필 사진 */}
         <div className="relative overflow-hidden rounded-2xl aspect-[3/4] max-w-xs bg-stone-100 shadow-md mx-auto lg:mx-0">
-          <div className="absolute inset-0 flex flex-col items-center justify-center bg-gradient-to-br from-stone-100 to-stone-200">
-            <div className="w-20 h-20 rounded-full bg-white/70 flex items-center justify-center mb-3 shadow-inner">
-              <span className="text-3xl font-bold text-[#6B7B3A]">
-                {doctor.name[0]}
-              </span>
-            </div>
-            <p className="text-xs text-gray-500 font-medium">사진 준비 중</p>
-          </div>
+          <img
+            src={doctor.image}
+            alt={`${doctor.name} ${doctor.role}`}
+            className="absolute inset-0 w-full h-full object-cover"
+          />
 
           {/* 직책 뱃지 */}
           <div className="absolute top-4 left-4 bg-[#6B7B3A] text-white text-xs font-semibold px-3 py-1 rounded-full">
