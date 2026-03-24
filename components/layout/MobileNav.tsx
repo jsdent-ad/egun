@@ -17,7 +17,6 @@ const NAV_ITEMS: NavItem[] = [
   { label: '심미보철', href: '/cosmetic' },
   { label: '서울이건 교정치료', href: '/orthodontics' },
   { label: '소아치과 치료', href: '/pediatric' },
-  { label: '이건 미디어', href: '/media' },
 ]
 
 interface MobileNavProps {

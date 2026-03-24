@@ -12,7 +12,6 @@ const NAV_ITEMS = [
   { label: '심미보철', href: '/cosmetic' },
   { label: '교정치료', href: '/orthodontics' },
   { label: '소아치과', href: '/pediatric' },
-  { label: '이건미디어', href: '/media' },
 ]
 
 export default function Header() {
