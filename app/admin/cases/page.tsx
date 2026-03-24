@@ -27,6 +27,8 @@ interface FormData {
   description: string
   board_category: string
   treatment_type: string
+  before_image_url: string
+  after_image_url: string
   blog_urls: { url: string; title: string }[]
 }
 
@@ -39,17 +41,37 @@ const BOARD_CATEGORIES = [
   { value: 'pediatric', label: '소아' },
 ]
 
-const TREATMENT_TYPES = [
-  '충치치료',
-  '신경치료',
-  '사랑니 발치',
-  '임플란트',
-  '올세라믹',
-  '라미네이트',
-  '교정',
-  '소아진료',
-  '기타',
-]
+const TREATMENT_TYPES_BY_CATEGORY: Record<
+  string,
+  { value: string; label: string }[]
+> = {
+  'natural-tooth': [
+    { value: 'cavity', label: '충치치료' },
+    { value: 'vpt', label: 'VPT 신경보존술' },
+    { value: 'root-canal', label: '신경치료' },
+    { value: 'gum', label: '잇몸치료' },
+  ],
+  implant: [
+    { value: 'all-on', label: '올온 임플란트' },
+    { value: 'immediate-loading', label: '즉시로딩 임플란트' },
+    { value: 'navigation', label: '네비게이션 임플란트' },
+    { value: 'sinus-lift', label: '상악동 거상술' },
+    { value: 'diabetes', label: '당뇨 환자 임플란트' },
+  ],
+  cosmetic: [
+    { value: 'laminate', label: '최소삭제 라미네이트' },
+    { value: 'resin-buildup', label: '앞니 레진빌드업' },
+    { value: 'gum-contouring', label: '잇몸 성형' },
+  ],
+  orthodontics: [
+    { value: 'invisalign', label: '인비절라인 투명교정' },
+    { value: 'pediatric-ortho', label: '소아교정' },
+  ],
+  pediatric: [
+    { value: 'pediatric-cavity', label: '소아충치치료' },
+    { value: 'laughing-gas', label: '웃음가스 진정치료' },
+  ],
+}
 
 const CATEGORY_BADGE: Record<string, string> = {
   'natural-tooth': 'bg-emerald-100 text-emerald-800',
@@ -64,6 +86,8 @@ const emptyForm: FormData = {
   description: '',
   board_category: 'natural-tooth',
   treatment_type: '',
+  before_image_url: '',
+  after_image_url: '',
   blog_urls: [{ url: '', title: '' }],
 }
 
@@ -75,6 +99,7 @@ export default function CasesPage() {
   const [editingId, setEditingId] = useState<string | null>(null)
   const [form, setForm] = useState<FormData>(emptyForm)
   const [saving, setSaving] = useState(false)
+  const [uploading, setUploading] = useState<'before' | 'after' | null>(null)
   const [deleteId, setDeleteId] = useState<string | null>(null)
 
   const fetchData = useCallback(async () => {
@@ -107,6 +132,8 @@ export default function CasesPage() {
       description: item.description || '',
       board_category: item.board_category,
       treatment_type: item.treatment_type || '',
+      before_image_url: item.before_image_url || '',
+      after_image_url: item.after_image_url || '',
       blog_urls:
         item.case_blogs.length > 0
           ? item.case_blogs.map((b) => ({
@@ -128,6 +155,8 @@ export default function CasesPage() {
         description: form.description || null,
         board_category: form.board_category,
         treatment_type: form.treatment_type || null,
+        before_image_url: form.before_image_url || null,
+        after_image_url: form.after_image_url || null,
         blog_urls: form.blog_urls.filter((b) => b.url.trim()),
       }
 
@@ -157,6 +186,28 @@ export default function CasesPage() {
     if (res.ok) {
       setItems((prev) => prev.filter((item) => item.id !== deleteId))
       setDeleteId(null)
+    }
+  }
+
+  const handleImageUpload = async (
+    file: File,
+    field: 'before_image_url' | 'after_image_url',
+  ) => {
+    const which = field === 'before_image_url' ? 'before' : 'after'
+    setUploading(which)
+    try {
+      const fd = new window.FormData()
+      fd.append('file', file)
+      fd.append('folder', 'cases')
+      const res = await fetch('/api/upload', { method: 'POST', body: fd })
+      if (res.ok) {
+        const { url } = await res.json()
+        setForm((prev) => ({ ...prev, [field]: url }))
+      }
+    } catch {
+      // ignore
+    } finally {
+      setUploading(null)
     }
   }
 
@@ -334,7 +385,11 @@ export default function CasesPage() {
                   <select
                     value={form.board_category}
                     onChange={(e) =>
-                      setForm((p) => ({ ...p, board_category: e.target.value }))
+                      setForm((p) => ({
+                        ...p,
+                        board_category: e.target.value,
+                        treatment_type: '',
+                      }))
                     }
                     className="w-full h-10 px-3 rounded-lg border border-gray-300 text-sm focus:outline-none focus:ring-2 focus:ring-[#B8A080]"
                   >
@@ -362,33 +417,75 @@ export default function CasesPage() {
                     className="w-full h-10 px-3 rounded-lg border border-gray-300 text-sm focus:outline-none focus:ring-2 focus:ring-[#B8A080]"
                   >
                     <option value="">선택 안 함</option>
-                    {TREATMENT_TYPES.map((t) => (
-                      <option key={t} value={t}>
-                        {t}
+                    {(
+                      TREATMENT_TYPES_BY_CATEGORY[form.board_category] || []
+                    ).map((t) => (
+                      <option key={t.value} value={t.value}>
+                        {t.label}
                       </option>
                     ))}
                   </select>
                 </div>
               </div>
 
-              {/* 이미지 업로드 placeholder */}
+              {/* 이미지 업로드 */}
               <div className="grid grid-cols-2 gap-4">
-                <div>
-                  <label className="block text-sm font-medium text-gray-700 mb-1">
-                    Before 이미지
-                  </label>
-                  <div className="h-24 border-2 border-dashed border-gray-300 rounded-lg flex items-center justify-center text-xs text-gray-400">
-                    추후 업로드 연동
-                  </div>
-                </div>
-                <div>
-                  <label className="block text-sm font-medium text-gray-700 mb-1">
-                    After 이미지
-                  </label>
-                  <div className="h-24 border-2 border-dashed border-gray-300 rounded-lg flex items-center justify-center text-xs text-gray-400">
-                    추후 업로드 연동
-                  </div>
-                </div>
+                {(['before_image_url', 'after_image_url'] as const).map(
+                  (field) => {
+                    const label =
+                      field === 'before_image_url'
+                        ? 'Before 이미지'
+                        : 'After 이미지'
+                    const which =
+                      field === 'before_image_url' ? 'before' : 'after'
+                    return (
+                      <div key={field}>
+                        <label className="block text-sm font-medium text-gray-700 mb-1">
+                          {label}
+                        </label>
+                        {form[field] ? (
+                          <div className="relative h-32 rounded-lg overflow-hidden border border-gray-200">
+                            <img
+                              src={form[field]}
+                              alt={label}
+                              className="w-full h-full object-cover"
+                            />
+                            <button
+                              type="button"
+                              onClick={() =>
+                                setForm((p) => ({ ...p, [field]: '' }))
+                              }
+                              className="absolute top-1 right-1 w-6 h-6 bg-black/60 rounded-full flex items-center justify-center text-white hover:bg-black/80"
+                            >
+                              <X size={12} />
+                            </button>
+                          </div>
+                        ) : (
+                          <label className="h-32 border-2 border-dashed border-gray-300 rounded-lg flex flex-col items-center justify-center text-xs text-gray-400 cursor-pointer hover:border-[#B8A080] hover:text-[#B8A080] transition-colors">
+                            {uploading === which ? (
+                              '업로드 중...'
+                            ) : (
+                              <>
+                                <Plus size={20} className="mb-1" />
+                                이미지 선택
+                              </>
+                            )}
+                            <input
+                              type="file"
+                              accept="image/*"
+                              className="hidden"
+                              onChange={(e) => {
+                                const file = e.target.files?.[0]
+                                if (file) handleImageUpload(file, field)
+                                e.target.value = ''
+                              }}
+                            />
+                          </label>
+                        )}
+                      </div>
+                    )
+                  },
+                )}
               </div>
 
               {/* 블로그 URL */}

@@ -5,6 +5,7 @@ export const implantTreatments: TreatmentContent[] = [
     boardCategory: 'implant',
     treatmentType: 'all-on',
     title: '올온 임플란트',
+    image: '/images/allon/all-on-case.svg',
     subtitle: '여러 치아를 잃은 경우, 전체 기능 회복을 함께 고민합니다',
     description:
       '치아가 많이 없거나 전체 회복이 필요한 경우 소수의 임플란트를 이용해 전체 치아 기능 회복을 계획하는 치료입니다. 임플란트 식립 위치와 보철 구조를 함께 설계하여 틀니의 불편함을 줄이고 일상적인 씹는 기능 회복을 돕습니다.',

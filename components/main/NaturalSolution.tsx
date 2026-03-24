@@ -77,30 +77,11 @@ export default function NaturalSolution() {
               <img
                 src={card.image}
                 alt={card.title}
-                className="absolute inset-0 w-full h-full object-cover transition-all duration-500"
+                className="absolute inset-0 w-full h-full object-cover transition-all duration-500 group-hover:scale-110"
                 style={{ filter: isHovered ? 'brightness(0.4)' : 'brightness(0.85)' }}
               />
               {/* 그라데이션 오버레이 */}
               <div className="absolute inset-0 bg-gradient-to-t from-black/50 via-transparent to-transparent" />
-
-              {/* Label number */}
-              <span
-                className="absolute top-5 left-5 text-4xl font-black opacity-30 select-none text-white"
-                aria-hidden="true"
-              >
-                {card.label}
-              </span>
-
-              {/* Normal state content */}
-              <div
-                className="absolute bottom-0 left-0 right-0 p-6 text-left transition-opacity duration-300"
-                style={{ opacity: isHovered ? 0 : 1 }}
-              >
-                <p className="text-xs tracking-widest uppercase text-white/70 mb-1">
-                  {card.subtitle}
-                </p>
-                <p className="text-lg font-bold text-white">{card.title}</p>
-              </div>
 
               {/* Hover overlay */}
               <div

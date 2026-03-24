@@ -7,6 +7,7 @@ import NaturalSolution from '@/components/main/NaturalSolution'
 import ImplantSection from '@/components/main/ImplantSection'
 import SedationSection from '@/components/main/SedationSection'
 import MediaSection from '@/components/main/MediaSection'
+import MapSection from '@/components/main/MapSection'
 // TreatmentCarousel 비활성 (파일은 유지)
 // import TreatmentCarousel from '@/components/main/TreatmentCarousel'
 
@@ -31,6 +32,7 @@ export default function Home() {
             NaturalSolution,
             ImplantSection,
             SedationSection,
+            MapSection,
             MediaSection,
           ] as React.ComponentType[]
         ).map((Section, i) => (
@@ -50,6 +52,7 @@ export default function Home() {
         <NaturalSolution />
         <ImplantSection />
         <SedationSection />
+        <MapSection />
         <MediaSection />
       </div>
     </>

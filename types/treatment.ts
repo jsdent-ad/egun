@@ -11,4 +11,5 @@ export interface TreatmentContent {
   description: string
   benefits: string[]
   faq: FAQ[]
+  image?: string
 }

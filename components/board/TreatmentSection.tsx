@@ -16,7 +16,7 @@ export default function TreatmentSection({
         <div className="space-y-4">
           {/* 로고 */}
           <img
-            src="/images/logo/egun-logo%20(1).png"
+            src="/images/logo/seoulegun-logo%20(1).png"
             alt="서울이건치과"
             className="h-8 mb-2"
           />
@@ -39,11 +39,16 @@ export default function TreatmentSection({
 
         {/* 이미지 영역 */}
         <div className="order-first md:order-last">
-          <div
-            className="bg-gray-100 rounded-2xl aspect-[4/3] flex items-center justify-center overflow-hidden"
-            aria-hidden="true"
-          >
-            <span className="text-gray-400 text-sm">치료 이미지 준비 중</span>
+          <div className="bg-gray-100 rounded-2xl flex items-center justify-center overflow-hidden" style={{ width: 420, height: 450 }}>
+            {treatment.image ? (
+              <img
+                src={treatment.image}
+                alt={treatment.title}
+                className="w-full h-full object-cover"
+              />
+            ) : (
+              <span className="text-gray-400 text-sm">치료 이미지 준비 중</span>
+            )}
           </div>
         </div>
       </div>

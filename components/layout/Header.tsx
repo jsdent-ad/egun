@@ -48,8 +48,8 @@ export default function Header() {
             >
               <img
                 src={scrolled
-                  ? '/images/logo/egun-logo%20(1).png'
-                  : '/images/logo/egun-logo-white%20(1).gif'}
+                  ? '/images/logo/seoulegun-logo%20(1).png'
+                  : '/images/logo/seoulegun-logo%20(2).png'}
                 alt="서울이건치과"
                 className="h-10 sm:h-14 w-auto transition-opacity duration-300"
               />

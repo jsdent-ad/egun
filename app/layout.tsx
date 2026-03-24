@@ -2,11 +2,7 @@ import type { Metadata } from 'next'
 import { Noto_Sans_KR } from 'next/font/google'
 import './globals.css'
 
-import Header from '@/components/layout/Header'
-import Footer from '@/components/layout/Footer'
-import QuickConsultBar from '@/components/layout/QuickConsultBar'
-import FloatingSidebar from '@/components/layout/FloatingSidebar'
-import CustomCursor from '@/components/layout/CustomCursor'
+import SiteShell from '@/components/layout/SiteShell'
 
 const notoSansKR = Noto_Sans_KR({
   subsets: ['latin'],
@@ -28,26 +24,7 @@ export default function RootLayout({
   return (
     <html lang="ko">
       <body className={`${notoSansKR.variable} font-sans antialiased`}>
-        {/* 커스텀 커서 (데스크톱 전용, 클라이언트) */}
-        <CustomCursor />
-
-        {/* 상단 헤더 */}
-        <Header />
-
-        {/* 우측 플로팅 사이드바 (데스크톱 전용) */}
-        <FloatingSidebar />
-
-        {/* 메인 콘텐츠 영역 */}
-        {/* pb-16: 하단 QuickConsultBar 높이만큼 여백 확보 */}
-        <main className="pb-16 sm:pb-14">
-          {children}
-        </main>
-
-        {/* 푸터 */}
-        <Footer />
-
-        {/* 하단 고정 빠른상담 바 */}
-        <QuickConsultBar />
+        <SiteShell>{children}</SiteShell>
       </body>
     </html>
   )
