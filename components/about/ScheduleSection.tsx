@@ -1,15 +1,10 @@
 'use client'
 
-import { useState } from 'react'
 import { clinicInfo } from '@/data/clinic-info'
 import { Clock } from 'lucide-react'
 
 export default function ScheduleSection() {
-  const [activeTab, setActiveTab] = useState('main')
-
-  const currentTab = clinicInfo.scheduleTabs.find(
-    (tab) => tab.id === activeTab
-  )!
+  const mainTab = clinicInfo.scheduleTabs.find((tab) => tab.id === 'main')!
 
   return (
     <section
@@ -29,45 +24,15 @@ export default function ScheduleSection() {
           진료일정
         </h2>
 
-        {/* 탭 버튼 */}
-        <div
-          className="flex gap-2 mb-10 overflow-x-auto scrollbar-hide pb-1"
-          role="tablist"
-          aria-label="진료 구분"
-        >
-          {clinicInfo.scheduleTabs.map((tab) => (
-            <button
-              key={tab.id}
-              role="tab"
-              aria-selected={activeTab === tab.id}
-              aria-controls={`tabpanel-${tab.id}`}
-              onClick={() => setActiveTab(tab.id)}
-              className={`whitespace-nowrap px-5 py-2.5 rounded-full text-sm font-medium transition-all ${
-                activeTab === tab.id
-                  ? 'bg-[#6B7B3A] text-white shadow-sm'
-                  : 'bg-gray-100 text-gray-600 hover:bg-gray-200'
-              }`}
-            >
-              {tab.label}
-            </button>
-          ))}
-        </div>
-
-        {/* 탭 콘텐츠 */}
-        <div
-          key={activeTab}
-          id={`tabpanel-${activeTab}`}
-          role="tabpanel"
-          className="grid grid-cols-1 lg:grid-cols-2 gap-10 lg:gap-16"
-          style={{ animation: 'fadeIn 0.25s ease' }}
-        >
+        {/* 콘텐츠 */}
+        <div className="grid grid-cols-1 lg:grid-cols-2 gap-10 lg:gap-16">
           {/* 시간표 */}
           <div>
             <div className="rounded-2xl overflow-hidden border border-gray-100 shadow-sm">
               <div className="bg-[#6B7B3A] px-6 py-4 flex items-center gap-2">
                 <Clock className="w-4 h-4 text-white" aria-hidden="true" />
                 <h3 className="text-white font-semibold text-sm">
-                  {currentTab.label} 진료시간
+                  진료시간
                 </h3>
               </div>
 
@@ -79,7 +44,7 @@ export default function ScheduleSection() {
                   </tr>
                 </thead>
                 <tbody>
-                  {currentTab.hours.map((row, i) => (
+                  {mainTab.hours.map((row, i) => (
                     <tr
                       key={row.day}
                       className={`${
@@ -110,10 +75,9 @@ export default function ScheduleSection() {
             </div>
           </div>
 
-          {/* 공지사항 */}
+          {/* 예약 안내 */}
           <div className="flex flex-col gap-6">
-            {/* 안내 사항 */}
-            {currentTab.notice && currentTab.notice.length > 0 && (
+            {mainTab.notice && mainTab.notice.length > 0 && (
               <div className="bg-[#6B7B3A]/5 border border-[#6B7B3A]/20 rounded-2xl p-6">
                 <h4 className="text-sm font-semibold text-[#6B7B3A] mb-4 flex items-center gap-2">
                   <span className="w-5 h-5 rounded-full bg-[#6B7B3A] text-white flex items-center justify-center text-xs">
@@ -122,7 +86,7 @@ export default function ScheduleSection() {
                   진료 안내
                 </h4>
                 <ul className="space-y-2">
-                  {currentTab.notice.map((note, i) => (
+                  {mainTab.notice.map((note, i) => (
                     <li
                       key={i}
                       className="text-sm text-gray-700 flex items-start gap-2"
@@ -135,7 +99,6 @@ export default function ScheduleSection() {
               </div>
             )}
 
-            {/* 예약 안내 카드 */}
             <div className="bg-gray-900 rounded-2xl p-6 text-white">
               <h4 className="font-semibold mb-2">예약 후 방문을 권장합니다</h4>
               <p className="text-sm text-gray-400 leading-relaxed mb-5">
@@ -162,19 +125,6 @@ export default function ScheduleSection() {
           </div>
         </div>
       </div>
-
-      <style jsx>{`
-        @keyframes fadeIn {
-          from {
-            opacity: 0;
-            transform: translateY(8px);
-          }
-          to {
-            opacity: 1;
-            transform: translateY(0);
-          }
-        }
-      `}</style>
     </section>
   )
 }
