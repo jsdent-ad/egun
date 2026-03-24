@@ -72,12 +72,11 @@ export default function CustomCursor() {
       style={{ transition: 'opacity 0.2s' }}
     >
       <img
-        src="/images/logo/egun-logo-white (2).gif"
+        src="/images/logo/snu-logo.png"
         alt=""
-        className={`w-8 h-8 opacity-60 transition-transform duration-150 ${
+        className={`w-8 h-8 opacity-50 transition-transform duration-150 ${
           active ? 'scale-75' : 'scale-100'
         }`}
-        style={{ filter: 'brightness(0.6) sepia(1) hue-rotate(40deg) saturate(2)' }}
       />
     </div>
   )
