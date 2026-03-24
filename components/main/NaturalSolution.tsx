@@ -14,6 +14,7 @@ const CARDS = [
       '충치 범위가 작을 때 치아색 레진으로 당일 복원. 삭제 최소화 · 자연치아 보존을 최우선으로 합니다.',
     gradient: 'from-amber-50 to-stone-100',
     iconColor: '#8B7D3C',
+    image: '/images/treatments/resin-buildup-treat.jpg',
   },
   {
     id: 'vpt',
@@ -24,6 +25,7 @@ const CARDS = [
       '신경을 살리면서 치아를 지키는 치수보존술. 신경치료 없이 자연 치아 수명을 연장합니다.',
     gradient: 'from-green-50 to-stone-100',
     iconColor: '#6B7B3A',
+    image: '/images/treatments/vpt-treat.jpg',
   },
   {
     id: 'onlay',
@@ -34,6 +36,7 @@ const CARDS = [
       '크라운 대신 치아 삭제를 최소화한 온레이 보철. 건강한 치질을 최대한 보존합니다.',
     gradient: 'from-sky-50 to-stone-100',
     iconColor: '#6B7B3A',
+    image: '/images/treatments/onlay-treat.jpg',
   },
 ]
 
@@ -70,16 +73,19 @@ export default function NaturalSolution() {
               onClick={() => router.push('/natural-tooth')}
               aria-label={`${card.title} 자세히 보기`}
             >
-              {/* Placeholder background */}
-              <div
-                className={`absolute inset-0 bg-gradient-to-br ${card.gradient} transition-all duration-500`}
-                style={{ filter: isHovered ? 'brightness(0.55)' : 'brightness(1)' }}
+              {/* 배경 이미지 */}
+              <img
+                src={card.image}
+                alt={card.title}
+                className="absolute inset-0 w-full h-full object-cover transition-all duration-500"
+                style={{ filter: isHovered ? 'brightness(0.4)' : 'brightness(0.85)' }}
               />
+              {/* 그라데이션 오버레이 */}
+              <div className="absolute inset-0 bg-gradient-to-t from-black/50 via-transparent to-transparent" />
 
               {/* Label number */}
               <span
-                className="absolute top-5 left-5 text-4xl font-black opacity-20 select-none"
-                style={{ color: card.iconColor }}
+                className="absolute top-5 left-5 text-4xl font-black opacity-30 select-none text-white"
                 aria-hidden="true"
               >
                 {card.label}
@@ -90,10 +96,10 @@ export default function NaturalSolution() {
                 className="absolute bottom-0 left-0 right-0 p-6 text-left transition-opacity duration-300"
                 style={{ opacity: isHovered ? 0 : 1 }}
               >
-                <p className="text-xs tracking-widest uppercase text-stone-500 mb-1">
+                <p className="text-xs tracking-widest uppercase text-white/70 mb-1">
                   {card.subtitle}
                 </p>
-                <p className="text-lg font-bold text-stone-800">{card.title}</p>
+                <p className="text-lg font-bold text-white">{card.title}</p>
               </div>
 
               {/* Hover overlay */}
