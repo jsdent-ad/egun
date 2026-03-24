@@ -71,15 +71,14 @@ export default function CustomCursor() {
       className="fixed top-0 left-0 z-[9999] pointer-events-none will-change-transform"
       style={{ transition: 'opacity 0.2s' }}
     >
-      {/* 외부 링 */}
-      <div
-        className={`w-8 h-8 rounded-full border-2 border-[#6B7B3A]/60 flex items-center justify-center transition-transform duration-150 ${
+      <img
+        src="/images/logo/egun-logo-white (2).gif"
+        alt=""
+        className={`w-8 h-8 opacity-60 transition-transform duration-150 ${
           active ? 'scale-75' : 'scale-100'
         }`}
-      >
-        {/* 내부 원 (로고 플레이스홀더) */}
-        <div className="w-2.5 h-2.5 rounded-full bg-[#6B7B3A] opacity-80" />
-      </div>
+        style={{ filter: 'brightness(0.6) sepia(1) hue-rotate(40deg) saturate(2)' }}
+      />
     </div>
   )
 }

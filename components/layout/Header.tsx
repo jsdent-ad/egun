@@ -34,31 +34,12 @@ export default function Header() {
               className="flex items-center gap-3 group"
               aria-label="서울이건치과 홈으로 이동"
             >
-              {/* 서울대 로고 플레이스홀더 */}
-              <div
-                className="w-9 h-9 sm:w-11 sm:h-11 rounded-full bg-[#6B7B3A] flex items-center justify-center shrink-0 group-hover:bg-[#4A5A2A] transition-colors"
-                aria-hidden="true"
-              >
-                <span className="text-white text-xs font-bold leading-none">SNU</span>
-              </div>
-
-              {/* 텍스트 */}
-              <div className="flex flex-col">
-                <span
-                  className={`text-xs sm:text-sm font-bold tracking-[0.15em] uppercase leading-tight transition-colors ${
-                    scrolled ? 'text-gray-800' : 'text-white drop-shadow-sm'
-                  }`}
-                >
-                  Seoul Egun Dental
-                </span>
-                <span
-                  className={`text-[10px] sm:text-xs tracking-wide transition-colors ${
-                    scrolled ? 'text-[#6B7B3A]' : 'text-white/80 drop-shadow-sm'
-                  }`}
-                >
-                  서울이건치과
-                </span>
-              </div>
+              {/* 이건치과 로고 */}
+              <img
+                src={scrolled ? '/images/logo/egun-logo (1).png' : '/images/logo/egun-logo-white (1).gif'}
+                alt="서울이건치과"
+                className="h-8 sm:h-10 w-auto shrink-0 transition-opacity duration-300"
+              />
             </Link>
 
             {/* 햄버거 메뉴 버튼 */}
