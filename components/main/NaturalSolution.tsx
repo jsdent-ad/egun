@@ -12,7 +12,7 @@ const CARDS = [
     subtitle: 'One-Day Resin Build-up',
     description:
       '충치 범위가 작을 때 치아색 레진으로 당일 복원. 삭제 최소화 · 자연치아 보존을 최우선으로 합니다.',
-    gradient: 'from-amber-100 to-stone-200',
+    gradient: 'from-amber-50 to-stone-100',
     iconColor: '#8B7D3C',
   },
   {
@@ -22,7 +22,7 @@ const CARDS = [
     subtitle: 'Vital Pulp Therapy',
     description:
       '신경을 살리면서 치아를 지키는 치수보존술. 신경치료 없이 자연 치아 수명을 연장합니다.',
-    gradient: 'from-green-100 to-stone-200',
+    gradient: 'from-green-50 to-stone-100',
     iconColor: '#6B7B3A',
   },
   {
@@ -32,7 +32,7 @@ const CARDS = [
     subtitle: 'Minimal Prep Onlay',
     description:
       '크라운 대신 치아 삭제를 최소화한 온레이 보철. 건강한 치질을 최대한 보존합니다.',
-    gradient: 'from-sky-100 to-stone-200',
+    gradient: 'from-sky-50 to-stone-100',
     iconColor: '#6B7B3A',
   },
 ]
@@ -43,7 +43,7 @@ export default function NaturalSolution() {
 
   return (
     <section className="h-screen w-full flex flex-col items-center justify-center px-4 py-12 overflow-hidden"
-      style={{ backgroundColor: '#F9FAFB' }}>
+      style={{ backgroundColor: '#F5F3EE' }}>
       {/* Header */}
       <div className="text-center mb-8 md:mb-12">
         <p className="text-xs tracking-[0.35em] uppercase text-stone-400 mb-2">

@@ -45,43 +45,31 @@ export default function ImplantSection() {
         </p>
       </div>
 
-      {/* Prosthesis placeholder images */}
-      <div className="flex gap-4 md:gap-6 mb-8 md:mb-10">
-        {/* Placeholder 1 */}
-        <div
-          className="w-28 h-28 md:w-36 md:h-36 lg:w-44 lg:h-44 rounded-2xl flex items-center justify-center text-xs text-stone-600"
-          style={{ backgroundColor: '#1e1e1e', border: '1px solid #2a2a2a' }}
-        >
-          <div className="text-center px-3">
-            <div
-              className="w-10 h-10 rounded-full mx-auto mb-2 flex items-center justify-center"
-              style={{ backgroundColor: '#2a2a2a' }}
-            >
-              <span className="text-lg" role="img" aria-label="임플란트 보철">🦷</span>
-            </div>
-            <span className="text-stone-600 text-xs">어버트먼트</span>
-          </div>
+      {/* 실제 보철물 이미지 */}
+      <div className="flex gap-4 md:gap-6 mb-8 md:mb-10 items-center">
+        {/* 이미지 1 */}
+        <div className="w-28 h-28 md:w-36 md:h-36 lg:w-44 lg:h-44 rounded-2xl overflow-hidden"
+          style={{ border: '1px solid #2a2a2a' }}>
+          <img
+            src="/images/allon/all-on%20(1).jpg"
+            alt="올온포 어버트먼트 보철"
+            className="w-full h-full object-cover"
+          />
         </div>
 
-        {/* Divider */}
+        {/* 구분선 */}
         <div className="flex items-center">
           <div className="w-px h-16 bg-stone-700" />
         </div>
 
-        {/* Placeholder 2 */}
-        <div
-          className="w-28 h-28 md:w-36 md:h-36 lg:w-44 lg:h-44 rounded-2xl flex items-center justify-center text-xs text-stone-600"
-          style={{ backgroundColor: '#1e1e1e', border: '1px solid #2a2a2a' }}
-        >
-          <div className="text-center px-3">
-            <div
-              className="w-10 h-10 rounded-full mx-auto mb-2 flex items-center justify-center"
-              style={{ backgroundColor: '#2a2a2a' }}
-            >
-              <span className="text-lg" role="img" aria-label="임플란트 완성">✨</span>
-            </div>
-            <span className="text-stone-600 text-xs">전악 보철</span>
-          </div>
+        {/* 이미지 2 */}
+        <div className="w-28 h-28 md:w-36 md:h-36 lg:w-44 lg:h-44 rounded-2xl overflow-hidden"
+          style={{ border: '1px solid #2a2a2a' }}>
+          <img
+            src="/images/allon/all-on%20(2).jpg"
+            alt="올온포 전악 보철 완성"
+            className="w-full h-full object-cover"
+          />
         </div>
       </div>
 

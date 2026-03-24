@@ -8,21 +8,35 @@ const SLIDES = [
     id: 0,
     headline: '서울대 출신 원장 2인',
     sub: '책임진료 서울이건치과',
-    bg: 'from-stone-900 via-stone-800 to-stone-700',
+    image: '/images/slides/slide-2.png',
     accent: '#6B7B3A',
   },
   {
     id: 1,
     headline: '자연치아를 지키는',
     sub: '최소삭제 보존치료',
-    bg: 'from-neutral-900 via-zinc-800 to-zinc-700',
+    image: '/images/slides/slide-3.jpg',
     accent: '#8B7D3C',
   },
   {
     id: 2,
     headline: '디지털 정밀 진단',
     sub: '네비게이션 임플란트',
-    bg: 'from-slate-900 via-slate-800 to-gray-700',
+    image: '/images/slides/slide-4.jpg',
+    accent: '#6B7B3A',
+  },
+  {
+    id: 3,
+    headline: '가지런한 치아',
+    sub: '건강한 교합',
+    image: '/images/slides/slide-5.png',
+    accent: '#8B7D3C',
+  },
+  {
+    id: 4,
+    headline: '아이의 첫 치과',
+    sub: '편안하게',
+    image: '/images/slides/slide-6.jpg',
     accent: '#6B7B3A',
   },
 ]
@@ -52,10 +66,7 @@ export default function HeroSlider() {
         setProgress(p)
 
         if (p >= 1) {
-          setCurrent((prev) => {
-            const next = (prev + 1) % SLIDES.length
-            return next
-          })
+          setCurrent((prev) => (prev + 1) % SLIDES.length)
           setProgress(0)
           startTimeRef.current = Date.now()
         }
@@ -77,29 +88,44 @@ export default function HeroSlider() {
       onMouseEnter={() => { isPausedRef.current = true }}
       onMouseLeave={() => { isPausedRef.current = false }}
     >
-      {/* Slide backgrounds */}
+      {/* 슬라이드 이미지 레이어 */}
       {SLIDES.map((s, i) => (
         <div
           key={s.id}
-          className={`absolute inset-0 bg-gradient-to-br ${s.bg} transition-opacity duration-1000`}
+          className="absolute inset-0 transition-opacity duration-1000"
           style={{ opacity: i === current ? 1 : 0 }}
-        />
+        >
+          <img
+            src={s.image}
+            alt=""
+            aria-hidden="true"
+            className="w-full h-full object-cover"
+          />
+        </div>
       ))}
 
-      {/* Noise texture overlay */}
+      {/* 반투명 그라데이션 오버레이 */}
       <div
-        className="absolute inset-0 opacity-10"
+        className="absolute inset-0"
         style={{
-          backgroundImage:
-            'url("data:image/svg+xml,%3Csvg viewBox=\'0 0 200 200\' xmlns=\'http://www.w3.org/2000/svg\'%3E%3Cfilter id=\'n\'%3E%3CfeTurbulence type=\'fractalNoise\' baseFrequency=\'0.9\' numOctaves=\'4\' stitchTiles=\'stitch\'/%3E%3C/filter%3E%3Crect width=\'100%25\' height=\'100%25\' filter=\'url(%23n)\'/%3E%3C/svg%3E")',
+          background:
+            'linear-gradient(to right, rgba(0,0,0,0.65) 0%, rgba(0,0,0,0.35) 50%, rgba(0,0,0,0.15) 100%)',
         }}
       />
 
-      {/* Text overlay */}
+      {/* 하단 페이드 오버레이 */}
+      <div
+        className="absolute inset-x-0 bottom-0 h-32 pointer-events-none"
+        style={{
+          background: 'linear-gradient(to top, rgba(0,0,0,0.4) 0%, transparent 100%)',
+        }}
+      />
+
+      {/* 텍스트 오버레이 */}
       <div className="absolute inset-0 flex items-center justify-center px-6 md:justify-start md:pl-20 lg:pl-32">
         <div className="text-white text-center md:text-left">
           <p
-            className="text-xs md:text-sm tracking-[0.3em] uppercase mb-3 opacity-70"
+            className="text-xs md:text-sm tracking-[0.3em] uppercase mb-3 opacity-80"
             style={{ color: slide.accent }}
           >
             Seoul Egun Dental Clinic
@@ -137,7 +163,7 @@ export default function HeroSlider() {
         </div>
       </div>
 
-      {/* Left-side indicators (vertical) */}
+      {/* 왼쪽 인디케이터 (세로) */}
       <div className="absolute left-6 md:left-10 top-1/2 -translate-y-1/2 flex flex-col items-center gap-4 z-10">
         {SLIDES.map((s, i) => (
           <button
@@ -148,14 +174,12 @@ export default function HeroSlider() {
           >
             {i === current ? (
               <>
-                {/* Progress ring */}
                 <svg
                   width="40"
                   height="40"
                   viewBox="0 0 40 40"
                   className="-rotate-90"
                 >
-                  {/* Track */}
                   <circle
                     cx="20"
                     cy="20"
@@ -164,7 +188,6 @@ export default function HeroSlider() {
                     stroke="rgba(255,255,255,0.2)"
                     strokeWidth="1.5"
                   />
-                  {/* Progress */}
                   <circle
                     cx="20"
                     cy="20"
@@ -178,7 +201,6 @@ export default function HeroSlider() {
                     style={{ transition: 'stroke-dashoffset 0.1s linear' }}
                   />
                 </svg>
-                {/* Center dot */}
                 <span className="absolute w-2 h-2 rounded-full bg-white" />
               </>
             ) : (
@@ -188,7 +210,7 @@ export default function HeroSlider() {
         ))}
       </div>
 
-      {/* Slide counter */}
+      {/* 슬라이드 카운터 */}
       <div className="absolute bottom-20 right-6 md:right-10 text-white/50 text-xs tracking-widest font-mono">
         {String(current + 1).padStart(2, '0')} / {String(SLIDES.length).padStart(2, '0')}
       </div>

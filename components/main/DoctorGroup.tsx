@@ -33,31 +33,13 @@ export default function DoctorGroup() {
           </h2>
         </div>
 
-        {/* 원장님 이름 버튼 가로 배치 */}
-        <div className="flex flex-wrap justify-center gap-3 md:gap-6">
-          {doctors.map((doctor) => (
-            <button
-              key={doctor.id}
-              onClick={() => setSelected(selected === doctor.id ? null : doctor.id)}
-              className={`px-4 py-2 md:px-6 md:py-3 rounded-full border transition-all duration-300 ${
-                selected === doctor.id
-                  ? 'bg-white text-gray-900 border-white'
-                  : 'bg-white/10 text-white border-white/30 hover:bg-white/20 hover:border-white/60'
-              }`}
-            >
-              <span className="font-bold text-sm md:text-base">{doctor.name}</span>
-              <span className="text-xs md:text-sm ml-1 opacity-70">{doctor.role}</span>
-            </button>
-          ))}
-        </div>
-
         {/* 자세히 보기 */}
-        <div className="text-center mt-4">
+        <div className="text-center">
           <button
             onClick={() => router.push('/about#doctors')}
-            className="text-xs text-white/50 hover:text-white/80 transition-colors"
+            className="text-sm text-white/70 hover:text-white transition-colors border border-white/30 hover:border-white/60 px-6 py-2 rounded-full"
           >
-            전체 약력 보기 →
+            의료진 소개 보기 →
           </button>
         </div>
       </div>
