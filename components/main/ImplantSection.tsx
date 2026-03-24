@@ -13,7 +13,7 @@ export default function ImplantSection() {
         aria-hidden="true"
         style={{
           backgroundImage:
-            'radial-gradient(ellipse at 20% 40%, #6B7B3A 0%, transparent 60%), radial-gradient(ellipse at 80% 60%, #8B7D3C 0%, transparent 60%)',
+            'radial-gradient(ellipse at 20% 40%, #B8A080 0%, transparent 60%), radial-gradient(ellipse at 80% 60%, #C4A87A 0%, transparent 60%)',
         }}
       />
 
@@ -32,7 +32,7 @@ export default function ImplantSection() {
         <span
           className="text-6xl sm:text-7xl md:text-8xl lg:text-9xl font-black tracking-tight select-none"
           style={{
-            background: 'linear-gradient(135deg, #8B7D3C 0%, #c8aa62 40%, #8B7D3C 100%)',
+            background: 'linear-gradient(135deg, #C4A87A 0%, #c8aa62 40%, #C4A87A 100%)',
             WebkitBackgroundClip: 'text',
             WebkitTextFillColor: 'transparent',
             backgroundClip: 'text',

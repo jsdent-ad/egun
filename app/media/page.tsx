@@ -34,7 +34,7 @@ const MAIN_CARDS = [
     description: clinicInfo.phone,
     href: `tel:${clinicInfo.phone}`,
     external: false,
-    bg: 'bg-[#6B7B3A]',
+    bg: 'bg-[#B8A080]',
     text: 'text-white',
     iconColor: 'text-white',
   },
@@ -71,7 +71,7 @@ export default function MediaPage() {
       {/* 페이지 헤더 */}
       <section className="relative flex items-center justify-center min-h-[220px] sm:min-h-[280px] overflow-hidden">
         <div
-          className="absolute inset-0 bg-gradient-to-br from-[#4A5A2A] via-[#6B7B3A] to-[#8A9B50]"
+          className="absolute inset-0 bg-gradient-to-br from-[#96775A] via-[#B8A080] to-[#8A9B50]"
           aria-hidden="true"
         />
         <div className="relative z-10 text-center px-4 py-12 sm:py-16">
@@ -113,7 +113,7 @@ export default function MediaPage() {
         <div className="grid grid-cols-1 sm:grid-cols-3 gap-4" role="list">
           {SUB_CARDS.map(({ icon: Icon, label, description, href, external }) => {
             const commonClasses =
-              'bg-white border border-gray-100 shadow-sm rounded-2xl p-6 flex flex-col items-center justify-center gap-3 min-h-[120px] hover:shadow-md hover:border-[#6B7B3A]/30 active:scale-[0.98] transition-all duration-200'
+              'bg-white border border-gray-100 shadow-sm rounded-2xl p-6 flex flex-col items-center justify-center gap-3 min-h-[120px] hover:shadow-md hover:border-[#B8A080]/30 active:scale-[0.98] transition-all duration-200'
 
             if (external) {
               return (
@@ -126,7 +126,7 @@ export default function MediaPage() {
                   className={commonClasses}
                   aria-label={label}
                 >
-                  <Icon size={28} className="text-[#6B7B3A]" aria-hidden="true" />
+                  <Icon size={28} className="text-[#B8A080]" aria-hidden="true" />
                   <div className="text-center">
                     <p className="font-semibold text-gray-800 text-sm">{label}</p>
                     <p className="text-xs text-gray-400 mt-0.5">{description}</p>
@@ -143,7 +143,7 @@ export default function MediaPage() {
                 className={commonClasses}
                 aria-label={label}
               >
-                <Icon size={28} className="text-[#6B7B3A]" aria-hidden="true" />
+                <Icon size={28} className="text-[#B8A080]" aria-hidden="true" />
                 <div className="text-center">
                   <p className="font-semibold text-gray-800 text-sm">{label}</p>
                   <p className="text-xs text-gray-400 mt-0.5">{description}</p>

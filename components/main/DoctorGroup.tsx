@@ -80,7 +80,7 @@ export default function DoctorGroup() {
                 )}
               </div>
               {selectedDoctor.specialtyDetail && (
-                <p className="text-sm text-[#6B7B3A] mt-1 font-medium">
+                <p className="text-sm text-[#B8A080] mt-1 font-medium">
                   {selectedDoctor.specialtyDetail}
                 </p>
               )}

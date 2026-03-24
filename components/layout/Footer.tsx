@@ -14,7 +14,7 @@ export default function Footer() {
             {/* 로고 */}
             <div className="flex items-center gap-3">
               <div
-                className="w-10 h-10 rounded-full bg-[#6B7B3A] flex items-center justify-center shrink-0"
+                className="w-10 h-10 rounded-full bg-[#B8A080] flex items-center justify-center shrink-0"
                 aria-hidden="true"
               >
                 <span className="text-white text-xs font-bold">SNU</span>
@@ -41,7 +41,7 @@ export default function Footer() {
                 <span className="text-white/40 text-xs mr-1">전화</span>
                 <a
                   href={`tel:${clinicInfo.phone}`}
-                  className="hover:text-[#8A9B5A] transition-colors"
+                  className="hover:text-[#D4C4A8] transition-colors"
                 >
                   {clinicInfo.phone}
                 </a>
@@ -62,7 +62,7 @@ export default function Footer() {
                 href={clinicInfo.socialLinks.kakao}
                 target="_blank"
                 rel="noopener noreferrer"
-                className="w-8 h-8 rounded-full bg-white/10 flex items-center justify-center text-xs font-bold text-white/70 hover:bg-[#6B7B3A] hover:text-white transition-colors"
+                className="w-8 h-8 rounded-full bg-white/10 flex items-center justify-center text-xs font-bold text-white/70 hover:bg-[#B8A080] hover:text-white transition-colors"
                 aria-label="카카오 채널"
               >
                 K
@@ -71,7 +71,7 @@ export default function Footer() {
                 href={clinicInfo.socialLinks.youtube}
                 target="_blank"
                 rel="noopener noreferrer"
-                className="w-8 h-8 rounded-full bg-white/10 flex items-center justify-center text-xs font-bold text-white/70 hover:bg-[#6B7B3A] hover:text-white transition-colors"
+                className="w-8 h-8 rounded-full bg-white/10 flex items-center justify-center text-xs font-bold text-white/70 hover:bg-[#B8A080] hover:text-white transition-colors"
                 aria-label="유튜브 채널"
               >
                 Y
@@ -80,7 +80,7 @@ export default function Footer() {
                 href={clinicInfo.socialLinks.blog}
                 target="_blank"
                 rel="noopener noreferrer"
-                className="w-8 h-8 rounded-full bg-white/10 flex items-center justify-center text-xs font-bold text-white/70 hover:bg-[#6B7B3A] hover:text-white transition-colors"
+                className="w-8 h-8 rounded-full bg-white/10 flex items-center justify-center text-xs font-bold text-white/70 hover:bg-[#B8A080] hover:text-white transition-colors"
                 aria-label="네이버 블로그"
               >
                 N
@@ -89,7 +89,7 @@ export default function Footer() {
                 href={clinicInfo.socialLinks.naverPlace}
                 target="_blank"
                 rel="noopener noreferrer"
-                className="w-8 h-8 rounded-full bg-white/10 flex items-center justify-center text-xs font-bold text-white/70 hover:bg-[#6B7B3A] hover:text-white transition-colors"
+                className="w-8 h-8 rounded-full bg-white/10 flex items-center justify-center text-xs font-bold text-white/70 hover:bg-[#B8A080] hover:text-white transition-colors"
                 aria-label="네이버 플레이스"
               >
                 P
@@ -154,9 +154,9 @@ export default function Footer() {
                   <li key={item.href}>
                     <Link
                       href={item.href}
-                      className="text-sm text-white/60 hover:text-[#8A9B5A] transition-colors flex items-center gap-2 group"
+                      className="text-sm text-white/60 hover:text-[#D4C4A8] transition-colors flex items-center gap-2 group"
                     >
-                      <span className="w-1 h-1 rounded-full bg-white/20 group-hover:bg-[#8A9B5A] transition-colors shrink-0" />
+                      <span className="w-1 h-1 rounded-full bg-white/20 group-hover:bg-[#D4C4A8] transition-colors shrink-0" />
                       {item.label}
                     </Link>
                   </li>

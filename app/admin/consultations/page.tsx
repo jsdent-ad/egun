@@ -200,11 +200,11 @@ export default function ConsultationsPage() {
                               if (e.key === 'Escape') setEditingMemo(null)
                             }}
                             autoFocus
-                            className="flex-1 text-sm px-2 py-1 border border-gray-300 rounded focus:outline-none focus:ring-1 focus:ring-[#6B7B3A]"
+                            className="flex-1 text-sm px-2 py-1 border border-gray-300 rounded focus:outline-none focus:ring-1 focus:ring-[#B8A080]"
                           />
                           <button
                             onClick={() => saveMemo(item.id)}
-                            className="text-xs px-2 py-1 bg-[#6B7B3A] text-white rounded hover:bg-[#5A6A2F]"
+                            className="text-xs px-2 py-1 bg-[#B8A080] text-white rounded hover:bg-[#5A6A2F]"
                           >
                             저장
                           </button>

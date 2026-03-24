@@ -73,8 +73,8 @@ export default function BoardAnchorNav({ items }: BoardAnchorNavProps) {
                   onClick={(e) => handleClick(e, item.id)}
                   className={`inline-block px-4 sm:px-5 py-3 text-sm font-medium whitespace-nowrap transition-all duration-200 border-b-2 ${
                     isActive
-                      ? 'text-[#6B7B3A] border-[#6B7B3A]'
-                      : 'text-gray-500 border-transparent hover:text-[#6B7B3A] hover:border-[#6B7B3A]/40'
+                      ? 'text-[#B8A080] border-[#B8A080]'
+                      : 'text-gray-500 border-transparent hover:text-[#B8A080] hover:border-[#B8A080]/40'
                   }`}
                   aria-current={isActive ? 'true' : undefined}
                 >

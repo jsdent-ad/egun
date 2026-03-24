@@ -64,7 +64,7 @@ export default function MediaSection() {
         <p className="text-sm text-stone-500 mt-2">
           다양한 채널에서 서울이건치과를 만나보세요
         </p>
-        <div className="mt-3 w-10 h-0.5 mx-auto" style={{ backgroundColor: '#6B7B3A' }} />
+        <div className="mt-3 w-10 h-0.5 mx-auto" style={{ backgroundColor: '#B8A080' }} />
       </div>
 
       {/* 2x2 grid */}

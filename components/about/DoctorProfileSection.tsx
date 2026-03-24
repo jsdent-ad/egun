@@ -26,7 +26,7 @@ function DoctorCard({
           />
 
           {/* 직책 뱃지 */}
-          <div className="absolute top-4 left-4 bg-[#6B7B3A] text-white text-xs font-semibold px-3 py-1 rounded-full">
+          <div className="absolute top-4 left-4 bg-[#B8A080] text-white text-xs font-semibold px-3 py-1 rounded-full">
             {doctor.role}
           </div>
         </div>
@@ -51,13 +51,13 @@ function DoctorCard({
       <div className={`${isEven ? 'lg:order-2' : 'lg:order-1'} space-y-8`}>
         {/* 이름 · 전문분야 */}
         <div>
-          <p className="text-xs font-semibold tracking-[0.2em] uppercase text-[#6B7B3A] mb-2">
+          <p className="text-xs font-semibold tracking-[0.2em] uppercase text-[#B8A080] mb-2">
             {doctor.specialtyDetail ?? doctor.specialty}
           </p>
           <h3 className="text-2xl sm:text-3xl font-bold text-gray-900 mb-1">
             {doctor.name} {doctor.role}
           </h3>
-          <div className="w-10 h-0.5 bg-[#6B7B3A] mt-3" />
+          <div className="w-10 h-0.5 bg-[#B8A080] mt-3" />
         </div>
 
         {/* 경력사항 */}
@@ -69,7 +69,7 @@ function DoctorCard({
             <ul className="space-y-2.5">
               {doctor.careers.map((career, i) => (
                 <li key={i} className="flex items-start gap-3">
-                  <span className="mt-2 w-1.5 h-1.5 rounded-full bg-[#6B7B3A] shrink-0" />
+                  <span className="mt-2 w-1.5 h-1.5 rounded-full bg-[#B8A080] shrink-0" />
                   <span className="text-sm text-gray-700 leading-relaxed">
                     {career}
                   </span>
@@ -83,13 +83,13 @@ function DoctorCard({
         {doctor.letter && (
           <div className="bg-stone-50 border border-stone-200 rounded-2xl p-6 relative">
             {/* 따옴표 장식 */}
-            <span className="absolute top-4 left-5 text-4xl text-[#6B7B3A]/20 font-serif leading-none select-none">
+            <span className="absolute top-4 left-5 text-4xl text-[#B8A080]/20 font-serif leading-none select-none">
               &ldquo;
             </span>
             <p className="text-sm sm:text-base text-gray-700 leading-relaxed pl-4 italic">
               {doctor.letter}
             </p>
-            <p className="text-right text-sm text-[#6B7B3A] font-semibold mt-4">
+            <p className="text-right text-sm text-[#B8A080] font-semibold mt-4">
               — {doctor.name} {doctor.role}
             </p>
 
@@ -114,7 +114,7 @@ export default function DoctorProfileSection() {
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         {/* 섹션 헤더 */}
         <div className="mb-4">
-          <p className="text-xs font-semibold tracking-[0.25em] uppercase text-[#6B7B3A] mb-4">
+          <p className="text-xs font-semibold tracking-[0.25em] uppercase text-[#B8A080] mb-4">
             Our Doctors
           </p>
           <h2
@@ -122,7 +122,7 @@ export default function DoctorProfileSection() {
             className="text-3xl sm:text-4xl lg:text-5xl font-bold text-gray-900 leading-tight"
           >
             한자리에서<br />
-            <span className="text-[#6B7B3A]">변하지 않는 마음</span>
+            <span className="text-[#B8A080]">변하지 않는 마음</span>
           </h2>
         </div>
         <p className="mt-6 text-base sm:text-lg text-gray-600 max-w-2xl leading-relaxed">

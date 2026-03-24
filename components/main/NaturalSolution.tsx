@@ -13,7 +13,7 @@ const CARDS = [
     description:
       '충치 범위가 작을 때 치아색 레진으로 당일 복원. 삭제 최소화 · 자연치아 보존을 최우선으로 합니다.',
     gradient: 'from-amber-50 to-stone-100',
-    iconColor: '#8B7D3C',
+    iconColor: '#C4A87A',
     image: '/images/treatments/resin-buildup-treat.jpg',
   },
   {
@@ -24,7 +24,7 @@ const CARDS = [
     description:
       '신경을 살리면서 치아를 지키는 치수보존술. 신경치료 없이 자연 치아 수명을 연장합니다.',
     gradient: 'from-green-50 to-stone-100',
-    iconColor: '#6B7B3A',
+    iconColor: '#B8A080',
     image: '/images/treatments/vpt-treat.jpg',
   },
   {
@@ -35,7 +35,7 @@ const CARDS = [
     description:
       '크라운 대신 치아 삭제를 최소화한 온레이 보철. 건강한 치질을 최대한 보존합니다.',
     gradient: 'from-sky-50 to-stone-100',
-    iconColor: '#6B7B3A',
+    iconColor: '#B8A080',
     image: '/images/treatments/onlay-treat.jpg',
   },
 ]
@@ -55,7 +55,7 @@ export default function NaturalSolution() {
         <h2 className="text-xl md:text-2xl lg:text-3xl font-bold text-stone-800 leading-snug">
           자연치를 보존하는 이건치과 솔루션
         </h2>
-        <div className="mt-3 w-10 h-0.5 mx-auto" style={{ backgroundColor: '#6B7B3A' }} />
+        <div className="mt-3 w-10 h-0.5 mx-auto" style={{ backgroundColor: '#B8A080' }} />
       </div>
 
       {/* Cards */}

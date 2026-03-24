@@ -32,7 +32,7 @@ export default function LabSection() {
     >
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         {/* 섹션 헤더 */}
-        <p className="text-xs font-semibold tracking-[0.25em] uppercase text-[#6B7B3A] mb-4">
+        <p className="text-xs font-semibold tracking-[0.25em] uppercase text-[#B8A080] mb-4">
           In-house Lab
         </p>
         <h2
@@ -41,7 +41,7 @@ export default function LabSection() {
         >
           디지털 기공소
         </h2>
-        <p className="text-lg sm:text-xl text-[#6B7B3A] font-medium mb-4">
+        <p className="text-lg sm:text-xl text-[#B8A080] font-medium mb-4">
           인하우스 기공소, 더욱 정교하게
         </p>
         <p className="text-base text-gray-400 max-w-2xl leading-relaxed mb-16">
@@ -93,10 +93,10 @@ export default function LabSection() {
             {LAB_FEATURES.map((feature, i) => (
               <div
                 key={feature.title}
-                className="flex gap-4 p-5 rounded-2xl bg-gray-800 border border-gray-700 hover:border-[#6B7B3A]/50 transition-colors"
+                className="flex gap-4 p-5 rounded-2xl bg-gray-800 border border-gray-700 hover:border-[#B8A080]/50 transition-colors"
               >
-                <div className="w-8 h-8 rounded-full bg-[#6B7B3A]/20 flex items-center justify-center shrink-0">
-                  <span className="text-xs font-bold text-[#6B7B3A]">
+                <div className="w-8 h-8 rounded-full bg-[#B8A080]/20 flex items-center justify-center shrink-0">
+                  <span className="text-xs font-bold text-[#B8A080]">
                     0{i + 1}
                   </span>
                 </div>

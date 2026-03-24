@@ -138,7 +138,7 @@ export default function NoticesPage() {
         <h1 className="text-2xl font-bold text-gray-900">공지사항</h1>
         <button
           onClick={openAddModal}
-          className="flex items-center gap-2 px-4 py-2 bg-[#6B7B3A] text-white text-sm font-medium rounded-lg hover:bg-[#5A6A2F] transition-colors"
+          className="flex items-center gap-2 px-4 py-2 bg-[#B8A080] text-white text-sm font-medium rounded-lg hover:bg-[#5A6A2F] transition-colors"
         >
           <Plus size={16} />
           공지 추가
@@ -193,7 +193,7 @@ export default function NoticesPage() {
                     <button
                       onClick={() => toggleActive(item.id, item.is_active)}
                       className={`relative inline-flex h-6 w-11 items-center rounded-full transition-colors ${
-                        item.is_active ? 'bg-[#6B7B3A]' : 'bg-gray-300'
+                        item.is_active ? 'bg-[#B8A080]' : 'bg-gray-300'
                       }`}
                       role="switch"
                       aria-checked={item.is_active}
@@ -209,7 +209,7 @@ export default function NoticesPage() {
                     <div className="flex gap-1 justify-center">
                       <button
                         onClick={() => openEditModal(item)}
-                        className="p-1.5 text-gray-400 hover:text-[#6B7B3A] transition-colors"
+                        className="p-1.5 text-gray-400 hover:text-[#B8A080] transition-colors"
                         title="수정"
                       >
                         <Pencil size={14} />
@@ -257,7 +257,7 @@ export default function NoticesPage() {
                   onChange={(e) =>
                     setForm((p) => ({ ...p, title: e.target.value }))
                   }
-                  className="w-full h-10 px-3 rounded-lg border border-gray-300 text-sm focus:outline-none focus:ring-2 focus:ring-[#6B7B3A] focus:border-[#6B7B3A]"
+                  className="w-full h-10 px-3 rounded-lg border border-gray-300 text-sm focus:outline-none focus:ring-2 focus:ring-[#B8A080] focus:border-[#B8A080]"
                   placeholder="공지사항 제목"
                 />
               </div>
@@ -272,7 +272,7 @@ export default function NoticesPage() {
                     setForm((p) => ({ ...p, content: e.target.value }))
                   }
                   rows={5}
-                  className="w-full px-3 py-2 rounded-lg border border-gray-300 text-sm focus:outline-none focus:ring-2 focus:ring-[#6B7B3A] focus:border-[#6B7B3A] resize-none"
+                  className="w-full px-3 py-2 rounded-lg border border-gray-300 text-sm focus:outline-none focus:ring-2 focus:ring-[#B8A080] focus:border-[#B8A080] resize-none"
                   placeholder="공지 내용을 입력하세요"
                 />
               </div>
@@ -288,7 +288,7 @@ export default function NoticesPage() {
                     onChange={(e) =>
                       setForm((p) => ({ ...p, notice_date: e.target.value }))
                     }
-                    className="w-full h-10 px-3 rounded-lg border border-gray-300 text-sm focus:outline-none focus:ring-2 focus:ring-[#6B7B3A]"
+                    className="w-full h-10 px-3 rounded-lg border border-gray-300 text-sm focus:outline-none focus:ring-2 focus:ring-[#B8A080]"
                   />
                 </div>
                 <div className="flex items-end pb-1">
@@ -299,7 +299,7 @@ export default function NoticesPage() {
                       onChange={(e) =>
                         setForm((p) => ({ ...p, is_active: e.target.checked }))
                       }
-                      className="w-4 h-4 accent-[#6B7B3A]"
+                      className="w-4 h-4 accent-[#B8A080]"
                     />
                     <span className="text-sm text-gray-700">활성화</span>
                   </label>
@@ -317,7 +317,7 @@ export default function NoticesPage() {
               <button
                 onClick={handleSave}
                 disabled={saving || !form.title.trim()}
-                className="px-4 py-2 text-sm bg-[#6B7B3A] text-white rounded-lg hover:bg-[#5A6A2F] disabled:opacity-60 transition-colors"
+                className="px-4 py-2 text-sm bg-[#B8A080] text-white rounded-lg hover:bg-[#5A6A2F] disabled:opacity-60 transition-colors"
               >
                 {saving ? '저장 중...' : editingId ? '수정' : '추가'}
               </button>

@@ -12,7 +12,7 @@ export default function BlogLinkCard({ boardCategory }: BlogLinkCardProps) {
       aria-label={`${boardCategory} 관련 블로그 글`}
     >
       <BookOpen
-        className="mx-auto mb-3 text-[#6B7B3A]/40"
+        className="mx-auto mb-3 text-[#B8A080]/40"
         size={32}
         aria-hidden="true"
       />

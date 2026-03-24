@@ -39,7 +39,7 @@ export default function AccessSection() {
     >
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         {/* 섹션 헤더 */}
-        <p className="text-xs font-semibold tracking-[0.25em] uppercase text-[#6B7B3A] mb-4">
+        <p className="text-xs font-semibold tracking-[0.25em] uppercase text-[#B8A080] mb-4">
           Location
         </p>
         <h2
@@ -58,7 +58,7 @@ export default function AccessSection() {
               <div className="absolute inset-0 bg-gradient-to-br from-gray-100 to-gray-300" />
               <div className="relative z-10 text-center px-6">
                 <div className="w-12 h-12 rounded-full bg-white shadow-md flex items-center justify-center mx-auto mb-3">
-                  <MapPin className="w-6 h-6 text-[#6B7B3A]" aria-hidden="true" />
+                  <MapPin className="w-6 h-6 text-[#B8A080]" aria-hidden="true" />
                 </div>
                 <p className="font-semibold text-gray-700 mb-1">지도 API 연동 예정</p>
                 <p className="text-sm text-gray-500">
@@ -85,7 +85,7 @@ export default function AccessSection() {
             <div className="rounded-2xl border border-gray-100 p-6 space-y-4 shadow-sm">
               <div className="flex items-start gap-3">
                 <MapPin
-                  className="w-5 h-5 text-[#6B7B3A] mt-0.5 shrink-0"
+                  className="w-5 h-5 text-[#B8A080] mt-0.5 shrink-0"
                   aria-hidden="true"
                 />
                 <div>
@@ -102,7 +102,7 @@ export default function AccessSection() {
 
               <div className="flex items-center gap-3">
                 <Phone
-                  className="w-5 h-5 text-[#6B7B3A] shrink-0"
+                  className="w-5 h-5 text-[#B8A080] shrink-0"
                   aria-hidden="true"
                 />
                 <div>
@@ -111,7 +111,7 @@ export default function AccessSection() {
                   </p>
                   <a
                     href={`tel:${clinicInfo.phone.replace(/-/g, '')}`}
-                    className="text-sm text-gray-800 hover:text-[#6B7B3A] transition-colors font-medium"
+                    className="text-sm text-gray-800 hover:text-[#B8A080] transition-colors font-medium"
                   >
                     {clinicInfo.phone}
                   </a>
@@ -122,7 +122,7 @@ export default function AccessSection() {
             {/* 진료시간 */}
             <div className="rounded-2xl border border-gray-100 p-6 shadow-sm">
               <div className="flex items-center gap-2 mb-4">
-                <Clock className="w-5 h-5 text-[#6B7B3A]" aria-hidden="true" />
+                <Clock className="w-5 h-5 text-[#B8A080]" aria-hidden="true" />
                 <h3 className="text-sm font-semibold text-gray-700">
                   진료시간
                 </h3>
@@ -145,7 +145,7 @@ export default function AccessSection() {
                       {h.hours}
                     </span>
                     {h.note && (
-                      <span className="text-xs text-[#6B7B3A] font-medium">
+                      <span className="text-xs text-[#B8A080] font-medium">
                         {h.note}
                       </span>
                     )}
@@ -181,7 +181,7 @@ export default function AccessSection() {
             <ul className="space-y-2">
               {PARKING_INFO.map((info, i) => (
                 <li key={i} className="flex items-start gap-2 text-sm text-gray-700">
-                  <span className="text-[#6B7B3A] mt-0.5">·</span>
+                  <span className="text-[#B8A080] mt-0.5">·</span>
                   {info}
                 </li>
               ))}

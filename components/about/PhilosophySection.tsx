@@ -58,7 +58,7 @@ export default function PhilosophySection() {
     >
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         {/* 섹션 레이블 */}
-        <p className="text-xs font-semibold tracking-[0.25em] uppercase text-[#6B7B3A] mb-4">
+        <p className="text-xs font-semibold tracking-[0.25em] uppercase text-[#B8A080] mb-4">
           Our Philosophy
         </p>
 
@@ -68,7 +68,7 @@ export default function PhilosophySection() {
           className="text-3xl sm:text-4xl lg:text-5xl font-bold text-gray-900 leading-tight mb-16 sm:mb-20"
         >
           마음을 담아<br />
-          <span className="text-[#6B7B3A]">정성을 다하여</span>
+          <span className="text-[#B8A080]">정성을 다하여</span>
         </h2>
 
         {/* 본문 레이아웃: 사진 슬라이드 좌 + 가치 우 */}
@@ -81,7 +81,7 @@ export default function PhilosophySection() {
                 className={`absolute inset-0 flex flex-col items-center justify-center transition-all duration-700 ${slide.imageBg}`}
               >
                 <div className="w-24 h-24 rounded-full bg-white/60 flex items-center justify-center mb-4 shadow-inner">
-                  <span className="text-4xl font-bold text-[#6B7B3A]">
+                  <span className="text-4xl font-bold text-[#B8A080]">
                     {slide.initials}
                   </span>
                 </div>
@@ -105,7 +105,7 @@ export default function PhilosophySection() {
                     onClick={() => setCurrentSlide(i)}
                     className={`w-2 h-2 rounded-full transition-all ${
                       i === currentSlide
-                        ? 'bg-[#6B7B3A] w-5'
+                        ? 'bg-[#B8A080] w-5'
                         : 'bg-white/70'
                     }`}
                     aria-label={`${i + 1}번 슬라이드`}
@@ -115,7 +115,7 @@ export default function PhilosophySection() {
             </div>
 
             {/* 장식 요소 */}
-            <div className="absolute -bottom-6 -right-6 w-40 h-40 bg-[#6B7B3A]/8 rounded-full -z-10 hidden lg:block" />
+            <div className="absolute -bottom-6 -right-6 w-40 h-40 bg-[#B8A080]/8 rounded-full -z-10 hidden lg:block" />
             <div className="absolute -top-4 -left-4 w-24 h-24 bg-stone-100 rounded-full -z-10 hidden lg:block" />
           </div>
 
@@ -132,14 +132,14 @@ export default function PhilosophySection() {
               빠른 치료보다 오래 지속되는 건강한 치아를 목표로 합니다.
             </p>
 
-            <div className="w-12 h-0.5 bg-[#6B7B3A]" />
+            <div className="w-12 h-0.5 bg-[#B8A080]" />
 
             {/* 핵심 가치 그리드 */}
             <div className="grid grid-cols-1 sm:grid-cols-2 gap-6">
               {CORE_VALUES.map((value) => (
                 <div key={value.title} className="group">
                   <div className="flex items-start gap-3">
-                    <div className="w-1 h-full min-h-12 bg-[#6B7B3A]/30 rounded-full group-hover:bg-[#6B7B3A] transition-colors mt-0.5" />
+                    <div className="w-1 h-full min-h-12 bg-[#B8A080]/30 rounded-full group-hover:bg-[#B8A080] transition-colors mt-0.5" />
                     <div>
                       <h3 className="font-semibold text-gray-900 mb-1.5 text-base">
                         {value.title}

@@ -29,6 +29,7 @@ export interface ClinicInfo {
   latitude: number
   longitude: number
   socialLinks: SocialLinks
+  lunchTime: string
   businessHours: BusinessHours[]
   scheduleTabs: ScheduleTab[]
 }
@@ -48,6 +49,7 @@ export const clinicInfo: ClinicInfo = {
     blog: 'https://blog.naver.com/seoulegundc',
     naverPlace: 'https://m.place.naver.com/restaurant/12872860',
   },
+  lunchTime: '12:30 - 14:00',
   businessHours: [
     { day: '월', hours: '09:30 - 18:30' },
     { day: '화', hours: '09:30 - 20:30', note: '야간진료' },
@@ -71,7 +73,7 @@ export const clinicInfo: ClinicInfo = {
         { day: '일요일 · 공휴일', hours: '휴진', isClosed: true },
       ],
       notice: [
-        '점심시간 13:00 - 14:00 (토요일 없음)',
+        '점심시간 12:30 - 14:00 (토요일 없음)',
         '화 · 금 야간진료는 예약 후 방문 권장',
       ],
     },
@@ -88,7 +90,7 @@ export const clinicInfo: ClinicInfo = {
         { day: '일요일 · 공휴일', hours: '휴진', isClosed: true },
       ],
       notice: [
-        '점심시간 13:00 - 14:00 (토요일 없음)',
+        '점심시간 12:30 - 14:00 (토요일 없음)',
         '소아 전문의 담당 진료',
         '사전 예약 강력 권장',
       ],

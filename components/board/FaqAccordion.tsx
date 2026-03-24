@@ -53,7 +53,7 @@ export default function FaqAccordion({ faq }: FaqAccordionProps) {
                 >
                   {/* Q 아이콘 */}
                   <span
-                    className="shrink-0 w-7 h-7 rounded-full bg-[#6B7B3A] flex items-center justify-center text-white text-xs font-bold"
+                    className="shrink-0 w-7 h-7 rounded-full bg-[#B8A080] flex items-center justify-center text-white text-xs font-bold"
                     aria-hidden="true"
                   >
                     Q
@@ -78,7 +78,7 @@ export default function FaqAccordion({ faq }: FaqAccordionProps) {
               >
                 <div className="px-5 pb-4 pt-1 flex gap-3">
                   <span
-                    className="shrink-0 w-7 h-7 rounded-full bg-gray-100 flex items-center justify-center text-[#6B7B3A] text-xs font-bold mt-0.5"
+                    className="shrink-0 w-7 h-7 rounded-full bg-gray-100 flex items-center justify-center text-[#B8A080] text-xs font-bold mt-0.5"
                     aria-hidden="true"
                   >
                     A

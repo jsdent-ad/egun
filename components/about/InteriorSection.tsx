@@ -73,7 +73,7 @@ export default function InteriorSection() {
     >
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         {/* 섹션 헤더 */}
-        <p className="text-xs font-semibold tracking-[0.25em] uppercase text-[#6B7B3A] mb-4">
+        <p className="text-xs font-semibold tracking-[0.25em] uppercase text-[#B8A080] mb-4">
           Interior
         </p>
         <h2

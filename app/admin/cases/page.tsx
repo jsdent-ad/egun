@@ -196,7 +196,7 @@ export default function CasesPage() {
         <h1 className="text-2xl font-bold text-gray-900">증례 관리</h1>
         <button
           onClick={openAddModal}
-          className="flex items-center gap-2 px-4 py-2 bg-[#6B7B3A] text-white text-sm font-medium rounded-lg hover:bg-[#5A6A2F] transition-colors"
+          className="flex items-center gap-2 px-4 py-2 bg-[#B8A080] text-white text-sm font-medium rounded-lg hover:bg-[#5A6A2F] transition-colors"
         >
           <Plus size={16} />
           증례 추가
@@ -242,7 +242,7 @@ export default function CasesPage() {
                 <div className="flex gap-1">
                   <button
                     onClick={() => openEditModal(item)}
-                    className="p-1.5 text-gray-400 hover:text-[#6B7B3A] transition-colors"
+                    className="p-1.5 text-gray-400 hover:text-[#B8A080] transition-colors"
                     title="수정"
                   >
                     <Pencil size={14} />
@@ -306,7 +306,7 @@ export default function CasesPage() {
                   onChange={(e) =>
                     setForm((p) => ({ ...p, title: e.target.value }))
                   }
-                  className="w-full h-10 px-3 rounded-lg border border-gray-300 text-sm focus:outline-none focus:ring-2 focus:ring-[#6B7B3A] focus:border-[#6B7B3A]"
+                  className="w-full h-10 px-3 rounded-lg border border-gray-300 text-sm focus:outline-none focus:ring-2 focus:ring-[#B8A080] focus:border-[#B8A080]"
                   placeholder="증례 제목"
                 />
               </div>
@@ -321,7 +321,7 @@ export default function CasesPage() {
                     setForm((p) => ({ ...p, description: e.target.value }))
                   }
                   rows={3}
-                  className="w-full px-3 py-2 rounded-lg border border-gray-300 text-sm focus:outline-none focus:ring-2 focus:ring-[#6B7B3A] focus:border-[#6B7B3A] resize-none"
+                  className="w-full px-3 py-2 rounded-lg border border-gray-300 text-sm focus:outline-none focus:ring-2 focus:ring-[#B8A080] focus:border-[#B8A080] resize-none"
                   placeholder="증례 설명"
                 />
               </div>
@@ -336,7 +336,7 @@ export default function CasesPage() {
                     onChange={(e) =>
                       setForm((p) => ({ ...p, board_category: e.target.value }))
                     }
-                    className="w-full h-10 px-3 rounded-lg border border-gray-300 text-sm focus:outline-none focus:ring-2 focus:ring-[#6B7B3A]"
+                    className="w-full h-10 px-3 rounded-lg border border-gray-300 text-sm focus:outline-none focus:ring-2 focus:ring-[#B8A080]"
                   >
                     {BOARD_CATEGORIES.filter((c) => c.value !== 'all').map(
                       (cat) => (
@@ -359,7 +359,7 @@ export default function CasesPage() {
                         treatment_type: e.target.value,
                       }))
                     }
-                    className="w-full h-10 px-3 rounded-lg border border-gray-300 text-sm focus:outline-none focus:ring-2 focus:ring-[#6B7B3A]"
+                    className="w-full h-10 px-3 rounded-lg border border-gray-300 text-sm focus:outline-none focus:ring-2 focus:ring-[#B8A080]"
                   >
                     <option value="">선택 안 함</option>
                     {TREATMENT_TYPES.map((t) => (
@@ -403,7 +403,7 @@ export default function CasesPage() {
                       value={blog.url}
                       onChange={(e) => updateBlogUrl(i, 'url', e.target.value)}
                       placeholder="블로그 URL"
-                      className="flex-1 h-9 px-3 rounded-lg border border-gray-300 text-sm focus:outline-none focus:ring-2 focus:ring-[#6B7B3A]"
+                      className="flex-1 h-9 px-3 rounded-lg border border-gray-300 text-sm focus:outline-none focus:ring-2 focus:ring-[#B8A080]"
                     />
                     <input
                       type="text"
@@ -412,7 +412,7 @@ export default function CasesPage() {
                         updateBlogUrl(i, 'title', e.target.value)
                       }
                       placeholder="제목 (선택)"
-                      className="w-32 h-9 px-3 rounded-lg border border-gray-300 text-sm focus:outline-none focus:ring-2 focus:ring-[#6B7B3A]"
+                      className="w-32 h-9 px-3 rounded-lg border border-gray-300 text-sm focus:outline-none focus:ring-2 focus:ring-[#B8A080]"
                     />
                     {form.blog_urls.length > 1 && (
                       <button
@@ -426,7 +426,7 @@ export default function CasesPage() {
                 ))}
                 <button
                   onClick={addBlogUrl}
-                  className="text-xs text-[#6B7B3A] hover:underline"
+                  className="text-xs text-[#B8A080] hover:underline"
                 >
                   + 링크 추가
                 </button>
@@ -443,7 +443,7 @@ export default function CasesPage() {
               <button
                 onClick={handleSave}
                 disabled={saving || !form.title.trim()}
-                className="px-4 py-2 text-sm bg-[#6B7B3A] text-white rounded-lg hover:bg-[#5A6A2F] disabled:opacity-60 transition-colors"
+                className="px-4 py-2 text-sm bg-[#B8A080] text-white rounded-lg hover:bg-[#5A6A2F] disabled:opacity-60 transition-colors"
               >
                 {saving ? '저장 중...' : editingId ? '수정' : '추가'}
               </button>

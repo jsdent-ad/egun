@@ -17,7 +17,7 @@ export default function AboutPage() {
   return (
     <>
       {/* 페이지 히어로 */}
-      <div className="h-40 sm:h-52 bg-gradient-to-br from-[#6B7B3A] to-[#4A5A2A] flex items-end">
+      <div className="h-40 sm:h-52 bg-gradient-to-br from-[#B8A080] to-[#96775A] flex items-end">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 pb-10 w-full">
           <p className="text-white/70 text-xs font-semibold tracking-[0.2em] uppercase mb-2">
             About Us

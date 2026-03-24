@@ -81,10 +81,10 @@ export default function FloatingSidebar() {
         const isLast = index === items.length - 1
         const commonClass = `
           group relative w-12 h-12 flex flex-col items-center justify-center
-          text-white/60 hover:text-[#8A9B5A] hover:bg-white/10
+          text-white/60 hover:text-[#D4C4A8] hover:bg-white/10
           transition-all duration-200
           ${!isLast ? 'border-b border-white/10' : ''}
-          ${item.tel ? 'text-[#8A9B5A]/80' : ''}
+          ${item.tel ? 'text-[#D4C4A8]/80' : ''}
         `
 
         const content = (

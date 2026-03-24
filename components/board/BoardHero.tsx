@@ -12,7 +12,7 @@ export default function BoardHero({ title, subtitle }: BoardHeroProps) {
     >
       {/* 올리브 그라데이션 배경 */}
       <div
-        className="absolute inset-0 bg-gradient-to-br from-[#4A5A2A] via-[#6B7B3A] to-[#8A9B50]"
+        className="absolute inset-0 bg-gradient-to-br from-[#96775A] via-[#B8A080] to-[#8A9B50]"
         aria-hidden="true"
       />
       {/* 패턴 오버레이 */}
