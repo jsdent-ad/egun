@@ -8,6 +8,7 @@ import CaseGallery from './CaseGallery'
 import FaqAccordion from './FaqAccordion'
 import BlogLinkCard from './BlogLinkCard'
 import CtaSection from './CtaSection'
+import { FaqJsonLd } from '@/components/seo/JsonLd'
 
 interface TreatmentPageProps {
   title: string
@@ -25,8 +26,11 @@ export default function TreatmentPage({
     label: t.title,
   }))
 
+  const allFaqs = treatments.flatMap((t) => t.faq)
+
   return (
     <>
+      <FaqJsonLd faqs={allFaqs} />
       <BoardHero title={title} subtitle={subtitle} />
       <BoardAnchorNav items={navItems} />
 
