@@ -16,7 +16,7 @@ export default function MapSection() {
       <div className="absolute top-6 left-6 md:top-10 md:left-10 bg-white/95 backdrop-blur-sm rounded-2xl shadow-xl p-6 md:p-8 max-w-sm w-[calc(100%-3rem)] md:w-auto z-10">
         {/* 로고 */}
         <img
-          src="/images/logo/seoulegun-logo%20(1).png"
+          src="/images/logo/egun-logo%20(1).png"
           alt="서울이건치과"
           className="h-10 mb-4"
         />

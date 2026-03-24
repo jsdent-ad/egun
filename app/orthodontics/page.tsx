@@ -15,6 +15,7 @@ export default function OrthodonticsPage() {
       title="서울이건 교정치료"
       subtitle="가지런한 치아, 건강한 교합"
       treatments={orthodonticsTreatments}
+      hideCases
     />
   )
 }

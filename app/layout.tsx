@@ -26,7 +26,7 @@ export const metadata: Metadata = {
     type: 'website',
     images: [
       {
-        url: '/images/logo/seoulegun-logo%20(1).png',
+        url: '/images/logo/egun-logo%20(1).png',
         width: 800,
         height: 600,
         alt: '서울이건치과',
@@ -38,7 +38,7 @@ export const metadata: Metadata = {
     title: '서울이건치과 | 서울대 출신 원장 2인 책임진료',
     description:
       '서울대 출신 대표 원장 2인이 처음 상담부터 치료 마무리까지 책임지고 진료합니다.',
-    images: ['/images/logo/seoulegun-logo%20(1).png'],
+    images: ['/images/logo/egun-logo%20(1).png'],
   },
   alternates: {
     canonical: 'https://egun.vercel.app',

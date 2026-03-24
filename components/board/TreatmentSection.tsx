@@ -16,7 +16,7 @@ export default function TreatmentSection({
         <div className="space-y-4">
           {/* 로고 */}
           <img
-            src="/images/logo/seoulegun-logo%20(1).png"
+            src="/images/logo/egun-logo%20(1).png"
             alt="서울이건치과"
             className="h-8 mb-2"
           />

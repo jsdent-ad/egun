@@ -34,8 +34,8 @@ const SLIDES = [
   },
   {
     id: 4,
-    headline: '아이의 첫 치과',
-    sub: '편안하게',
+    headline: '안전하고 편안한',
+    sub: '수면 임플란트치료',
     image: '/images/slides/slide-6.jpg',
     accent: '#B8A080',
   },

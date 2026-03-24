@@ -15,6 +15,7 @@ export default function PediatricPage() {
       title="소아치과 치료"
       subtitle="아이의 첫 치과, 편안하게"
       treatments={pediatricTreatments}
+      hideCases
     />
   )
 }

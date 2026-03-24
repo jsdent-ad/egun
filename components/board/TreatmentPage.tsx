@@ -14,12 +14,14 @@ interface TreatmentPageProps {
   title: string
   subtitle: string
   treatments: TreatmentContent[]
+  hideCases?: boolean
 }
 
 export default function TreatmentPage({
   title,
   subtitle,
   treatments,
+  hideCases,
 }: TreatmentPageProps) {
   const navItems = treatments.map((t) => ({
     id: t.treatmentType,
@@ -45,12 +47,16 @@ export default function TreatmentPage({
             {/* id를 heading에도 심어 두면 ARIA 연결이 자연스러워지지만,
                 TreatmentSection 내부 h2가 이 역할을 겸하므로 별도 숨김 heading 불필요 */}
             <TreatmentSection treatment={treatment} index={index} />
-            <CaseGallery
-              boardCategory={treatment.boardCategory}
-              treatmentType={treatment.treatmentType}
-            />
+            {!hideCases && (
+              <CaseGallery
+                boardCategory={treatment.boardCategory}
+                treatmentType={treatment.treatmentType}
+              />
+            )}
             <FaqAccordion faq={treatment.faq} />
-            <BlogLinkCard boardCategory={treatment.boardCategory} />
+            {!hideCases && (
+              <BlogLinkCard boardCategory={treatment.boardCategory} />
+            )}
           </section>
         ))}
 

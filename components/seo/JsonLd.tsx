@@ -56,7 +56,7 @@ export function LocalBusinessJsonLd() {
       'Endodontics',
     ],
     priceRange: '$$',
-    image: 'https://egun.vercel.app/images/logo/seoulegun-logo%20(1).png',
+    image: 'https://egun.vercel.app/images/logo/egun-logo%20(1).png',
   }
 
   return (
