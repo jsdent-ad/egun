@@ -18,7 +18,7 @@ export const doctors: Doctor[] = [
     title: 'DDS, MSD, PhD(c)',
     specialty: '임플란트 · 심미보철',
     specialtyDetail: '임플란트 · 전악보철 · 심미보철',
-    image: '/images/doctors/doctor-lee.jpg',
+    image: '/images/doctors/doctor-lee.png',
     careers: [
       '서울대학교 치과대학/치의학대학원 졸업',
       '서울대학교 치의학대학원 석사학위 취득',
@@ -38,7 +38,7 @@ export const doctors: Doctor[] = [
     title: 'DDS, MSD',
     specialty: '통합치의학 전문의',
     specialtyDetail: '임플란트 · 근관치료 · 디지털치의학',
-    image: '/images/doctors/doctor-jung.jpg',
+    image: '/images/doctors/doctor-jung.png',
     careers: [
       '서울대학교 치과대학/치의학대학원 졸업',
       '보건복지부 인증 통합치의학 전문의',
@@ -57,7 +57,7 @@ export const doctors: Doctor[] = [
     title: 'DDS, MSD',
     specialty: '교정',
     specialtyDetail: '투명교정 · 성장기교정 · 설측교정',
-    image: '/images/doctors/doctor-yoo.jpg',
+    image: '/images/doctors/doctor-yoo.png',
     careers: [
       '경희대학교 치의학전문대학원 졸업',
       '경희대학교 치과대학 치의학 석사',
@@ -80,7 +80,7 @@ export const doctors: Doctor[] = [
     title: 'DDS, MSD',
     specialty: '보존',
     specialtyDetail: '보존치료 · 신경치료 · 통합치의학',
-    image: '/images/doctors/doctor-park.jpg',
+    image: '/images/doctors/doctor-park.png',
     careers: [
       'KAIST 우등졸업',
       '경희대학교 치의학대학원 우등졸업',
@@ -98,7 +98,7 @@ export const doctors: Doctor[] = [
     role: '원장',
     specialty: '소아',
     specialtyDetail: '소아치과 · 성장기교정 · 불소도포',
-    image: '/images/doctors/doctor-baek.jpg',
+    image: '/images/doctors/doctor-paek.png',
     careers: [
       '단국대학교 치과대학 졸업',
       '단국대학교 치과대학병원 소아치과 수련',

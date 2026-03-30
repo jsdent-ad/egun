@@ -54,10 +54,9 @@ export const clinicInfo: ClinicInfo = {
     { day: '월', hours: '09:30 - 18:30' },
     { day: '화', hours: '09:30 - 20:30', note: '야간진료' },
     { day: '수', hours: '09:30 - 18:30' },
-    { day: '목', hours: '09:30 - 18:30' },
+    { day: '목', hours: '09:30 - 20:30', note: '교정야간진료' },
     { day: '금', hours: '09:30 - 20:30', note: '야간진료' },
     { day: '토', hours: '09:30 - 13:30' },
-    { day: '일', hours: '휴진', isClosed: true },
   ],
   scheduleTabs: [
     {
@@ -67,14 +66,13 @@ export const clinicInfo: ClinicInfo = {
         { day: '월요일', hours: '09:30 - 18:30' },
         { day: '화요일', hours: '09:30 - 20:30', note: '야간진료' },
         { day: '수요일', hours: '09:30 - 18:30' },
-        { day: '목요일', hours: '09:30 - 18:30' },
+        { day: '목요일', hours: '09:30 - 20:30', note: '교정야간진료' },
         { day: '금요일', hours: '09:30 - 20:30', note: '야간진료' },
         { day: '토요일', hours: '09:30 - 13:30' },
-        { day: '일요일 · 공휴일', hours: '휴진', isClosed: true },
       ],
       notice: [
         '점심시간 12:30 - 14:00 (토요일 없음)',
-        '화 · 금 야간진료는 예약 후 방문 권장',
+        '화 · 목(교정야간진료) · 금 야간진료는 예약 후 방문 권장',
       ],
     },
     {
@@ -87,7 +85,6 @@ export const clinicInfo: ClinicInfo = {
         { day: '목요일', hours: '09:30 - 18:00' },
         { day: '금요일', hours: '09:30 - 18:00' },
         { day: '토요일', hours: '09:30 - 13:00' },
-        { day: '일요일 · 공휴일', hours: '휴진', isClosed: true },
       ],
       notice: [
         '점심시간 12:30 - 14:00 (토요일 없음)',
@@ -105,7 +102,6 @@ export const clinicInfo: ClinicInfo = {
         { day: '목요일', hours: '10:00 - 18:00' },
         { day: '금요일', hours: '10:00 - 18:00' },
         { day: '토요일', hours: '10:00 - 13:00' },
-        { day: '일요일 · 공휴일', hours: '휴진', isClosed: true },
       ],
       notice: [
         '점심시간 13:00 - 14:00',

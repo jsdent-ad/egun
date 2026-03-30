@@ -59,7 +59,7 @@ export default function NaturalSolution() {
       </div>
 
       {/* Cards */}
-      <div className="flex flex-col md:flex-row gap-4 md:gap-6 w-full max-w-5xl">
+      <div className="flex flex-row gap-3 md:gap-6 w-full max-w-5xl">
         {CARDS.map((card) => {
           const isHovered = hovered === card.id
 
@@ -67,7 +67,7 @@ export default function NaturalSolution() {
             <button
               key={card.id}
               className="relative flex-1 rounded-2xl overflow-hidden cursor-pointer focus:outline-none group"
-              style={{ minHeight: '260px', maxHeight: '340px', height: '32vw' }}
+              style={{ minHeight: '200px', maxHeight: '340px', height: '32vw' }}
               onMouseEnter={() => setHovered(card.id)}
               onMouseLeave={() => setHovered(null)}
               onClick={() => router.push('/natural-tooth')}

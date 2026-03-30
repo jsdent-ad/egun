@@ -15,7 +15,7 @@ const SLIDES = [
     id: 1,
     headline: '자연치아를 지키는',
     sub: '최소삭제 보존치료',
-    image: '/images/slides/slide-3.jpg',
+    image: '/images/slides/slide-3.webp',
     accent: '#C4A87A',
   },
   {

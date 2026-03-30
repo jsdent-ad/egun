@@ -1,70 +1,69 @@
-const INTERIOR_AREAS = [
-  {
-    id: 'main',
-    label: '본관',
-    slots: [
-      { caption: '대기실' },
-      { caption: '진료실 1' },
-      { caption: '진료실 2' },
-      { caption: '상담실' },
-      { caption: '수술실' },
-      { caption: '멸균실' },
-    ],
-  },
-  {
-    id: 'annex',
-    label: '별관',
-    slots: [
-      { caption: '소아 대기공간' },
-      { caption: '소아 진료실' },
-      { caption: '교정 진료실' },
-      { caption: '파노라마실' },
-      { caption: '상담실' },
-      { caption: '회복실' },
-    ],
-  },
+'use client'
+
+import { useState, useEffect, useCallback } from 'react'
+import { ChevronLeft, ChevronRight } from 'lucide-react'
+
+const CLINIC_IMAGES = [
+  '/images/clinic/interior-annex%20(1).jpeg',
+  '/images/clinic/interior-annex%20(1).jpg',
+  '/images/clinic/interior-annex%20(2).jpg',
+  '/images/clinic/interior-annex%20(3).jpg',
+  '/images/clinic/interior-annex%20(4).jpg',
+  '/images/clinic/interior-annex%20(5).jpg',
+  '/images/clinic/interior-annex%20(6).jpg',
+  '/images/clinic/interior-annex%20(7).jpg',
+  '/images/clinic/interior-annex%20(8).jpg',
+  '/images/clinic/interior-annex%20(9).jpg',
 ]
 
-function PhotoGrid({ slots }: { slots: { caption: string }[] }) {
-  return (
-    <div className="grid grid-cols-2 sm:grid-cols-3 gap-3">
-      {slots.map((slot, i) => (
-        <div
-          key={i}
-          className="group relative aspect-[4/3] rounded-xl overflow-hidden bg-stone-100 border border-stone-200"
-        >
-          {/* 사진 placeholder */}
-          <div className="absolute inset-0 flex flex-col items-center justify-center bg-gradient-to-br from-stone-100 to-stone-200 group-hover:from-stone-200 group-hover:to-stone-300 transition-colors">
-            <div className="w-10 h-10 rounded-lg bg-white/60 flex items-center justify-center mb-2">
-              <svg
-                className="w-5 h-5 text-stone-400"
-                fill="none"
-                viewBox="0 0 24 24"
-                stroke="currentColor"
-                aria-hidden="true"
-              >
-                <path
-                  strokeLinecap="round"
-                  strokeLinejoin="round"
-                  strokeWidth={1.5}
-                  d="M4 16l4.586-4.586a2 2 0 012.828 0L16 16m-2-2l1.586-1.586a2 2 0 012.828 0L20 14m-6-6h.01M6 20h12a2 2 0 002-2V6a2 2 0 00-2-2H6a2 2 0 00-2 2v12a2 2 0 002 2z"
-                />
-              </svg>
-            </div>
-            <p className="text-xs text-stone-400 font-medium">사진 준비 중</p>
-          </div>
-
-          {/* 캡션 */}
-          <div className="absolute bottom-0 left-0 right-0 bg-gradient-to-t from-black/50 to-transparent px-3 py-2">
-            <p className="text-white text-xs font-medium">{slot.caption}</p>
-          </div>
-        </div>
-      ))}
-    </div>
-  )
-}
+const AUTO_INTERVAL = 4000
 
 export default function InteriorSection() {
+  const [current, setCurrent] = useState(0)
+  const total = CLINIC_IMAGES.length
+
+  const goTo = useCallback(
+    (index: number) => {
+      setCurrent(((index % total) + total) % total)
+    },
+    [total],
+  )
+
+  useEffect(() => {
+    const timer = setInterval(() => goTo(current + 1), AUTO_INTERVAL)
+    return () => clearInterval(timer)
+  }, [current, goTo])
+
+  const getCardStyle = (index: number) => {
+    let diff = index - current
+    if (diff > total / 2) diff -= total
+    if (diff < -total / 2) diff += total
+
+    const absD = Math.abs(diff)
+
+    if (absD > 2) {
+      return {
+        transform: 'translateX(0) scale(0.7)',
+        opacity: 0,
+        zIndex: 0,
+        pointerEvents: 'none' as const,
+      }
+    }
+
+    const translateX = diff * 320
+    const scale = 1 - absD * 0.12
+    const rotateY = diff * -8
+    const z = 10 - absD
+    const opacity = 1 - absD * 0.3
+
+    return {
+      transform: `translateX(${translateX}px) scale(${scale}) rotateY(${rotateY}deg)`,
+      opacity,
+      zIndex: z,
+      pointerEvents: (absD === 0 ? 'auto' : 'none') as React.CSSProperties['pointerEvents'],
+    }
+  }
+
   return (
     <section
       id="interior"
@@ -82,22 +81,80 @@ export default function InteriorSection() {
         >
           내부전경
         </h2>
-        <p className="text-base sm:text-lg text-gray-600 max-w-2xl leading-relaxed mb-16">
+        <p className="text-base sm:text-lg text-gray-600 max-w-2xl leading-relaxed mb-12">
           쾌적하고 편안한 환경에서 치료를 받으실 수 있도록 공간을 세심하게 구성하였습니다.
         </p>
 
-        {/* 본관 / 별관 영역 */}
-        <div className="space-y-16">
-          {INTERIOR_AREAS.map((area) => (
-            <div key={area.id}>
-              <div className="flex items-center gap-4 mb-6">
-                <h3 className="text-lg font-bold text-gray-900">{area.label}</h3>
-                <div className="flex-1 h-px bg-gray-200" />
-              </div>
-              <PhotoGrid slots={area.slots} />
-            </div>
-          ))}
+        {/* 본관 라벨 */}
+        <div className="flex items-center gap-4 mb-10">
+          <h3 className="text-lg font-bold text-gray-900">본관</h3>
+          <div className="flex-1 h-px bg-gray-200" />
         </div>
+      </div>
+
+      {/* 3D 캐러셀 */}
+      <div
+        className="relative w-full overflow-hidden"
+        style={{ perspective: '1200px', height: '420px' }}
+      >
+        <div className="absolute inset-0 flex items-center justify-center">
+          {CLINIC_IMAGES.map((src, i) => {
+            const style = getCardStyle(i)
+            return (
+              <div
+                key={i}
+                className="absolute w-[280px] sm:w-[380px] lg:w-[480px] aspect-[4/3] rounded-2xl overflow-hidden shadow-2xl transition-all duration-700 ease-in-out"
+                style={{
+                  ...style,
+                  transformStyle: 'preserve-3d',
+                }}
+              >
+                <img
+                  src={src}
+                  alt={`서울이건치과 본관 내부 ${i + 1}`}
+                  className="w-full h-full object-cover"
+                  draggable={false}
+                />
+                {/* 비활성 카드 어둡게 */}
+                {i !== current && (
+                  <div className="absolute inset-0 bg-black/20 rounded-2xl" />
+                )}
+              </div>
+            )
+          })}
+        </div>
+
+        {/* 좌우 화살표 */}
+        <button
+          onClick={() => goTo(current - 1)}
+          className="absolute left-4 sm:left-8 top-1/2 -translate-y-1/2 z-20 w-11 h-11 rounded-full bg-white/90 shadow-lg flex items-center justify-center hover:bg-white transition-colors"
+          aria-label="이전 사진"
+        >
+          <ChevronLeft size={22} />
+        </button>
+        <button
+          onClick={() => goTo(current + 1)}
+          className="absolute right-4 sm:right-8 top-1/2 -translate-y-1/2 z-20 w-11 h-11 rounded-full bg-white/90 shadow-lg flex items-center justify-center hover:bg-white transition-colors"
+          aria-label="다음 사진"
+        >
+          <ChevronRight size={22} />
+        </button>
+      </div>
+
+      {/* 인디케이터 */}
+      <div className="flex items-center justify-center gap-2 mt-6">
+        {CLINIC_IMAGES.map((_, i) => (
+          <button
+            key={i}
+            onClick={() => goTo(i)}
+            className={`rounded-full transition-all duration-300 ${
+              i === current
+                ? 'w-6 h-2 bg-[#B8A080]'
+                : 'w-2 h-2 bg-gray-300 hover:bg-gray-400'
+            }`}
+            aria-label={`사진 ${i + 1}번으로 이동`}
+          />
+        ))}
       </div>
     </section>
   )

@@ -1,3 +1,8 @@
+'use client'
+
+import { useRef } from 'react'
+import { ChevronLeft, ChevronRight } from 'lucide-react'
+
 const LAB_FEATURES = [
   {
     title: '정밀 디지털 스캔',
@@ -17,13 +22,34 @@ const LAB_FEATURES = [
   },
 ]
 
-const LAB_STAFF = [
-  { name: '기공사 A', role: '수석 기공사', detail: '20년 경력' },
-  { name: '기공사 B', role: '기공사', detail: '보철 전문' },
-  { name: '기공사 C', role: '기공사', detail: '교정장치 전문' },
+const LAB_IMAGES = [
+  '/images/ddlab/ddlab%20(1).jpg',
+  '/images/ddlab/ddlab%20(2).jpg',
+  '/images/ddlab/ddlab%20(3).jpg',
+  '/images/ddlab/ddlab%20(4).jpg',
+  '/images/ddlab/ddlab%20(7).jpg',
+  '/images/ddlab/ddlab%20(10).jpg',
+  '/images/ddlab/ddlab%20(11).jpg',
+  '/images/ddlab/ddlab%20(12).jpg',
+  '/images/ddlab/ddlab%20(13).jpg',
+  '/images/ddlab/ddlab%20(14).jpg',
+  '/images/ddlab/ddlab%20(15).jpg',
+  '/images/ddlab/ddlab%20(16).jpg',
+  '/images/ddlab/ddlab%20(17).jpg',
 ]
 
 export default function LabSection() {
+  const scrollRef = useRef<HTMLDivElement>(null)
+
+  const scroll = (direction: 'left' | 'right') => {
+    if (!scrollRef.current) return
+    const cardWidth = scrollRef.current.firstElementChild?.clientWidth ?? 300
+    scrollRef.current.scrollBy({
+      left: direction === 'left' ? -(cardWidth + 16) : cardWidth + 16,
+      behavior: 'smooth',
+    })
+  }
+
   return (
     <section
       id="lab"
@@ -50,42 +76,17 @@ export default function LabSection() {
           보다 정밀하고 빠른 보철물을 제작합니다.
         </p>
 
-        {/* 메인 콘텐츠: 영상 placeholder + 특징 */}
+        {/* 메인 콘텐츠: 영상 + 특징 */}
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 lg:gap-16 mb-16">
-          {/* 영상 placeholder */}
-          <div className="relative">
-            <div className="aspect-video rounded-2xl overflow-hidden bg-gray-800 border border-gray-700 flex items-center justify-center">
-              <div className="text-center">
-                <div className="w-16 h-16 rounded-full bg-white/10 flex items-center justify-center mx-auto mb-4 border border-white/20">
-                  <svg
-                    className="w-7 h-7 text-white ml-1"
-                    fill="currentColor"
-                    viewBox="0 0 24 24"
-                    aria-hidden="true"
-                  >
-                    <path d="M8 5v14l11-7z" />
-                  </svg>
-                </div>
-                <p className="text-gray-500 text-sm">기공소 소개 영상 준비 중</p>
-              </div>
-            </div>
-
-            {/* 사진 그리드 */}
-            <div className="grid grid-cols-3 gap-3 mt-4">
-              {['디지털 스캐너', 'CAD/CAM 장비', '완성된 보철물'].map(
-                (caption) => (
-                  <div
-                    key={caption}
-                    className="aspect-square rounded-xl bg-gray-800 border border-gray-700 flex flex-col items-center justify-center"
-                  >
-                    <div className="w-8 h-8 rounded bg-gray-700 mb-1.5" />
-                    <p className="text-xs text-gray-500 text-center px-1">
-                      {caption}
-                    </p>
-                  </div>
-                )
-              )}
-            </div>
+          {/* 유튜브 영상 */}
+          <div className="aspect-video rounded-2xl overflow-hidden bg-gray-800 border border-gray-700">
+            <iframe
+              src="https://www.youtube.com/embed/vu6J8cy5Gnc"
+              title="서울이건치과 디지털 기공소 소개"
+              allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+              allowFullScreen
+              className="w-full h-full"
+            />
           </div>
 
           {/* 특징 리스트 */}
@@ -113,29 +114,56 @@ export default function LabSection() {
           </div>
         </div>
 
-        {/* 기공소 구성원 */}
-        <div>
-          <div className="flex items-center gap-4 mb-8">
-            <h3 className="text-lg font-semibold text-white">기공소 구성원</h3>
-            <div className="flex-1 h-px bg-gray-700" />
+        {/* 기공소 사진 캐러셀 */}
+        <div className="flex items-center justify-between mb-6">
+          <div className="flex items-center gap-4">
+            <h3 className="text-lg font-semibold text-white">기공소 시설</h3>
+            <div className="flex-1 h-px bg-gray-700 w-20" />
           </div>
-
-          <div className="grid grid-cols-1 sm:grid-cols-3 gap-4">
-            {LAB_STAFF.map((staff) => (
-              <div
-                key={staff.name}
-                className="p-5 rounded-2xl bg-gray-800 border border-gray-700 text-center"
-              >
-                {/* 사진 placeholder */}
-                <div className="w-16 h-16 rounded-full bg-gray-700 flex items-center justify-center mx-auto mb-3 border border-gray-600">
-                  <span className="text-gray-500 text-xs">사진</span>
-                </div>
-                <p className="font-semibold text-white text-sm">{staff.role}</p>
-                <p className="text-xs text-gray-500 mt-1">{staff.detail}</p>
-              </div>
-            ))}
+          <div className="flex items-center gap-2">
+            <button
+              onClick={() => scroll('left')}
+              className="w-9 h-9 rounded-full border border-gray-600 flex items-center justify-center text-gray-400 hover:bg-gray-800 hover:text-white transition-colors"
+              aria-label="이전 사진"
+            >
+              <ChevronLeft size={18} />
+            </button>
+            <button
+              onClick={() => scroll('right')}
+              className="w-9 h-9 rounded-full border border-gray-600 flex items-center justify-center text-gray-400 hover:bg-gray-800 hover:text-white transition-colors"
+              aria-label="다음 사진"
+            >
+              <ChevronRight size={18} />
+            </button>
           </div>
         </div>
+      </div>
+
+      {/* 수평 스냅 캐러셀 */}
+      <div
+        ref={scrollRef}
+        className="flex gap-4 overflow-x-auto pl-4 sm:pl-6 lg:pl-[max(1.5rem,calc((100vw-80rem)/2+1.5rem))] pr-4 pb-4"
+        style={{
+          scrollSnapType: 'x mandatory',
+          WebkitOverflowScrolling: 'touch',
+          scrollbarWidth: 'none',
+          msOverflowStyle: 'none',
+        }}
+      >
+        {LAB_IMAGES.map((src, i) => (
+          <div
+            key={i}
+            className="shrink-0 w-[260px] sm:w-[320px] lg:w-[380px] aspect-[4/3] rounded-2xl overflow-hidden bg-gray-800"
+            style={{ scrollSnapAlign: 'start' }}
+          >
+            <img
+              src={src}
+              alt={`서울이건치과 기공소 ${i + 1}`}
+              className="w-full h-full object-cover"
+              loading="lazy"
+            />
+          </div>
+        ))}
       </div>
     </section>
   )

@@ -32,8 +32,8 @@ export default function Home() {
             NaturalSolution,
             ImplantSection,
             SedationSection,
-            MapSection,
             MediaSection,
+            MapSection,
           ] as React.ComponentType[]
         ).map((Section, i) => (
           <div
@@ -45,15 +45,32 @@ export default function Home() {
         ))}
       </div>
 
-      {/* Mobile: normal scroll (no snap) */}
-      <div className="md:hidden">
-        <HeroSlider />
-        <DoctorGroup />
-        <NaturalSolution />
-        <ImplantSection />
-        <SedationSection />
-        <MapSection />
-        <MediaSection />
+      {/* Mobile: scroll-snap fullpage */}
+      <div
+        className="md:hidden h-screen overflow-y-scroll"
+        style={{
+          scrollSnapType: 'y mandatory',
+          scrollBehavior: 'smooth',
+        }}
+      >
+        {(
+          [
+            HeroSlider,
+            DoctorGroup,
+            NaturalSolution,
+            ImplantSection,
+            SedationSection,
+            MediaSection,
+            MapSection,
+          ] as React.ComponentType[]
+        ).map((Section, i) => (
+          <div
+            key={i}
+            style={{ scrollSnapAlign: 'start', scrollSnapStop: 'always' }}
+          >
+            <Section />
+          </div>
+        ))}
       </div>
     </>
   )

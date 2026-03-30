@@ -123,6 +123,9 @@ export default function Footer() {
                       }`}
                     >
                       {item.hours}
+                      {item.note && (
+                        <span className="ml-1 text-xs text-[#D4C4A8]/70">({item.note})</span>
+                      )}
                     </td>
                   </tr>
                 ))}
