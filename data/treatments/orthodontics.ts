@@ -6,6 +6,7 @@ export const orthodonticsTreatments: TreatmentContent[] = [
     treatmentType: 'invisalign',
     title: '인비절라인 투명교정',
     subtitle: '일상생활의 편의성과 심미성을 함께 고려하는 교정치료',
+    image: '/images/treatments/ortho.jpg',
     description:
       '투명한 교정 장치를 이용해 치아 배열을 개선하는 교정치료입니다. 장치가 눈에 잘 띄지 않아 심미적 부담이 적고, 탈착이 가능해 식사와 구강 관리에 편의성을 제공합니다. 디지털 스캔을 통해 치료 과정을 미리 시뮬레이션하고 단계별로 진행합니다.',
     benefits: [

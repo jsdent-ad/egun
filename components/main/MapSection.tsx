@@ -2,6 +2,7 @@
 
 import { clinicInfo } from '@/data/clinic-info'
 import { Clock } from 'lucide-react'
+import { useScrollReveal } from '@/hooks/useScrollReveal'
 
 const SCHEDULE = [
   { day: '월', hours: '09:30 - 18:30' },
@@ -13,8 +14,10 @@ const SCHEDULE = [
 ]
 
 export default function MapSection() {
+  const { ref, isVisible } = useScrollReveal(0.2)
+
   return (
-    <section className="relative w-full h-screen overflow-hidden">
+    <section ref={ref} className="relative w-full h-screen overflow-hidden">
       {/* 지도 이미지 배경 */}
       <img
         src="/images/clinic/map.png"
@@ -26,7 +29,7 @@ export default function MapSection() {
       <div className="absolute inset-y-0 left-0 z-10 flex items-center pl-4 md:pl-10">
         <div className="flex flex-col gap-3 max-w-[340px] w-[calc(100vw-2rem)] md:w-auto">
           {/* 치과 정보 카드 */}
-          <div className="bg-white/95 backdrop-blur-sm rounded-2xl shadow-xl p-5 md:p-6">
+          <div className={`bg-white/95 backdrop-blur-sm rounded-2xl shadow-xl p-5 md:p-6 ${isVisible ? 'scroll-reveal-up' : 'scroll-hidden'}`}>
             <img
               src="/images/logo/seoulegun-logo%20(1).svg"
               alt="서울이건치과"
@@ -58,7 +61,8 @@ export default function MapSection() {
           </div>
 
           {/* 진료시간 카드 */}
-          <div className="bg-white/95 backdrop-blur-sm rounded-2xl shadow-xl overflow-hidden">
+          <div className={`bg-white/95 backdrop-blur-sm rounded-2xl shadow-xl overflow-hidden ${isVisible ? 'scroll-reveal-up' : 'scroll-hidden'}`}
+            style={isVisible ? { animationDelay: '0.15s' } : undefined}>
             {/* 헤더 */}
             <div className="bg-[#B8A080] px-4 py-2.5 flex items-center gap-2">
               <Clock className="w-3.5 h-3.5 text-white" aria-hidden="true" />

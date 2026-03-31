@@ -21,16 +21,16 @@ function StatItem({
   const { count, elementRef } = useCountUp({ target, duration: 2200 })
 
   return (
-    <div ref={elementRef} className="flex flex-col items-center gap-2">
+    <div ref={elementRef} className="flex flex-col items-center gap-1">
       <div className="flex items-end gap-0.5">
-        <span className="text-4xl md:text-6xl font-black tabular-nums text-white drop-shadow-lg">
+        <span className="text-2xl sm:text-3xl md:text-5xl font-black tabular-nums text-white drop-shadow-lg">
           {count.toLocaleString()}
         </span>
-        <span className="text-2xl md:text-4xl font-bold pb-1 text-white/80">
+        <span className="text-lg sm:text-xl md:text-3xl font-bold pb-0.5 text-white/80">
           {suffix}
         </span>
       </div>
-      <p className="text-sm md:text-base text-white/70 tracking-wide">
+      <p className="text-xs sm:text-sm md:text-base text-white/70 tracking-wide">
         {label}
       </p>
     </div>
@@ -80,13 +80,15 @@ export default function SedationSection() {
       {/* 콘텐츠 오버레이 */}
       <div className="relative z-10 h-full flex flex-col items-center justify-center px-4">
         <div className="text-center mb-8">
-          <p className="text-xs tracking-[0.35em] uppercase text-white/50 mb-3">
+          <p className={`text-xs tracking-[0.35em] uppercase text-white/50 mb-3 ${visible ? 'scroll-reveal-drop' : 'scroll-hidden'}`}>
             Sedation Dentistry
           </p>
-          <h2 className="text-2xl md:text-4xl lg:text-5xl font-bold text-white leading-tight mb-2">
+          <h2 className={`text-2xl md:text-4xl lg:text-5xl font-bold text-white leading-tight mb-2 ${visible ? 'scroll-reveal-drop' : 'scroll-hidden'}`}
+            style={visible ? { animationDelay: '0.12s' } : undefined}>
             두려움 없는 치과치료
           </h2>
-          <p className="text-sm md:text-base text-white/60 max-w-md mx-auto leading-relaxed">
+          <p className={`text-sm md:text-base text-white/60 max-w-md mx-auto leading-relaxed ${visible ? 'scroll-reveal-drop' : 'scroll-hidden'}`}
+            style={visible ? { animationDelay: '0.24s' } : undefined}>
             수면 상태에서 안전하게, 의식하 진정법
           </p>
         </div>
@@ -94,7 +96,7 @@ export default function SedationSection() {
         <div className="mb-12" />
 
         {/* 카운팅 숫자 (영상 위 오버랩) */}
-        <div className="flex flex-wrap justify-center gap-10 md:gap-20 lg:gap-28">
+        <div className="flex justify-center gap-6 sm:gap-10 md:gap-20 lg:gap-28 w-full max-w-4xl">
           {STATS.map((s) => (
             <StatItem key={s.label} {...s} />
           ))}

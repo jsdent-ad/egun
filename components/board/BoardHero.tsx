@@ -2,20 +2,38 @@
 interface BoardHeroProps {
   title: string
   subtitle: string
+  videoId?: string
 }
 
-export default function BoardHero({ title, subtitle }: BoardHeroProps) {
+export default function BoardHero({ title, subtitle, videoId }: BoardHeroProps) {
+  if (videoId) {
+    return (
+      <section
+        className="relative min-h-[50vh] sm:min-h-[60vh] overflow-hidden"
+        aria-label={`${title} 소개`}
+      >
+        <iframe
+          src={`https://www.youtube.com/embed/${videoId}?autoplay=1&mute=1&loop=1&playlist=${videoId}&controls=0&showinfo=0&modestbranding=1&playsinline=1`}
+          className="absolute inset-0 w-full h-full"
+          style={{ transform: 'scale(1.2)' }}
+          allow="autoplay; encrypted-media"
+          allowFullScreen
+          title={`${title} 소개 영상`}
+        />
+        <div className="absolute inset-0 bg-black/30" />
+      </section>
+    )
+  }
+
   return (
     <section
       className="relative flex items-center justify-center min-h-[280px] sm:min-h-[340px] overflow-hidden"
       aria-label={`${title} 소개`}
     >
-      {/* 올리브 그라데이션 배경 */}
       <div
         className="absolute inset-0 bg-gradient-to-br from-[#96775A] via-[#B8A080] to-[#8A9B50]"
         aria-hidden="true"
       />
-      {/* 패턴 오버레이 */}
       <div
         className="absolute inset-0 opacity-10"
         style={{

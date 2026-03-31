@@ -90,7 +90,16 @@ export default function HeroSlider() {
     >
       {/* 슬라이드 이미지 레이어 */}
       {SLIDES.map((s, i) => {
-        const isPanning = i <= 2
+        // 패닝 설정: 방향 + 시작 위치
+        const panConfig: Record<number, { anim: string; startPos: string } | null> = {
+          0: { anim: 'pan-right-to-left 10s ease-in-out forwards', startPos: 'right center' },
+          1: null,
+          2: { anim: 'pan-left-to-right 10s ease-in-out forwards', startPos: 'center' },
+          3: { anim: 'pan-right-to-left 10s ease-in-out forwards', startPos: 'right center' },
+          4: { anim: 'pan-right-to-left 10s ease-in-out forwards', startPos: 'right center' },
+        }
+        const pan = panConfig[i]
+
         return (
           <div
             key={s.id}
@@ -101,20 +110,13 @@ export default function HeroSlider() {
               src={s.image}
               alt=""
               aria-hidden="true"
-              className={`h-full object-cover ${
-                isPanning
-                  ? 'w-[140%] md:w-full md:object-center'
-                  : 'w-full object-[70%_center] md:object-center'
-              }`}
+              className={`h-full object-cover ${pan ? 'w-[140%] md:w-full md:object-center' : 'w-full object-center'}`}
               style={
-                isPanning && i === current
-                  ? {
-                      objectPosition: 'right center',
-                      animation: 'pan-right-to-left 5s ease-in-out forwards',
-                    }
-                  : isPanning
-                    ? { objectPosition: 'right center' }
-                    : undefined
+                pan
+                  ? (i === current
+                    ? { objectPosition: pan.startPos, animation: pan.anim }
+                    : { objectPosition: pan.startPos })
+                  : { objectPosition: 'center' }
               }
             />
           </div>

@@ -16,16 +16,17 @@ export const metadata: Metadata = {
 export default function AboutPage() {
   return (
     <>
-      {/* 페이지 히어로 */}
-      <div className="h-40 sm:h-52 bg-gradient-to-br from-[#B8A080] to-[#96775A] flex items-end">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 pb-10 w-full">
-          <p className="text-white/70 text-xs font-semibold tracking-[0.2em] uppercase mb-2">
-            About Us
-          </p>
-          <h1 className="text-3xl sm:text-4xl font-bold text-white">
-            이건치과소개
-          </h1>
-        </div>
+      {/* 페이지 히어로 - 영상 배경 */}
+      <div className="relative h-[60vh] sm:h-[70vh] overflow-hidden">
+        <iframe
+          src="https://www.youtube.com/embed/-Bahgt23YHo?autoplay=1&mute=1&loop=1&playlist=-Bahgt23YHo&controls=0&showinfo=0&modestbranding=1&playsinline=1"
+          className="absolute inset-0 w-full h-full"
+          style={{ transform: 'scale(1.2)' }}
+          allow="autoplay; encrypted-media"
+          allowFullScreen
+          title="서울이건치과 소개 영상"
+        />
+        <div className="absolute inset-0 bg-black/40" />
       </div>
 
       {/* 앵커 내비게이션 (sticky) */}

@@ -72,6 +72,7 @@ export const implantTreatments: TreatmentContent[] = [
     treatmentType: 'navigation',
     title: '네비게이션 임플란트',
     subtitle: '디지털 분석을 바탕으로 계획하는 임플란트 치료',
+    image: '/images/treatments/navigation.jpg',
     description:
       '구강스캔과 CT를 바탕으로 임플란트 위치를 미리 계획하고 이를 토대로 정밀한 식립을 돕는 치료 방식입니다. 디지털 데이터를 활용해 뼈 상태, 신경 위치, 보철 방향 등을 사전에 분석하여 보다 예측 가능한 치료를 계획할 수 있습니다.',
     benefits: [

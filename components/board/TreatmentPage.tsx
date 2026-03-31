@@ -15,6 +15,7 @@ interface TreatmentPageProps {
   subtitle: string
   treatments: TreatmentContent[]
   hideCases?: boolean
+  videoId?: string
 }
 
 export default function TreatmentPage({
@@ -22,6 +23,7 @@ export default function TreatmentPage({
   subtitle,
   treatments,
   hideCases,
+  videoId,
 }: TreatmentPageProps) {
   const navItems = treatments.map((t) => ({
     id: t.treatmentType,
@@ -33,7 +35,7 @@ export default function TreatmentPage({
   return (
     <>
       <FaqJsonLd faqs={allFaqs} />
-      <BoardHero title={title} subtitle={subtitle} />
+      <BoardHero title={title} subtitle={subtitle} videoId={videoId} />
       <BoardAnchorNav items={navItems} />
 
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">

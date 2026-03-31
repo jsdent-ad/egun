@@ -77,15 +77,17 @@ export default function FaqAccordion({ faq }: FaqAccordionProps) {
                 }`}
               >
                 <div className="px-5 pb-4 pt-1 flex gap-3">
-                  <span
-                    className="shrink-0 w-7 h-7 rounded-full bg-gray-100 flex items-center justify-center text-[#B8A080] text-xs font-bold mt-0.5"
-                    aria-hidden="true"
-                  >
-                    A
-                  </span>
-                  <p className="text-sm sm:text-base text-gray-600 leading-relaxed">
-                    {item.answer}
-                  </p>
+                  <img
+                    src="/images/doctors/doctorqna.jpg"
+                    alt="담당 원장"
+                    className="shrink-0 w-8 h-8 rounded-full object-cover mt-0.5"
+                  />
+                  <div>
+                    <span className="text-xs font-semibold text-[#B8A080] mb-1 block">원장 답변</span>
+                    <p className="text-sm sm:text-base text-gray-600 leading-relaxed">
+                      {item.answer}
+                    </p>
+                  </div>
                 </div>
               </dd>
             </div>
