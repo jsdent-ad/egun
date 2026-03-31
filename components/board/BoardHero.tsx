@@ -27,13 +27,13 @@ export default function BoardHero({ title, subtitle }: BoardHeroProps) {
       />
 
       <div className="relative z-10 text-center px-4 py-16 sm:py-20 max-w-3xl mx-auto">
-        <p className="text-white/70 text-sm sm:text-base tracking-widest uppercase mb-3 font-medium">
+        <p className="text-white/70 text-sm sm:text-base tracking-widest uppercase mb-3 font-medium animate-drop-in">
           Seoul Egun Dental
         </p>
-        <h1 className="text-3xl sm:text-4xl lg:text-5xl font-bold text-white leading-tight mb-4">
+        <h1 className="text-3xl sm:text-4xl lg:text-5xl font-bold text-white leading-tight mb-4 animate-drop-in [animation-delay:0.12s]">
           {title}
         </h1>
-        <p className="text-white/80 text-base sm:text-lg leading-relaxed">
+        <p className="text-white/80 text-base sm:text-lg leading-relaxed animate-drop-in [animation-delay:0.24s]">
           {subtitle}
         </p>
       </div>

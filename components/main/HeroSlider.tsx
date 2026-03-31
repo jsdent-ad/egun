@@ -89,20 +89,37 @@ export default function HeroSlider() {
       onMouseLeave={() => { isPausedRef.current = false }}
     >
       {/* 슬라이드 이미지 레이어 */}
-      {SLIDES.map((s, i) => (
-        <div
-          key={s.id}
-          className="absolute inset-0 transition-opacity duration-1000"
-          style={{ opacity: i === current ? 1 : 0 }}
-        >
-          <img
-            src={s.image}
-            alt=""
-            aria-hidden="true"
-            className="w-full h-full object-cover"
-          />
-        </div>
-      ))}
+      {SLIDES.map((s, i) => {
+        const isPanning = i <= 2
+        return (
+          <div
+            key={s.id}
+            className="absolute inset-0 transition-opacity duration-1000"
+            style={{ opacity: i === current ? 1 : 0 }}
+          >
+            <img
+              src={s.image}
+              alt=""
+              aria-hidden="true"
+              className={`h-full object-cover ${
+                isPanning
+                  ? 'w-[140%] md:w-full md:object-center'
+                  : 'w-full object-[70%_center] md:object-center'
+              }`}
+              style={
+                isPanning && i === current
+                  ? {
+                      objectPosition: 'right center',
+                      animation: 'pan-right-to-left 5s ease-in-out forwards',
+                    }
+                  : isPanning
+                    ? { objectPosition: 'right center' }
+                    : undefined
+              }
+            />
+          </div>
+        )
+      })}
 
       {/* 반투명 그라데이션 오버레이 */}
       <div
@@ -132,13 +149,13 @@ export default function HeroSlider() {
           </p>
           <h1
             key={`headline-${current}`}
-            className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-bold leading-tight mb-2 animate-fade-in"
+            className="text-2xl sm:text-3xl md:text-5xl lg:text-6xl font-bold leading-tight mb-1 animate-fade-in"
           >
             {slide.headline}
           </h1>
           <h2
             key={`sub-${current}`}
-            className="text-2xl sm:text-3xl md:text-4xl lg:text-5xl font-light leading-tight animate-fade-in"
+            className="text-lg sm:text-2xl md:text-4xl lg:text-5xl font-light leading-tight animate-fade-in"
             style={{ animationDelay: '0.15s' }}
           >
             {slide.sub}
@@ -224,16 +241,6 @@ export default function HeroSlider() {
           aria-hidden="true"
         />
       </div>
-
-      <style>{`
-        @keyframes fade-in {
-          from { opacity: 0; transform: translateY(16px); }
-          to   { opacity: 1; transform: translateY(0); }
-        }
-        .animate-fade-in {
-          animation: fade-in 0.7s ease both;
-        }
-      `}</style>
     </section>
   )
 }

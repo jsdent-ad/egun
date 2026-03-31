@@ -23,9 +23,12 @@ export default function ImplantSection() {
       </p>
 
       {/* Main headline */}
-      <h2 className="text-xl md:text-2xl lg:text-3xl text-stone-300 font-light text-center mb-3 leading-snug">
-        상실된 치아의 완벽한 복원 솔루션
+      <h2 className="text-xl md:text-2xl lg:text-3xl text-stone-300 font-light text-center mb-1 leading-tight">
+        상실된 치아, 완벽한 복원
       </h2>
+      <p className="text-sm text-stone-500 mb-2">
+        디지털 정밀 진단 기반 임플란트
+      </p>
 
       {/* "All on 4" large type */}
       <div className="relative my-6 md:my-8 flex flex-col items-center">

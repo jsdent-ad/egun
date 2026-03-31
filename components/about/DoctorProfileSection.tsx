@@ -86,7 +86,7 @@ function DoctorCard({
             <span className="absolute top-4 left-5 text-4xl text-[#B8A080]/20 font-serif leading-none select-none">
               &ldquo;
             </span>
-            <p className="text-sm sm:text-base text-gray-700 leading-relaxed pl-4 italic">
+            <p className="text-sm sm:text-base text-gray-700 leading-relaxed pl-4 italic whitespace-pre-line">
               {doctor.letter}
             </p>
             <p className="text-right text-sm text-[#B8A080] font-semibold mt-4">
@@ -125,9 +125,9 @@ export default function DoctorProfileSection() {
             <span className="text-[#B8A080]">변하지 않는 마음</span>
           </h2>
         </div>
-        <p className="mt-6 text-base sm:text-lg text-gray-600 max-w-2xl leading-relaxed">
-          서울이건치과의 원장들은 각자의 전문 분야에서 최선을 다하며,
-          언제나 같은 자리에서 환자 여러분을 기다리고 있습니다.
+        <p className="mt-6 text-sm sm:text-base text-gray-500 max-w-2xl leading-relaxed">
+          각자의 전문 분야에서 최선을 다하며<br />
+          언제나 같은 자리에서 기다리고 있습니다.
         </p>
 
         {/* 원장 카드 목록 */}

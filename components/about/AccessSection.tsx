@@ -53,30 +53,25 @@ export default function AccessSection() {
         <div className="grid grid-cols-1 lg:grid-cols-5 gap-10 lg:gap-12">
           {/* 지도 영역 (3/5) */}
           <div className="lg:col-span-3">
-            {/* 지도 placeholder */}
-            <div className="w-full aspect-[4/3] sm:aspect-video lg:aspect-auto lg:h-full min-h-64 bg-gray-200 rounded-2xl flex flex-col items-center justify-center border border-gray-200 relative overflow-hidden">
-              <div className="absolute inset-0 bg-gradient-to-br from-gray-100 to-gray-300" />
-              <div className="relative z-10 text-center px-6">
-                <div className="w-12 h-12 rounded-full bg-white shadow-md flex items-center justify-center mx-auto mb-3">
-                  <MapPin className="w-6 h-6 text-[#B8A080]" aria-hidden="true" />
-                </div>
-                <p className="font-semibold text-gray-700 mb-1">지도 API 연동 예정</p>
-                <p className="text-sm text-gray-500">
-                  경기도 수원시 영통구<br />인계로220번길 6-3 미산빌딩 2층
-                </p>
-
-                {/* 네이버 플레이스 버튼 */}
-                <a
-                  href={clinicInfo.socialLinks.naverPlace}
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className="mt-5 inline-flex items-center gap-2 bg-[#03C75A] text-white text-sm font-semibold px-5 py-2.5 rounded-full hover:bg-[#02b34d] transition-colors"
-                >
-                  <ExternalLink className="w-4 h-4" aria-hidden="true" />
-                  네이버 플레이스 바로가기
-                </a>
-              </div>
+            <div className="w-full aspect-[4/3] sm:aspect-video lg:aspect-auto lg:h-[calc(100%-56px)] min-h-64 rounded-2xl overflow-hidden border border-gray-200">
+              <img
+                src="/images/clinic/map.png"
+                alt="서울이건치과 위치 지도"
+                className="w-full h-full object-cover"
+              />
             </div>
+            <a
+              href={`https://map.kakao.com/link/to/서울이건치과 수원점,${clinicInfo.latitude},${clinicInfo.longitude}`}
+              target="_blank"
+              rel="noopener noreferrer"
+              className="flex items-center justify-center gap-2 bg-[#FEE500] hover:bg-[#F5DC00] text-[#3C1E1E] font-semibold text-sm py-3.5 rounded-xl transition-colors mt-3"
+            >
+              <svg width="18" height="18" viewBox="0 0 24 24" fill="none" aria-hidden="true">
+                <path d="M12 2C6.48 2 2 5.58 2 10c0 2.8 1.8 5.27 4.55 6.72L12 22l5.45-5.28C20.2 15.27 22 12.8 22 10c0-4.42-4.48-8-10-8z" fill="#3C1E1E"/>
+                <circle cx="12" cy="10" r="3" fill="#FEE500"/>
+              </svg>
+              카카오맵으로 길찾기
+            </a>
           </div>
 
           {/* 정보 영역 (2/5) */}
@@ -132,14 +127,12 @@ export default function AccessSection() {
                 {clinicInfo.businessHours.map((h) => (
                   <div
                     key={h.day}
-                    className="flex items-center justify-between text-sm"
+                    className="flex items-center text-sm"
                   >
-                    <span className="text-gray-600 w-6">{h.day}</span>
+                    <span className="text-gray-600 w-8 shrink-0">{h.day}</span>
                     <span
-                      className={`${
-                        h.isClosed
-                          ? 'text-gray-400'
-                          : 'text-gray-800'
+                      className={`w-28 shrink-0 tabular-nums ${
+                        h.isClosed ? 'text-gray-400' : 'text-gray-800'
                       }`}
                     >
                       {h.hours}

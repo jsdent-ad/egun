@@ -1,15 +1,8 @@
 import type { Metadata } from 'next'
-import { Noto_Sans_KR } from 'next/font/google'
 import './globals.css'
 
 import SiteShell from '@/components/layout/SiteShell'
 import { LocalBusinessJsonLd } from '@/components/seo/JsonLd'
-
-const notoSansKR = Noto_Sans_KR({
-  subsets: ['latin'],
-  weight: ['400', '500', '600', '700'],
-  variable: '--font-noto-sans-kr',
-})
 
 export const metadata: Metadata = {
   title: '서울이건치과 | 서울대 출신 원장 2인 책임진료',
@@ -52,7 +45,7 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="ko">
-      <body className={`${notoSansKR.variable} font-sans antialiased`}>
+      <body className="antialiased">
         <LocalBusinessJsonLd />
         <SiteShell>{children}</SiteShell>
       </body>

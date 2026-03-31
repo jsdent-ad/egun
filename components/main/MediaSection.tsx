@@ -34,12 +34,12 @@ export default function MediaSection() {
       style={{ backgroundColor: '#F5F5F0' }}
     >
       {/* Header */}
-      <div className="mb-8 md:mb-12">
-        <p className="text-xs tracking-[0.35em] uppercase text-stone-400 mb-2">
-          이건 미디어
+      <div className="text-center mb-8 md:mb-12">
+        <p className="text-xs tracking-[0.35em] uppercase text-stone-400 mb-3">
+          Egun Media
         </p>
-        <h2 className="text-2xl md:text-3xl lg:text-4xl font-bold text-stone-800">
-          EGUN MEDIA
+        <h2 className="text-xl md:text-2xl lg:text-3xl font-bold text-stone-800 leading-tight">
+          이건치과 소식
         </h2>
       </div>
 

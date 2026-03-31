@@ -6,19 +6,19 @@ import { ChevronLeft, ChevronRight } from 'lucide-react'
 const LAB_FEATURES = [
   {
     title: '정밀 디지털 스캔',
-    description: '3D 구강 스캐너로 0.01mm 단위의 정밀한 본을 채득합니다.',
+    description: '3D 구강 스캐너로\n0.01mm 단위의 정밀 채득',
   },
   {
     title: '당일 제작 가능',
-    description: '인하우스 기공소 운영으로 임시 보철물을 당일 제작할 수 있습니다.',
+    description: '인하우스 기공소 운영으로\n임시 보철물 당일 제작 가능',
   },
   {
     title: '품질 직접 관리',
-    description: '원장과 기공사가 함께 협의하여 최적의 결과물을 만듭니다.',
+    description: '원장과 기공사가 직접 협의하여\n최적의 결과물을 제작',
   },
   {
     title: '비용 절감',
-    description: '외부 기공소 불필요로 환자 부담 비용을 낮출 수 있습니다.',
+    description: '외부 위탁 없이\n환자 부담 비용 절감',
   },
 ]
 
@@ -70,10 +70,10 @@ export default function LabSection() {
         <p className="text-lg sm:text-xl text-[#B8A080] font-medium mb-4">
           인하우스 기공소, 더욱 정교하게
         </p>
-        <p className="text-base text-gray-400 max-w-2xl leading-relaxed mb-16">
-          서울이건치과는 원내에 디지털 기공소를 운영합니다.
-          외부 기공소에 의존하지 않고 원장과 기공사가 직접 협업하여
-          보다 정밀하고 빠른 보철물을 제작합니다.
+        <p className="text-sm sm:text-base text-gray-400 max-w-2xl leading-relaxed mb-16">
+          원내 디지털 기공소를 운영합니다.<br />
+          원장과 기공사가 직접 협업하여<br />
+          정밀하고 빠른 보철물을 제작합니다.
         </p>
 
         {/* 메인 콘텐츠: 영상 + 특징 */}
@@ -105,7 +105,7 @@ export default function LabSection() {
                   <h3 className="font-semibold text-white mb-1">
                     {feature.title}
                   </h3>
-                  <p className="text-sm text-gray-400 leading-relaxed">
+                  <p className="text-sm text-gray-400 leading-relaxed whitespace-pre-line">
                     {feature.description}
                   </p>
                 </div>

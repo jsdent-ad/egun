@@ -83,11 +83,11 @@ export default function SedationSection() {
           <p className="text-xs tracking-[0.35em] uppercase text-white/50 mb-3">
             Sedation Dentistry
           </p>
-          <h2 className="text-3xl md:text-5xl font-bold text-white mb-3">
-            의식하 진정법
+          <h2 className="text-2xl md:text-4xl lg:text-5xl font-bold text-white leading-tight mb-2">
+            두려움 없는 치과치료
           </h2>
-          <p className="text-sm md:text-lg text-white/70 max-w-lg mx-auto">
-            두려움 없이 편안한 치료 환경. 수면 상태에서 안전하게 치료받으세요.
+          <p className="text-sm md:text-base text-white/60 max-w-md mx-auto leading-relaxed">
+            수면 상태에서 안전하게, 의식하 진정법
           </p>
         </div>
 

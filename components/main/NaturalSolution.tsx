@@ -11,7 +11,7 @@ const CARDS = [
     title: '원데이 레진빌드업',
     subtitle: 'One-Day Resin Build-up',
     description:
-      '충치 범위가 작을 때 치아색 레진으로 당일 복원. 삭제 최소화 · 자연치아 보존을 최우선으로 합니다.',
+      '치아색 레진으로 당일 복원.\n삭제 최소화, 자연치아 보존.',
     gradient: 'from-amber-50 to-stone-100',
     iconColor: '#C4A87A',
     image: '/images/treatments/resin-buildup-treat.jpg',
@@ -22,7 +22,7 @@ const CARDS = [
     title: 'VPT 신경보존술',
     subtitle: 'Vital Pulp Therapy',
     description:
-      '신경을 살리면서 치아를 지키는 치수보존술. 신경치료 없이 자연 치아 수명을 연장합니다.',
+      '신경을 살리면서 치아를 지키는\n치수보존술로 수명을 연장합니다.',
     gradient: 'from-green-50 to-stone-100',
     iconColor: '#B8A080',
     image: '/images/treatments/vpt-treat.jpg',
@@ -33,7 +33,7 @@ const CARDS = [
     title: '최소삭제 온레이',
     subtitle: 'Minimal Prep Onlay',
     description:
-      '크라운 대신 치아 삭제를 최소화한 온레이 보철. 건강한 치질을 최대한 보존합니다.',
+      '크라운 대신 삭제를 최소화한\n온레이 보철로 치질을 보존합니다.',
     gradient: 'from-sky-50 to-stone-100',
     iconColor: '#B8A080',
     image: '/images/treatments/onlay-treat.jpg',
@@ -49,13 +49,16 @@ export default function NaturalSolution() {
       style={{ backgroundColor: '#F5F3EE' }}>
       {/* Header */}
       <div className="text-center mb-8 md:mb-12">
-        <p className="text-xs tracking-[0.35em] uppercase text-stone-400 mb-2">
+        <p className="text-xs tracking-[0.35em] uppercase text-stone-400 mb-3">
           Natural Tooth Solution
         </p>
-        <h2 className="text-xl md:text-2xl lg:text-3xl font-bold text-stone-800 leading-snug">
-          자연치를 보존하는 이건치과 솔루션
+        <h2 className="text-xl md:text-2xl lg:text-3xl font-bold text-stone-800 leading-tight mb-1">
+          자연치 보존 솔루션
         </h2>
-        <div className="mt-3 w-10 h-0.5 mx-auto" style={{ backgroundColor: '#B8A080' }} />
+        <p className="text-sm md:text-base text-stone-500">
+          최소 삭제, 최대 보존
+        </p>
+        <div className="mt-4 w-10 h-0.5 mx-auto" style={{ backgroundColor: '#B8A080' }} />
       </div>
 
       {/* Cards */}
@@ -89,7 +92,7 @@ export default function NaturalSolution() {
                 style={{ opacity: isHovered ? 1 : 0 }}
               >
                 <p className="text-base font-bold text-white mb-3">{card.title}</p>
-                <p className="text-sm text-white/85 leading-relaxed">{card.description}</p>
+                <p className="text-sm text-white/85 leading-relaxed whitespace-pre-line">{card.description}</p>
                 <span className="mt-5 inline-flex items-center gap-1 text-xs text-white/70">
                   자세히 보기 <ArrowRight size={12} aria-hidden="true" />
                 </span>

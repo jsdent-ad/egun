@@ -6,6 +6,7 @@ export const naturalToothTreatments: TreatmentContent[] = [
     treatmentType: 'cavity',
     title: '충치치료',
     subtitle: '꼭 필요한 치료만 하겠습니다',
+    image: '/images/treatments/resin-buildup-treat.jpg',
     description:
       '충치는 진행 정도에 따라 치료 범위와 방법이 달라질 수 있으며, 가능한 범위 안에서 자연치아를 보존하는 방향으로 치료를 계획합니다. 레진빌드업, 인레이, 온레이, 크라운 등 치아 상태에 맞는 방법을 선택해 기능과 형태를 회복합니다.',
     benefits: [
@@ -38,6 +39,7 @@ export const naturalToothTreatments: TreatmentContent[] = [
     treatmentType: 'vpt',
     title: 'VPT 신경보존술',
     subtitle: '통증은 줄이고, 신경은 최대한 살리는 방향으로',
+    image: '/images/treatments/vpt-treat.jpg',
     description:
       '깊은 충치나 자극으로 치수가 손상되었더라도 회복 가능성이 있는 경우에는 신경을 모두 제거하지 않고 일부를 보존하는 치료를 고려할 수 있습니다. 치수 상태를 평가한 뒤 부분 치수절단술 등 보존적 술식을 통해 자연치아의 생명력을 유지하는 방향으로 진행합니다.',
     benefits: [
@@ -70,6 +72,7 @@ export const naturalToothTreatments: TreatmentContent[] = [
     treatmentType: 'root-canal',
     title: '근관치료 (신경치료)',
     subtitle: '손상된 신경을 정리하고, 내 치아를 지키는 치료',
+    image: '/images/treatments/onlay-treat.jpg',
     description:
       '치아 내부 신경이 염증이나 감염으로 손상되었을 때 원인이 되는 조직을 제거하고 내부를 깨끗하게 정리하는 치료입니다. 근관 내부를 세척하고 소독한 뒤 충전하는 과정을 통해 통증과 염증을 줄이고 치아를 유지할 수 있도록 돕습니다.',
     benefits: [
