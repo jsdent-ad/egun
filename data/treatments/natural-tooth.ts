@@ -72,7 +72,7 @@ export const naturalToothTreatments: TreatmentContent[] = [
     treatmentType: 'root-canal',
     title: '근관치료 (신경치료)',
     subtitle: '손상된 신경을 정리하고, 내 치아를 지키는 치료',
-    image: '/images/treatments/onlay-treat.jpg',
+    image: '/images/board/endo.jpg',
     description:
       '치아 내부 신경이 염증이나 감염으로 손상되었을 때 원인이 되는 조직을 제거하고 내부를 깨끗하게 정리하는 치료입니다. 근관 내부를 세척하고 소독한 뒤 충전하는 과정을 통해 통증과 염증을 줄이고 치아를 유지할 수 있도록 돕습니다.',
     benefits: [

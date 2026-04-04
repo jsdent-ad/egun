@@ -106,8 +106,8 @@
   to   { opacity: 1; transform: translateX(0); }
 }
 @keyframes typing {
-  from { width: 0; }
-  to   { width: 100%; }
+  from { max-width: 0; }
+  to   { max-width: 20ch; }
 }
 @keyframes blink-caret {
   from, to { border-color: transparent; }

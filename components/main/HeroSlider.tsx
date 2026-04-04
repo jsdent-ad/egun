@@ -41,7 +41,7 @@ const SLIDES = [
   },
 ]
 
-const INTERVAL = 5000
+const INTERVAL = 4000
 const RADIUS = 18
 const CIRCUMFERENCE = 2 * Math.PI * RADIUS
 
@@ -94,7 +94,7 @@ export default function HeroSlider() {
         const panConfig: Record<number, { anim: string; startPos: string } | null> = {
           0: { anim: 'pan-right-to-left 10s ease-in-out forwards', startPos: 'right center' },
           1: null,
-          2: { anim: 'pan-left-to-right 10s ease-in-out forwards', startPos: 'center' },
+          2: { anim: 'pan-right-to-left 10s ease-in-out forwards', startPos: 'right center' },
           3: { anim: 'pan-right-to-left 10s ease-in-out forwards', startPos: 'right center' },
           4: { anim: 'pan-right-to-left 10s ease-in-out forwards', startPos: 'right center' },
         }

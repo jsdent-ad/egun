@@ -59,7 +59,7 @@ export default function TreatmentSection({
             style={textVisible ? { animationDelay: '0.2s' } : undefined}>
             {treatment.subtitle}
           </p>
-          <div className={`${textVisible ? 'scroll-reveal-left' : 'scroll-hidden'}`}
+          <div className={`${textVisible ? 'scroll-reveal-drop' : 'scroll-hidden'}`}
             style={textVisible ? { animationDelay: '0.3s' } : undefined}>
             <HighlightedDescription text={treatment.description} />
           </div>

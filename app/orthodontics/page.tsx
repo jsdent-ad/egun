@@ -16,6 +16,7 @@ export default function OrthodonticsPage() {
       subtitle="가지런한 치아, 건강한 교합"
       treatments={orthodonticsTreatments}
       hideCases
+      heroImage="/images/board/ortho-doctor.jpg"
     />
   )
 }

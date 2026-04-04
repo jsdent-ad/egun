@@ -171,7 +171,7 @@ export default function AccessSection() {
               <span className="text-xl" aria-hidden="true">🅿️</span>
               주차 안내
             </h3>
-            <ul className="space-y-2">
+            <ul className="space-y-2 mb-4">
               {PARKING_INFO.map((info, i) => (
                 <li key={i} className="flex items-start gap-2 text-sm text-gray-700">
                   <span className="text-[#B8A080] mt-0.5">·</span>
@@ -179,6 +179,10 @@ export default function AccessSection() {
                 </li>
               ))}
             </ul>
+            <div className="grid grid-cols-2 gap-3">
+              <img src="/images/clinic/parking%20(1).jpg" alt="주차장 안내 1" className="w-full h-auto rounded-xl object-cover" />
+              <img src="/images/clinic/parking%20(2).jpg" alt="주차장 안내 2" className="w-full h-auto rounded-xl object-cover" />
+            </div>
           </div>
 
           {/* 대중교통 안내 */}

@@ -16,6 +16,10 @@ interface TreatmentPageProps {
   treatments: TreatmentContent[]
   hideCases?: boolean
   videoId?: string
+  heroImage?: string
+  heroFull?: boolean
+  extraSection?: React.ReactNode
+  treatImage?: string
 }
 
 export default function TreatmentPage({
@@ -24,6 +28,10 @@ export default function TreatmentPage({
   treatments,
   hideCases,
   videoId,
+  heroImage,
+  heroFull,
+  extraSection,
+  treatImage,
 }: TreatmentPageProps) {
   const navItems = treatments.map((t) => ({
     id: t.treatmentType,
@@ -35,7 +43,8 @@ export default function TreatmentPage({
   return (
     <>
       <FaqJsonLd faqs={allFaqs} />
-      <BoardHero title={title} subtitle={subtitle} videoId={videoId} />
+      <BoardHero title={title} subtitle={subtitle} videoId={videoId} heroImage={heroImage} heroFull={heroFull} />
+      {extraSection}
       <BoardAnchorNav items={navItems} />
 
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
@@ -58,6 +67,11 @@ export default function TreatmentPage({
             <FaqAccordion faq={treatment.faq} />
             {!hideCases && (
               <BlogLinkCard boardCategory={treatment.boardCategory} />
+            )}
+            {treatImage && (
+              <div className="md:hidden mt-6">
+                <img src={treatImage} alt="치료 안내" className="w-full h-auto rounded-2xl" />
+              </div>
             )}
           </section>
         ))}
