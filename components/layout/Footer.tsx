@@ -151,7 +151,6 @@ export default function Footer() {
                   { label: '임플란트', href: '/implant' },
                   { label: '심미보철', href: '/cosmetic' },
                   { label: '서울이건 교정치료', href: '/orthodontics' },
-                  { label: '소아치과 치료', href: '/pediatric' },
                   { label: '이건 미디어', href: '/media' },
                 ].map((item) => (
                   <li key={item.href}>

@@ -9,8 +9,8 @@ interface Notice {
 }
 
 export const metadata = {
-  title: '공지사항 | 서울이건치과',
-  description: '서울이건치과의 최신 공지사항을 확인하세요.',
+  title: '공지사항 | 수원치과 서울이건치과',
+  description: '수원치과 서울이건치과의 최신 공지사항, 휴무일정, 진료안내를 확인하세요.',
 }
 
 export default async function NoticePage() {
@@ -22,6 +22,9 @@ export default async function NoticePage() {
     .order('notice_date', { ascending: false })
 
   const items: Notice[] = notices || []
+
+  // 이미지가 있는 최근 공지 3개
+  const imageNotices = items.filter((n) => n.image_url).slice(0, 3)
 
   const formatDate = (dateStr: string) => {
     return new Date(dateStr).toLocaleDateString('ko-KR', {
@@ -42,6 +45,25 @@ export default async function NoticePage() {
         </p>
       </div>
 
+      {/* 최근 이미지 공지 상단 배너 */}
+      {imageNotices.length > 0 && (
+        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4 mb-10">
+          {imageNotices.map((notice) => (
+            <div key={notice.id} className="rounded-xl overflow-hidden border border-gray-200 bg-white hover:shadow-md transition-shadow">
+              <img
+                src={notice.image_url!}
+                alt={notice.title}
+                className="w-full h-48 object-cover"
+              />
+              <div className="p-4">
+                <h3 className="font-semibold text-sm text-gray-900 truncate">{notice.title}</h3>
+                <time className="text-xs text-gray-400 mt-1 block">{formatDate(notice.notice_date)}</time>
+              </div>
+            </div>
+          ))}
+        </div>
+      )}
+
       {items.length === 0 ? (
         <div className="text-center py-20 text-gray-400">
           등록된 공지사항이 없습니다.
@@ -58,6 +80,9 @@ export default async function NoticePage() {
                   <h2 className="text-lg font-semibold text-gray-900">
                     {notice.title}
                   </h2>
+                  {notice.image_url && (
+                    <img src={notice.image_url} alt={notice.title} className="w-full h-auto rounded-lg mt-3 max-h-80 object-cover" />
+                  )}
                   {notice.content && (
                     <p className="mt-2 text-sm text-gray-600 whitespace-pre-line leading-relaxed">
                       {notice.content}

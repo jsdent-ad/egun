@@ -31,9 +31,9 @@ export default function MapSection() {
           {/* 치과 정보 카드 */}
           <div className={`bg-white/95 backdrop-blur-sm rounded-2xl shadow-xl p-5 md:p-6 ${isVisible ? 'scroll-reveal-up' : 'scroll-hidden'}`}>
             <img
-              src="/images/logo/seoulegun-logo%20(1).svg"
+              src="/images/logo/egun-logo%20(1).svg?v=2"
               alt="서울이건치과"
-              className="h-10 mb-3"
+              className="h-5 mb-3"
             />
             <div className="w-8 h-0.5 bg-[#B8A080] mb-3" />
             <a

@@ -15,8 +15,7 @@ export default function CosmeticPage() {
       title="심미보철"
       subtitle="자연스러운 아름다움을 되찾습니다"
       treatments={cosmeticTreatments}
-      heroImage="/images/board/esthetic.jpeg"
-      heroFull
+      heroImage="/images/board/esthetic-2.jpg"
     />
   )
 }

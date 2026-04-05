@@ -1,6 +1,6 @@
 'use client'
 
-import { useRef, useState, useEffect } from 'react'
+import { useRef, useState, useEffect, useCallback } from 'react'
 import { ChevronLeft, ChevronRight } from 'lucide-react'
 import { useScrollReveal } from '@/hooks/useScrollReveal'
 
@@ -16,10 +16,6 @@ const LAB_FEATURES = [
   {
     title: '품질 직접 관리',
     description: '원장과 기공사가 직접 협의하여\n최적의 결과물을 제작',
-  },
-  {
-    title: '비용 절감',
-    description: '외부 위탁 없이\n환자 부담 비용 절감',
   },
 ]
 
@@ -39,12 +35,45 @@ const LAB_IMAGES = [
   '/images/ddlab/ddlab%20(17).jpg',
 ]
 
+const AUTO_INTERVAL = 4000
+
 export default function LabSection() {
-  const scrollRef = useRef<HTMLDivElement>(null)
   const videoRef = useRef<HTMLDivElement>(null)
   const [videoVisible, setVideoVisible] = useState(false)
   const { ref: headerRef, isVisible: headerVisible } = useScrollReveal(0.15)
   const { ref: contentRef, isVisible: contentVisible } = useScrollReveal(0.15)
+
+  // 3D 캐러셀 state
+  const [current, setCurrent] = useState(0)
+  const total = LAB_IMAGES.length
+
+  const goTo = useCallback(
+    (index: number) => setCurrent(((index % total) + total) % total),
+    [total],
+  )
+
+  useEffect(() => {
+    const timer = setInterval(() => goTo(current + 1), AUTO_INTERVAL)
+    return () => clearInterval(timer)
+  }, [current, goTo])
+
+  const getCardStyle = (index: number) => {
+    let diff = index - current
+    if (diff > total / 2) diff -= total
+    if (diff < -total / 2) diff += total
+    const absD = Math.abs(diff)
+
+    if (absD > 2) {
+      return { transform: 'translateX(0) scale(0.7)', opacity: 0, zIndex: 0, pointerEvents: 'none' as const }
+    }
+
+    return {
+      transform: `translateX(${diff * 320}px) scale(${1 - absD * 0.12}) rotateY(${diff * -8}deg)`,
+      opacity: 1 - absD * 0.3,
+      zIndex: 10 - absD,
+      pointerEvents: (absD === 0 ? 'auto' : 'none') as React.CSSProperties['pointerEvents'],
+    }
+  }
 
   useEffect(() => {
     const el = videoRef.current
@@ -57,15 +86,6 @@ export default function LabSection() {
     return () => observer.disconnect()
   }, [])
 
-  const scroll = (direction: 'left' | 'right') => {
-    if (!scrollRef.current) return
-    const cardWidth = scrollRef.current.firstElementChild?.clientWidth ?? 300
-    scrollRef.current.scrollBy({
-      left: direction === 'left' ? -(cardWidth + 16) : cardWidth + 16,
-      behavior: 'smooth',
-    })
-  }
-
   return (
     <section
       id="lab"
@@ -73,7 +93,7 @@ export default function LabSection() {
       aria-labelledby="lab-heading"
     >
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        {/* 섹션 헤더 - 위→아래 드롭 애니메이션 */}
+        {/* 섹션 헤더 */}
         <div ref={headerRef}>
           <p className={`text-xs font-semibold tracking-[0.25em] uppercase text-[#B8A080] mb-3 ${headerVisible ? 'scroll-reveal-drop' : 'scroll-hidden'}`}>
             In-house Lab
@@ -100,7 +120,7 @@ export default function LabSection() {
         </div>
 
         {/* 메인 콘텐츠: 영상 + 특징 */}
-        <div ref={contentRef} className="grid grid-cols-1 lg:grid-cols-2 gap-8 lg:gap-12 mb-10">
+        <div ref={contentRef} className="grid grid-cols-1 lg:grid-cols-2 gap-8 lg:gap-12 mb-12">
           {/* 유튜브 영상 */}
           <div ref={videoRef} className={`aspect-video rounded-2xl overflow-hidden bg-gray-800 border border-gray-700 ${contentVisible ? 'scroll-reveal-scale' : 'scroll-hidden'}`}>
             {videoVisible ? (
@@ -121,7 +141,7 @@ export default function LabSection() {
             )}
           </div>
 
-          {/* 특징 리스트 - 오른쪽→왼쪽 슬라이드인 */}
+          {/* 특징 리스트 */}
           <div className="flex flex-col gap-4">
             {LAB_FEATURES.map((feature, i) => (
               <div
@@ -147,55 +167,60 @@ export default function LabSection() {
           </div>
         </div>
 
-        {/* 기공소 사진 캐러셀 헤더 */}
-        <div className="flex items-center justify-between mb-6">
-          <div className="flex items-center gap-4">
-            <h3 className="text-lg font-semibold text-white">기공소 시설</h3>
-            <div className="flex-1 h-px bg-gray-700 w-20" />
-          </div>
-          <div className="flex items-center gap-2">
-            <button
-              onClick={() => scroll('left')}
-              className="w-9 h-9 rounded-full border border-gray-600 flex items-center justify-center text-gray-400 hover:bg-gray-800 hover:text-white transition-colors"
-              aria-label="이전 사진"
-            >
-              <ChevronLeft size={18} />
-            </button>
-            <button
-              onClick={() => scroll('right')}
-              className="w-9 h-9 rounded-full border border-gray-600 flex items-center justify-center text-gray-400 hover:bg-gray-800 hover:text-white transition-colors"
-              aria-label="다음 사진"
-            >
-              <ChevronRight size={18} />
-            </button>
-          </div>
+        {/* 기공소 시설 라벨 */}
+        <div className="flex items-center gap-4 mb-10">
+          <h3 className="text-lg font-semibold text-white">기공소 시설</h3>
+          <div className="flex-1 h-px bg-gray-700" />
         </div>
       </div>
 
-      {/* 수평 스냅 캐러셀 */}
+      {/* 3D 캐러셀 */}
       <div
-        ref={scrollRef}
-        className="flex gap-4 overflow-x-auto pl-4 sm:pl-6 lg:pl-[max(1.5rem,calc((100vw-80rem)/2+1.5rem))] pr-4 pb-4"
-        style={{
-          scrollSnapType: 'x mandatory',
-          WebkitOverflowScrolling: 'touch',
-          scrollbarWidth: 'none',
-          msOverflowStyle: 'none',
-        }}
+        className="relative w-full overflow-hidden"
+        style={{ perspective: '1200px', height: '420px' }}
       >
-        {LAB_IMAGES.map((src, i) => (
-          <div
+        <div className="absolute inset-0 flex items-center justify-center">
+          {LAB_IMAGES.map((src, i) => {
+            const style = getCardStyle(i)
+            return (
+              <div
+                key={i}
+                className="absolute w-[280px] sm:w-[380px] lg:w-[480px] aspect-[4/3] rounded-2xl overflow-hidden shadow-2xl transition-all duration-700 ease-in-out"
+                style={{ ...style, transformStyle: 'preserve-3d' }}
+              >
+                <img src={src} alt={`서울이건치과 기공소 ${i + 1}`} className="w-full h-full object-cover" draggable={false} />
+                {i !== current && <div className="absolute inset-0 bg-black/20 rounded-2xl" />}
+              </div>
+            )
+          })}
+        </div>
+
+        {/* 좌우 화살표 - 오른쪽은 사이드바 피해 1cm 여백 */}
+        <button
+          onClick={() => goTo(current - 1)}
+          className="absolute left-4 sm:left-8 top-1/2 -translate-y-1/2 z-20 w-11 h-11 rounded-full bg-white/90 shadow-lg flex items-center justify-center hover:bg-white transition-colors"
+          aria-label="이전 사진"
+        >
+          <ChevronLeft size={22} />
+        </button>
+        <button
+          onClick={() => goTo(current + 1)}
+          className="absolute right-12 sm:right-16 top-1/2 -translate-y-1/2 z-20 w-11 h-11 rounded-full bg-white/90 shadow-lg flex items-center justify-center hover:bg-white transition-colors"
+          aria-label="다음 사진"
+        >
+          <ChevronRight size={22} />
+        </button>
+      </div>
+
+      {/* 인디케이터 */}
+      <div className="flex items-center justify-center gap-2 mt-6">
+        {LAB_IMAGES.map((_, i) => (
+          <button
             key={i}
-            className="shrink-0 w-[260px] sm:w-[320px] lg:w-[380px] aspect-[4/3] rounded-2xl overflow-hidden bg-gray-800"
-            style={{ scrollSnapAlign: 'start' }}
-          >
-            <img
-              src={src}
-              alt={`서울이건치과 기공소 ${i + 1}`}
-              className="w-full h-full object-cover"
-              loading="lazy"
-            />
-          </div>
+            onClick={() => goTo(i)}
+            className={`rounded-full transition-all duration-300 ${i === current ? 'w-6 h-2 bg-[#B8A080]' : 'w-2 h-2 bg-gray-600 hover:bg-gray-500'}`}
+            aria-label={`사진 ${i + 1}번으로 이동`}
+          />
         ))}
       </div>
     </section>

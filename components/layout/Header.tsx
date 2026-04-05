@@ -11,7 +11,6 @@ const NAV_ITEMS = [
   { label: '임플란트', href: '/implant' },
   { label: '심미보철', href: '/cosmetic' },
   { label: '교정치료', href: '/orthodontics' },
-  { label: '소아치과', href: '/pediatric' },
 ]
 
 export default function Header() {
@@ -47,7 +46,7 @@ export default function Header() {
             >
               <img
                 src={scrolled
-                  ? '/images/logo/seoulegun-logo%20(1).svg'
+                  ? '/images/logo/egun-logo%20(1).svg?v=2'
                   : '/images/logo/egun-logo-white%20(1).gif'}
                 alt="서울이건치과"
                 className="h-20 sm:h-28 w-auto transition-opacity duration-300"

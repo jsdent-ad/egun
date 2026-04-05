@@ -1,6 +1,6 @@
 'use client'
 
-import { useState, useEffect, useCallback } from 'react'
+import { useState, useEffect, useCallback, useRef } from 'react'
 import { ChevronLeft, ChevronRight } from 'lucide-react'
 import { useScrollReveal } from '@/hooks/useScrollReveal'
 
@@ -19,14 +19,11 @@ const MAIN_IMAGES = [
 
 const ANNEX_IMAGES = [
   '/images/clinic/cliic2-interior%20(1).jpg',
-  '/images/clinic/cliic2-interior%20(2).jpg',
-  '/images/clinic/cliic2-interior%20(3).jpg',
   '/images/clinic/cliic2-interior%20(4).jpg',
   '/images/clinic/cliic2-interior%20(5).jpg',
   '/images/clinic/cliic2-interior%20(6).jpg',
   '/images/clinic/cliic2-interior%20(7).jpg',
   '/images/clinic/cliic2-interior%20(8).jpg',
-  '/images/clinic/cliic2-interior%20(9).jpg',
 ]
 
 const AUTO_INTERVAL = 4000
@@ -34,6 +31,7 @@ const AUTO_INTERVAL = 4000
 function Carousel3D({ images, altPrefix }: { images: string[]; altPrefix: string }) {
   const [current, setCurrent] = useState(0)
   const total = images.length
+  const touchStart = useRef<number | null>(null)
 
   const goTo = useCallback(
     (index: number) => setCurrent(((index % total) + total) % total),
@@ -43,6 +41,19 @@ function Carousel3D({ images, altPrefix }: { images: string[]; altPrefix: string
   useEffect(() => {
     const timer = setInterval(() => goTo(current + 1), AUTO_INTERVAL)
     return () => clearInterval(timer)
+  }, [current, goTo])
+
+  const handleTouchStart = useCallback((e: React.TouchEvent) => {
+    touchStart.current = e.touches[0].clientX
+  }, [])
+
+  const handleTouchEnd = useCallback((e: React.TouchEvent) => {
+    if (touchStart.current === null) return
+    const diff = touchStart.current - e.changedTouches[0].clientX
+    if (Math.abs(diff) > 50) {
+      goTo(diff > 0 ? current + 1 : current - 1)
+    }
+    touchStart.current = null
   }, [current, goTo])
 
   const getCardStyle = (index: number) => {
@@ -65,7 +76,9 @@ function Carousel3D({ images, altPrefix }: { images: string[]; altPrefix: string
 
   return (
     <>
-      <div className="relative w-full overflow-hidden" style={{ perspective: '1200px', height: '420px' }}>
+      <div className="relative w-full overflow-hidden" style={{ perspective: '1200px', height: '420px' }}
+        onTouchStart={handleTouchStart}
+        onTouchEnd={handleTouchEnd}>
         <div className="absolute inset-0 flex items-center justify-center">
           {images.map((src, i) => (
             <div

@@ -33,7 +33,7 @@ export default function BoardHero({ title, subtitle, videoId, heroImage, heroFul
         <div className="absolute inset-0 bg-black/30" />
         <div className="absolute inset-0 flex items-end">
           <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 pb-8 sm:pb-12 w-full">
-            <h1 className="text-2xl sm:text-4xl lg:text-5xl font-bold text-white leading-tight animate-drop-in">{title}</h1>
+            <h1 className="text-3xl sm:text-5xl lg:text-6xl font-bold text-white leading-tight animate-drop-in">{title}</h1>
             <p className="text-white/80 text-sm sm:text-lg mt-2 animate-drop-in" style={{ animationDelay: '0.15s' }}>{subtitle}</p>
           </div>
         </div>
@@ -49,7 +49,7 @@ export default function BoardHero({ title, subtitle, videoId, heroImage, heroFul
         <div className="absolute inset-0 bg-black/40" />
         <div className="absolute inset-0 flex items-end">
           <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 pb-8 sm:pb-12 w-full">
-            <h1 className="text-2xl sm:text-4xl lg:text-5xl font-bold text-white leading-tight animate-drop-in">{title}</h1>
+            <h1 className="text-3xl sm:text-5xl lg:text-6xl font-bold text-white leading-tight animate-drop-in">{title}</h1>
             <p className="text-white/80 text-sm sm:text-lg mt-2 animate-drop-in" style={{ animationDelay: '0.15s' }}>{subtitle}</p>
           </div>
         </div>
@@ -64,8 +64,8 @@ export default function BoardHero({ title, subtitle, videoId, heroImage, heroFul
       <div className="absolute inset-0 opacity-10" aria-hidden="true"
         style={{ backgroundImage: 'radial-gradient(circle at 25% 25%, white 1px, transparent 1px), radial-gradient(circle at 75% 75%, white 1px, transparent 1px)', backgroundSize: '40px 40px' }} />
       <div className="relative z-10 text-center px-4 py-12 sm:py-20 max-w-3xl mx-auto">
-        <p className="text-white/70 text-sm sm:text-base tracking-widest uppercase mb-3 font-medium animate-drop-in">Seoul Egun Dental</p>
-        <h1 className="text-2xl sm:text-4xl lg:text-5xl font-bold text-white leading-tight mb-4 animate-drop-in [animation-delay:0.12s]">{title}</h1>
+        <p className="text-white/70 text-sm sm:text-base tracking-widest uppercase mb-3 font-medium animate-drop-in">수원치과 서울이건치과</p>
+        <h1 className="text-3xl sm:text-5xl lg:text-6xl font-bold text-white leading-tight mb-4 animate-drop-in [animation-delay:0.12s]">{title}</h1>
         <p className="text-white/80 text-sm sm:text-lg leading-relaxed animate-drop-in [animation-delay:0.24s]">{subtitle}</p>
       </div>
     </section>

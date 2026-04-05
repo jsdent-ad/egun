@@ -12,4 +12,9 @@ export interface TreatmentContent {
   benefits: string[]
   faq: FAQ[]
   image?: string
+  beforeImage?: string
+  afterImage?: string
+  beforeScale?: number
+  videoUrl?: string
+  bottomImage?: string
 }

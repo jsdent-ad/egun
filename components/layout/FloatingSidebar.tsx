@@ -7,6 +7,7 @@ import {
   Play,
   MapPin,
   Phone,
+  ChevronUp,
 } from 'lucide-react'
 import { clinicInfo } from '@/data/clinic-info'
 
@@ -31,6 +32,16 @@ function NaverBlogIcon({ size = 18 }: { size?: number }) {
       <path d="M16 3H8C5.24 3 3 5.24 3 8v8c0 2.76 2.24 5 5 5h8c2.76 0 5-2.24 5-5V8c0-2.76-2.24-5-5-5zm-1.5 12.5L10 11.25V15.5H8.5v-7h1.5l4.5 4.25V8.5H16v7h-1.5z" />
     </svg>
   )
+}
+
+function scrollToTop() {
+  // 풀페이지 스크롤 컨테이너 또는 window
+  const container = document.querySelector('[style*="scroll-snap-type"]') as HTMLElement | null
+  if (container) {
+    container.scrollTo({ top: 0, behavior: 'smooth' })
+  } else {
+    window.scrollTo({ top: 0, behavior: 'smooth' })
+  }
 }
 
 export default function FloatingSidebar() {
@@ -73,6 +84,7 @@ export default function FloatingSidebar() {
   ]
 
   return (
+    <>
     <aside
       className="hidden lg:flex fixed right-5 top-1/2 -translate-y-1/2 z-50 flex-col rounded-2xl overflow-hidden bg-gray-900/90 backdrop-blur-md border border-white/10 shadow-2xl"
       aria-label="빠른 링크"
@@ -138,5 +150,16 @@ export default function FloatingSidebar() {
         )
       })}
     </aside>
+
+    {/* TOP 버튼 - 사이드바 아래 */}
+    <button
+      onClick={scrollToTop}
+      className="hidden lg:flex fixed right-5 bottom-24 z-50 flex-col items-center justify-center w-12 h-14 rounded-2xl bg-gray-900/90 backdrop-blur-md border border-white/10 shadow-2xl text-white/60 hover:text-[#99d9d9] hover:bg-white/10 transition-all duration-200"
+      aria-label="맨 위로"
+    >
+      <ChevronUp size={18} />
+      <span className="text-[9px] font-bold mt-0.5">TOP</span>
+    </button>
+    </>
   )
 }

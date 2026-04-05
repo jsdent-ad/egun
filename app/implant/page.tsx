@@ -15,6 +15,7 @@ export default function ImplantPage() {
       title="임플란트"
       subtitle="상실된 치아의 완벽한 복원 솔루션"
       treatments={implantTreatments}
+      videoId="RkhAehLEia4"
     />
   )
 }

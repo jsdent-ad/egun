@@ -6,7 +6,7 @@ export function LocalBusinessJsonLd() {
     '@type': 'Dentist',
     name: clinicInfo.name,
     description:
-      '서울대 출신 대표 원장 2인이 처음 상담부터 치료 마무리까지 책임지고 진료합니다.',
+      '수원치과 서울이건치과 - 서울대 출신 대표 원장 2인이 처음 상담부터 치료 마무리까지 책임지고 진료합니다.',
     url: 'https://egun.vercel.app',
     telephone: clinicInfo.phone,
     faxNumber: clinicInfo.fax,

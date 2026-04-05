@@ -5,10 +5,10 @@ import Link from 'next/link'
 import { useScrollReveal } from '@/hooks/useScrollReveal'
 
 const MEDIA_ITEMS = [
-  { id: 'notice', label: '공지사항', image: '/images/media-image/notice.jpg', href: '/notice', hoverColor: '#ffffff' },
-  { id: 'blog', label: '원장님 칼럼', image: '/images/media-image/blog.jpg', href: '/media?tab=blog', hoverColor: '#64D515' },
-  { id: 'youtube', label: '이건TV', image: '/images/media-image/youtube.jpg', href: '/media?tab=youtube', hoverColor: '#FF0000' },
-  { id: 'review', label: '환자분 실제 후기', image: '/images/media-image/review.jpg', href: '/media?tab=review', hoverColor: '#64D515' },
+  { id: 'notice', label: '공지사항', image: '/images/media-image/notice.jpg?v=3', href: '/notice', hoverColor: '#ffffff' },
+  { id: 'blog', label: '원장님 칼럼', image: '/images/media-image/blog.jpg?v=3', href: '/media?tab=blog', hoverColor: '#64D515' },
+  { id: 'youtube', label: '이건TV', image: '/images/media-image/youtube.jpg?v=3', href: '/media?tab=youtube', hoverColor: '#FF0000' },
+  { id: 'review', label: '환자분 실제 후기', image: '/images/media-image/review.jpg?v=3', href: '/media?tab=review', hoverColor: '#64D515' },
 ] as const
 
 export default function MediaSection() {
@@ -39,9 +39,9 @@ export default function MediaSection() {
               onMouseEnter={() => setHovered(item.id)}
               onMouseLeave={() => setHovered(null)}
             >
-              <div className="relative w-full aspect-[4/5] rounded-xl overflow-hidden bg-stone-200">
+              <div className="relative w-full aspect-[4/5] rounded-xl overflow-hidden bg-stone-200 flex items-center justify-center">
                 <img src={item.image} alt={item.label}
-                  className="w-full h-full object-cover transition-transform duration-500 group-hover:scale-105" />
+                  className="w-[90%] h-[90%] object-cover transition-transform duration-500 group-hover:scale-105 rounded-lg" />
                 <div
                   className="absolute inset-0 rounded-xl border-[4px] transition-all duration-300 pointer-events-none"
                   style={{ borderColor: isHov ? item.hoverColor : 'transparent' }}

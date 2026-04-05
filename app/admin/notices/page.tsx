@@ -1,8 +1,8 @@
 'use client'
 
-import { useState, useEffect, useCallback } from 'react'
+import { useState, useEffect, useCallback, useRef } from 'react'
 import { createClient } from '@/lib/supabase/client'
-import { Plus, Pencil, Trash2, X } from 'lucide-react'
+import { Plus, Pencil, Trash2, X, Upload } from 'lucide-react'
 
 interface Notice {
   id: string
@@ -19,6 +19,7 @@ interface FormData {
   content: string
   notice_date: string
   is_active: boolean
+  image_url: string
 }
 
 const emptyForm: FormData = {
@@ -26,6 +27,7 @@ const emptyForm: FormData = {
   content: '',
   notice_date: new Date().toISOString().split('T')[0],
   is_active: true,
+  image_url: '',
 }
 
 export default function NoticesPage() {
@@ -36,11 +38,12 @@ export default function NoticesPage() {
   const [form, setForm] = useState<FormData>(emptyForm)
   const [saving, setSaving] = useState(false)
   const [deleteId, setDeleteId] = useState<string | null>(null)
+  const [uploading, setUploading] = useState(false)
+  const fileRef = useRef<HTMLInputElement>(null)
 
   const fetchData = useCallback(async () => {
     setLoading(true)
     try {
-      // 관리자는 모든 공지 (활성+비활성) 조회 필요 → Supabase 직접 조회
       const supabase = createClient()
       const { data } = await supabase
         .from('notices')
@@ -71,8 +74,34 @@ export default function NoticesPage() {
       content: item.content || '',
       notice_date: item.notice_date,
       is_active: item.is_active,
+      image_url: item.image_url || '',
     })
     setModalOpen(true)
+  }
+
+  const handleImageUpload = async (e: React.ChangeEvent<HTMLInputElement>) => {
+    const file = e.target.files?.[0]
+    if (!file) return
+    setUploading(true)
+
+    try {
+      const formData = new FormData()
+      formData.append('file', file)
+
+      const res = await fetch('/api/upload', {
+        method: 'POST',
+        body: formData,
+      })
+
+      if (res.ok) {
+        const data = await res.json()
+        setForm((p) => ({ ...p, image_url: data.url }))
+      }
+    } catch {
+      // ignore
+    } finally {
+      setUploading(false)
+    }
   }
 
   const handleSave = async () => {
@@ -157,6 +186,9 @@ export default function NoticesPage() {
             <thead>
               <tr className="bg-gray-50 border-b border-gray-200">
                 <th className="text-left px-6 py-3 text-xs font-semibold text-gray-500 uppercase">
+                  이미지
+                </th>
+                <th className="text-left px-6 py-3 text-xs font-semibold text-gray-500 uppercase">
                   제목
                 </th>
                 <th className="text-left px-6 py-3 text-xs font-semibold text-gray-500 uppercase hidden md:table-cell">
@@ -172,51 +204,50 @@ export default function NoticesPage() {
             </thead>
             <tbody className="divide-y divide-gray-100">
               {items.map((item) => (
-                <tr
-                  key={item.id}
-                  className="hover:bg-gray-50 transition-colors"
-                >
-                  <td className="px-6 py-4">
-                    <p className="text-sm font-medium text-gray-900">
-                      {item.title}
-                    </p>
-                    {item.content && (
-                      <p className="text-xs text-gray-500 mt-0.5 line-clamp-1">
-                        {item.content}
-                      </p>
+                <tr key={item.id} className="hover:bg-gray-50">
+                  <td className="px-6 py-3">
+                    {item.image_url ? (
+                      <img src={item.image_url} alt="" className="w-12 h-12 rounded-lg object-cover" />
+                    ) : (
+                      <div className="w-12 h-12 rounded-lg bg-gray-100 flex items-center justify-center text-gray-300 text-xs">-</div>
                     )}
                   </td>
-                  <td className="px-6 py-4 text-sm text-gray-500 hidden md:table-cell">
-                    {formatDate(item.notice_date)}
+                  <td className="px-6 py-3">
+                    <p className="text-sm font-medium text-gray-900 truncate max-w-[200px]">
+                      {item.title}
+                    </p>
                   </td>
-                  <td className="px-6 py-4 text-center">
+                  <td className="px-6 py-3 hidden md:table-cell">
+                    <span className="text-sm text-gray-500">
+                      {formatDate(item.notice_date)}
+                    </span>
+                  </td>
+                  <td className="px-6 py-3 text-center">
                     <button
                       onClick={() => toggleActive(item.id, item.is_active)}
-                      className={`relative inline-flex h-6 w-11 items-center rounded-full transition-colors ${
-                        item.is_active ? 'bg-[#B8A080]' : 'bg-gray-300'
+                      className={`inline-block w-8 h-4 rounded-full transition-colors relative ${
+                        item.is_active ? 'bg-green-400' : 'bg-gray-300'
                       }`}
-                      role="switch"
-                      aria-checked={item.is_active}
                     >
                       <span
-                        className={`inline-block h-4 w-4 transform rounded-full bg-white transition-transform ${
-                          item.is_active ? 'translate-x-6' : 'translate-x-1'
+                        className={`absolute top-0.5 w-3 h-3 rounded-full bg-white transition-all ${
+                          item.is_active ? 'left-4' : 'left-0.5'
                         }`}
                       />
                     </button>
                   </td>
-                  <td className="px-6 py-4">
-                    <div className="flex gap-1 justify-center">
+                  <td className="px-6 py-3 text-center">
+                    <div className="flex items-center justify-center gap-1">
                       <button
                         onClick={() => openEditModal(item)}
-                        className="p-1.5 text-gray-400 hover:text-[#B8A080] transition-colors"
+                        className="p-1.5 rounded hover:bg-gray-100 text-gray-400 hover:text-gray-600"
                         title="수정"
                       >
                         <Pencil size={14} />
                       </button>
                       <button
                         onClick={() => setDeleteId(item.id)}
-                        className="p-1.5 text-gray-400 hover:text-red-500 transition-colors"
+                        className="p-1.5 rounded hover:bg-red-50 text-gray-400 hover:text-red-500"
                         title="삭제"
                       >
                         <Trash2 size={14} />
@@ -274,6 +305,40 @@ export default function NoticesPage() {
                   rows={5}
                   className="w-full px-3 py-2 rounded-lg border border-gray-300 text-sm focus:outline-none focus:ring-2 focus:ring-[#B8A080] focus:border-[#B8A080] resize-none"
                   placeholder="공지 내용을 입력하세요"
+                />
+              </div>
+
+              {/* 이미지 업로드 */}
+              <div>
+                <label className="block text-sm font-medium text-gray-700 mb-1">
+                  이미지
+                </label>
+                {form.image_url ? (
+                  <div className="relative w-full h-40 rounded-lg overflow-hidden bg-gray-100 mb-2">
+                    <img src={form.image_url} alt="미리보기" className="w-full h-full object-cover" />
+                    <button
+                      onClick={() => setForm((p) => ({ ...p, image_url: '' }))}
+                      className="absolute top-2 right-2 w-6 h-6 bg-black/50 rounded-full flex items-center justify-center text-white hover:bg-black/70"
+                    >
+                      <X size={14} />
+                    </button>
+                  </div>
+                ) : (
+                  <button
+                    onClick={() => fileRef.current?.click()}
+                    disabled={uploading}
+                    className="w-full h-24 border-2 border-dashed border-gray-300 rounded-lg flex flex-col items-center justify-center text-gray-400 hover:border-[#B8A080] hover:text-[#B8A080] transition-colors"
+                  >
+                    <Upload size={20} />
+                    <span className="text-xs mt-1">{uploading ? '업로드 중...' : '이미지 업로드'}</span>
+                  </button>
+                )}
+                <input
+                  ref={fileRef}
+                  type="file"
+                  accept="image/*"
+                  onChange={handleImageUpload}
+                  className="hidden"
                 />
               </div>
 

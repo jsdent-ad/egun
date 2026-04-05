@@ -6,7 +6,7 @@ import { ChevronDown } from 'lucide-react'
 const SLIDES = [
   {
     id: 0,
-    headline: '서울대 출신 원장 2인',
+    headline: '수원치과 서울대 출신 원장',
     sub: '책임진료 서울이건치과',
     image: '/images/slides/slide-2.png',
     accent: '#B8A080',
