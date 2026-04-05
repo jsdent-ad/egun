@@ -132,7 +132,7 @@ export default function Footer() {
               </tbody>
             </table>
             <p className="mt-4 text-xs text-white/40 leading-relaxed">
-              점심시간: 13:00 - 14:00
+              점심시간: 12:30 - 14:00
               <br />
               공휴일 휴진
             </p>

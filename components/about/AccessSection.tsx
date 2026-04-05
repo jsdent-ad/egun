@@ -145,7 +145,7 @@ export default function AccessSection() {
                   </div>
                 ))}
                 <p className="text-xs text-gray-400 mt-3 pt-3 border-t border-gray-100">
-                  * 점심시간 13:00 - 14:00 (토요일 없음)
+                  * 점심시간 12:30 - 14:00 (토요일 없음)
                 </p>
               </div>
             </div>
