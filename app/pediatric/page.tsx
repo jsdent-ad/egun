@@ -4,9 +4,9 @@ import TreatmentPage from '@/components/board/TreatmentPage'
 import { pediatricTreatments } from '@/data/treatments'
 
 export const metadata: Metadata = {
-  title: '소아치과 치료 | 서울이건치과',
+  title: '수원 소아치과 | 서울이건치과',
   description:
-    '소아 충치치료, 불소도포, 실란트, 성장기 교정 상담 등 아이의 첫 치과를 편안하게 안내합니다.',
+    '수원치과 서울이건치과 소아치과 - 소아 충치치료, 불소도포, 실란트, 성장기 교정 상담 등 아이의 첫 치과를 편안하게 안내합니다.',
 }
 
 export default function PediatricPage() {

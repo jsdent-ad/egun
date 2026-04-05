@@ -4,9 +4,9 @@ import TreatmentPage from '@/components/board/TreatmentPage'
 import { cosmeticTreatments } from '@/data/treatments'
 
 export const metadata: Metadata = {
-  title: '심미보철 | 서울이건치과',
+  title: '수원 심미보철 | 서울이건치과 라미네이트',
   description:
-    '라미네이트, 올세라믹 크라운, 잇몸미백 등 자연스러운 아름다움을 되찾는 심미보철 치료를 안내합니다.',
+    '수원치과 서울이건치과 심미보철 - 라미네이트, 올세라믹 크라운, 잇몸미백 등 자연스러운 아름다움을 되찾는 치료를 안내합니다.',
 }
 
 export default function CosmeticPage() {

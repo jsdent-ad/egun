@@ -4,9 +4,9 @@ import TreatmentPage from '@/components/board/TreatmentPage'
 import { implantTreatments } from '@/data/treatments'
 
 export const metadata: Metadata = {
-  title: '임플란트 | 서울이건치과',
+  title: '수원 임플란트 | 서울이건치과',
   description:
-    '올온, 즉시로딩, 네비게이션, 전치부, 자가혈, 상악동 거상술, 시니어, 당뇨 환자 임플란트를 안내합니다.',
+    '수원치과 서울이건치과 임플란트 - 올온, 즉시로딩, 네비게이션, 상악동 거상술, 당뇨 환자 임플란트를 안내합니다.',
 }
 
 export default function ImplantPage() {

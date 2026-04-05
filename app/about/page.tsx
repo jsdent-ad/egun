@@ -8,7 +8,7 @@ import LabSection from '@/components/about/LabSection'
 import AccessSection from '@/components/about/AccessSection'
 
 export const metadata: Metadata = {
-  title: '이건치과소개 | 서울이건치과',
+  title: '수원 이건치과소개 | 서울이건치과',
   description:
     '서울이건치과의 진료 철학, 의료진 소개, 진료일정, 내부전경, 디지털 기공소, 오시는길을 안내합니다.',
 }

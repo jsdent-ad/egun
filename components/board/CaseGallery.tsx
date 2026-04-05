@@ -1,7 +1,7 @@
 'use client'
 
 import { useState, useEffect } from 'react'
-import { ImageOff, X } from 'lucide-react'
+import { ImageOff, X, ExternalLink } from 'lucide-react'
 
 interface CaseItem {
   id: string
@@ -33,7 +33,6 @@ export default function CaseGallery({
         const res = await fetch(`/api/cases?board_category=${boardCategory}`)
         if (res.ok) {
           const data: CaseItem[] = await res.json()
-          // treatment_type이 일치하는 것만 필터
           const filtered = data.filter(
             (c) => c.treatment_type === treatmentType,
           )
@@ -73,6 +72,9 @@ export default function CaseGallery({
       </div>
     )
   }
+
+  // 모든 증례에서 블로그 링크 수집
+  const allBlogs = cases.flatMap((c) => c.case_blogs)
 
   return (
     <>
@@ -130,6 +132,30 @@ export default function CaseGallery({
             </button>
           ))}
         </div>
+
+        {/* 블로그 링크 — 증례 카드 아래에 별도 표시 */}
+        {allBlogs.length > 0 && (
+          <div className="mt-6 space-y-2">
+            <h4 className="text-sm font-semibold text-gray-500 mb-3">관련 블로그</h4>
+            {allBlogs.map((blog) => (
+              <a
+                key={blog.id}
+                href={blog.blog_url}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="flex items-center gap-2 p-3 rounded-xl border border-gray-200 hover:border-[#B8A080] hover:bg-stone-50 transition-colors group"
+              >
+                <ExternalLink size={14} className="text-[#B8A080] shrink-0" />
+                <span className="text-sm text-gray-700 group-hover:text-[#B8A080] truncate">
+                  {blog.blog_title || blog.blog_url}
+                </span>
+                <span className="text-[10px] text-gray-400 shrink-0 ml-auto hidden sm:block truncate max-w-[200px]">
+                  {blog.blog_url}
+                </span>
+              </a>
+            ))}
+          </div>
+        )}
       </div>
 
       {/* 상세 모달 */}
@@ -156,26 +182,14 @@ export default function CaseGallery({
               <div className="grid grid-cols-2 gap-0">
                 {selected.before_image_url && (
                   <div className="relative">
-                    <img
-                      src={selected.before_image_url}
-                      alt="Before"
-                      className="w-full object-cover"
-                    />
-                    <span className="absolute top-3 left-3 bg-black/60 text-white text-xs px-2 py-1 rounded">
-                      Before
-                    </span>
+                    <img src={selected.before_image_url} alt="Before" className="w-full object-cover" />
+                    <span className="absolute top-3 left-3 bg-black/60 text-white text-xs px-2 py-1 rounded">Before</span>
                   </div>
                 )}
                 {selected.after_image_url && (
                   <div className="relative">
-                    <img
-                      src={selected.after_image_url}
-                      alt="After"
-                      className="w-full object-cover"
-                    />
-                    <span className="absolute top-3 left-3 bg-[#B8A080] text-white text-xs px-2 py-1 rounded">
-                      After
-                    </span>
+                    <img src={selected.after_image_url} alt="After" className="w-full object-cover" />
+                    <span className="absolute top-3 left-3 bg-[#B8A080] text-white text-xs px-2 py-1 rounded">After</span>
                   </div>
                 )}
               </div>
@@ -186,22 +200,6 @@ export default function CaseGallery({
                 <p className="text-sm text-gray-600 leading-relaxed whitespace-pre-line">
                   {selected.description}
                 </p>
-              )}
-              {selected.case_blogs.length > 0 && (
-                <div className="pt-3 border-t border-gray-100 space-y-2">
-                  <p className="text-xs text-gray-400 font-medium">관련 블로그</p>
-                  {selected.case_blogs.map((blog) => (
-                    <a
-                      key={blog.id}
-                      href={blog.blog_url}
-                      target="_blank"
-                      rel="noopener noreferrer"
-                      className="block text-sm text-[#B8A080] hover:underline"
-                    >
-                      {blog.blog_title || blog.blog_url}
-                    </a>
-                  ))}
-                </div>
               )}
             </div>
           </div>

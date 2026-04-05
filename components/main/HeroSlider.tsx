@@ -147,7 +147,7 @@ export default function HeroSlider() {
             className="text-xs md:text-sm tracking-[0.3em] uppercase mb-3 opacity-80"
             style={{ color: slide.accent }}
           >
-            Seoul Egun Dental Clinic
+            서울이건치과 <span className="text-[10px] md:text-xs opacity-60">수원</span>
           </p>
           <h1
             key={`headline-${current}`}

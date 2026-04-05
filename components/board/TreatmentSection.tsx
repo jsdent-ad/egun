@@ -48,7 +48,7 @@ export default function TreatmentSection({
         <div className="space-y-4">
           <img
             src="/images/logo/egun-logo%20(1).png"
-            alt="서울이건치과"
+            alt="수원치과 서울이건치과"
             className={`h-8 mb-2 ${textVisible ? 'scroll-reveal-left' : 'scroll-hidden'}`}
           />
           <h2 className={`text-2xl sm:text-3xl font-bold text-gray-900 leading-tight ${textVisible ? 'scroll-reveal-left' : 'scroll-hidden'}`}
@@ -58,6 +58,10 @@ export default function TreatmentSection({
           <p className={`text-lg text-[#B8A080] font-medium ${textVisible ? 'scroll-reveal-left' : 'scroll-hidden'}`}
             style={textVisible ? { animationDelay: '0.2s' } : undefined}>
             {treatment.subtitle}
+          </p>
+          <p className={`text-[11px] text-gray-300 ${textVisible ? 'scroll-reveal-left' : 'scroll-hidden'}`}
+            style={textVisible ? { animationDelay: '0.25s' } : undefined}>
+            수원치과 서울이건치과
           </p>
           <div className={`${textVisible ? 'scroll-reveal-drop' : 'scroll-hidden'}`}
             style={textVisible ? { animationDelay: '0.3s' } : undefined}>
