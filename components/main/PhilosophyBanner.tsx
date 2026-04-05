@@ -43,10 +43,11 @@ export default function PhilosophyBanner() {
 
   return (
     <section
-      ref={(el) => {
+      ref={(el: HTMLElement | null) => {
         sectionRef.current = el
-        if (typeof ref === 'function') ref(el)
-        else if (ref) (ref as React.MutableRefObject<HTMLDivElement | null>).current = el
+        const r = ref as React.MutableRefObject<HTMLDivElement | null> | ((node: HTMLDivElement | null) => void)
+        if (typeof r === 'function') r(el as HTMLDivElement | null)
+        else if (r) r.current = el as HTMLDivElement | null
       }}
       className="h-screen w-full flex items-center overflow-hidden"
       style={{ backgroundColor: '#FAFAF8' }}
