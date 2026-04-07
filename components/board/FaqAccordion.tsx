@@ -1,7 +1,7 @@
 'use client'
 
-// @TASK Board - FAQ 아코디언 (다중 열기 허용)
-import { useState } from 'react'
+// @TASK Board - FAQ 아코디언 (데스크톱: 호버로 열림, 모바일: 항상 열림)
+import { useState, useEffect } from 'react'
 import { ChevronDown } from 'lucide-react'
 
 interface FaqItem {
@@ -14,19 +14,16 @@ interface FaqAccordionProps {
 }
 
 export default function FaqAccordion({ faq }: FaqAccordionProps) {
-  const [openIndexes, setOpenIndexes] = useState<Set<number>>(new Set())
+  const [hoveredIndex, setHoveredIndex] = useState<number | null>(null)
+  const [isMobile, setIsMobile] = useState(false)
 
-  const toggle = (index: number) => {
-    setOpenIndexes((prev) => {
-      const next = new Set(prev)
-      if (next.has(index)) {
-        next.delete(index)
-      } else {
-        next.add(index)
-      }
-      return next
-    })
-  }
+  useEffect(() => {
+    const mql = window.matchMedia('(max-width: 639px)')
+    setIsMobile(mql.matches)
+    const handler = (e: MediaQueryListEvent) => setIsMobile(e.matches)
+    mql.addEventListener('change', handler)
+    return () => mql.removeEventListener('change', handler)
+  }, [])
 
   return (
     <div>
@@ -35,18 +32,18 @@ export default function FaqAccordion({ faq }: FaqAccordionProps) {
       </h3>
       <dl className="space-y-2">
         {faq.map((item, index) => {
-          const isOpen = openIndexes.has(index)
+          const isOpen = isMobile || hoveredIndex === index
           const answerId = `faq-answer-${index}`
 
           return (
             <div
               key={index}
               className="border border-gray-200 rounded-xl overflow-hidden"
+              onMouseEnter={() => !isMobile && setHoveredIndex(index)}
+              onMouseLeave={() => !isMobile && setHoveredIndex(null)}
             >
               <dt>
-                <button
-                  type="button"
-                  onClick={() => toggle(index)}
+                <div
                   className="w-full flex items-center gap-3 px-5 py-4 text-left hover:bg-gray-50 transition-colors"
                   aria-expanded={isOpen}
                   aria-controls={answerId}
@@ -63,12 +60,12 @@ export default function FaqAccordion({ faq }: FaqAccordionProps) {
                   </span>
                   <ChevronDown
                     size={18}
-                    className={`shrink-0 text-gray-400 transition-transform duration-200 ${
+                    className={`shrink-0 text-gray-400 transition-transform duration-200 sm:block hidden ${
                       isOpen ? 'rotate-180' : ''
                     }`}
                     aria-hidden="true"
                   />
-                </button>
+                </div>
               </dt>
               <dd
                 id={answerId}
